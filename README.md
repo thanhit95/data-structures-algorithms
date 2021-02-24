@@ -17,6 +17,17 @@ Thanh Trung Nguyen
 
 &nbsp;
 
+## CONVENTION
+
+Naming rules:
+
+- Python: snake_case
+- C++: camelCase, mostly Java style
+
+&nbsp;
+
 ## LICENSE
 
-Update later.
+(Update later)
+
+Until I update the license, this repo will stand "proprietary license".
