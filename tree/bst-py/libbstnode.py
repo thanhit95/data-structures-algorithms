@@ -37,9 +37,9 @@ class BstNode:
 
     #
     #
-    def remove_child(self, child, new_child=None):
+    def remove_child(self, child):
         '''
-        Removes the child node (no recursive).
+        Fully removes child node and its branch (no recursive).
         Args:
             child: Child node to be removed.
         Returns:

@@ -20,14 +20,23 @@ class BinarySearchTree:
     Binary search tree.
 
     Args:
-        lst: The list to construct from. If lst is None, the tree is empty.
+        lst: The list to construct from. If lst if None, the tree is empty.
+        candd_removal: Candidate chosen for replacement when doing "remove" action. This argument can be "left" or "right".
     Returns:
         None
     '''
     #
     #
-    def __init__(self, lst: list = None):
+    def __init__(self, lst: list = None, candd_removal='right'):
         self.root = None
+
+        if candd_removal not in ('left', 'right'):
+            raise ValueError('Invalid argument: candd_removal')
+
+        self.__option_candidate_removal = candd_removal
+
+        if lst is not None:
+            self.__construct_from_list(lst)
 
     #
     #
@@ -55,7 +64,10 @@ class BinarySearchTree:
         elif order == 'post':
             self.__traverse_post(self.root)
 
-        return self.__res_traveral
+        res = self.__res_traveral
+        del self.__res_traveral
+
+        return res
 
     #
     #
@@ -149,6 +161,14 @@ class BinarySearchTree:
     #
     #
     def __insert(self, node: BstNode, key):
+        '''
+        Inserts a key (backend function)
+        Args:
+            node: Current processing node.
+            key: The key to insert.
+        Returns:
+            The current processing node itself.
+        '''
         if node is None:
             return BstNode(key)
 
@@ -188,15 +208,18 @@ class BinarySearchTree:
         Returns:
             None.
         '''
-        if node.left is not None and node.right is not None:
-            child, child_pa = self.__search_min(node.right, node)  # find the minimum-key child in right branch for replacement
-            node.key = child.key
-            self.__remove_node(child, child_pa)
 
-        elif node.left is not None:
+        have_left_child, have_right_child = node.left is not None, node.right is not None
+
+        if have_left_child and have_right_child:
+            candidate, candidate_pa = self.__get_candidate_removal(node)
+            node.key = candidate.key
+            self.__remove_node(candidate, candidate_pa)
+
+        elif have_left_child:
             node.assign(node.left)
 
-        elif node.right is not None:
+        elif have_right_child:
             node.assign(node.right)
 
         else:
@@ -209,23 +232,99 @@ class BinarySearchTree:
 
     #
     #
-    def __search_min(self, start_node: BstNode, parent_node: BstNode):
+    def __get_candidate_removal(self, node):
         '''
-        Searches for the node with minimum key.
+        Gets a candidate for replacement. This is the helper function for "remove node" action.
         Args:
-            start_node: Starting node.
-            parent_node: Parent of starting node.
+            node: The starting node.
         Returns:
             The tuple (node, parent) indicating result node and its parent.
         '''
-        if start_node is None:
-            return (None, None)
+        option = self.__option_candidate_removal
 
-        parent = parent_node
-        node = start_node
+        if option == 'right':
+            return self.__search_min(node.right, node)
+        elif option == 'left':
+            return self.__search_max(node.left, node)
+
+        raise ValueError('Invalid __option_candidate_removal')
+
+    #
+    #
+    def __search_min(self, node: BstNode, parent: BstNode):
+        '''
+        Searches for the node with minimum key.
+        Args:
+            node: Starting node.
+            parent: Parent of starting node.
+        Returns:
+            The tuple (node, parent) indicating result node and its parent.
+        '''
+        if node is None:
+            return (None, parent)
 
         while node.left is not None:
             parent = node
             node = node.left
 
         return (node, parent)
+
+    #
+    #
+    def __search_max(self, node: BstNode, parent: BstNode):
+        '''
+        Searches for the node with maximum key.
+        Args:
+            node: Starting node.
+            parent: Parent of starting node.
+        Returns:
+            The tuple (node, parent) indicating result node and its parent.
+        '''
+        if node is None:
+            return (None, parent)
+
+        while node.right is not None:
+            parent = node
+            node = node.right
+
+        return (node, parent)
+
+    #
+    #
+    def __construct_from_list(self, lst: list):
+        '''
+        Constructs tree from a list. WARNING: The list will change its value (i.e. sorting).
+        Args:
+            lst: The list.
+        Returns:
+            None.
+        '''
+        self.root = None
+        lst.sort()
+        len_lst = len(lst)
+
+        self.root = self.__construct_from_sorted_list(lst, 0, len_lst - 1)
+
+    #
+    #
+    def __construct_from_sorted_list(self, lst: list, start_idx: int, end_idx: int):
+        '''
+        Backend function for "__construct_from_list".
+        Args:
+            lst: The list.
+            start_idx: Starting index in list.
+            end_idx: Ending index in list (inclusive).
+        Returns:
+            Root node (followed by its branch) constructed from lst[ start_idx to end_idx ]
+        '''
+
+        if start_idx > end_idx:
+            return None
+
+        mid_idx = (start_idx + end_idx) // 2
+        root_node = BstNode(lst[mid_idx])
+
+        root_node.left = self.__construct_from_sorted_list(lst, start_idx, mid_idx - 1)
+        root_node.right = self.__construct_from_sorted_list(lst, mid_idx + 1, end_idx)
+
+        return root_node
