@@ -109,6 +109,25 @@ class BinarySearchTree:
 
     #
     #
+    def depth_level(self):
+        '''
+        Gets depth level of the tree.
+        '''
+        return self.__depth_level(self.root)
+
+    #
+    #
+    def __depth_level(self, node: BstNode):
+        if node is None:
+            return 0
+
+        left_branch_depth = 1 + self.__depth_level(node.left)
+        right_branch_depth = 1 + self.__depth_level(node.right)
+
+        return max(left_branch_depth, right_branch_depth)
+
+    #
+    #
     def search(self, key):
         '''
         Searches for a key.

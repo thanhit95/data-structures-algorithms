@@ -11,6 +11,6 @@ if __name__ == '__main__':
 
     print(bst)
 
-    bst.remove(39)
+    bst.remove(12)
 
     print(bst)
