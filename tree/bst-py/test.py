@@ -1,5 +1,5 @@
-from libbst import BinarySearchTree
-from libbstdisplay import BstDisplay
+from bst import BinarySearchTree
+from bintreedisplay import BinTreeDisplay
 
 
 def test01():
@@ -29,7 +29,7 @@ def test02():
 
     print()
 
-    displayer = BstDisplay(bst)
+    displayer = BinTreeDisplay(bst)
     res = displayer.get_str()
 
     print(res)

@@ -1,6 +1,6 @@
-class BstNode:
+class BinNode:
     '''
-    BST Node.
+    Binary Node.
 
     Args:
         key: The key stored in the node.

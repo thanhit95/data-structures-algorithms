@@ -12,7 +12,7 @@ License:        (update later)
 '''
 
 
-from libbstnode import *
+from binnode import BinNode
 
 
 class BinarySearchTree:
@@ -22,8 +22,6 @@ class BinarySearchTree:
     Args:
         lst: The list to construct from. If lst if None, the tree is empty.
         candd_removal: Candidate chosen for replacement when doing "remove" action. This argument can be "left" or "right".
-    Returns:
-        None
     '''
     #
     #
@@ -71,7 +69,7 @@ class BinarySearchTree:
 
     #
     #
-    def __traverse_pre(self, node: BstNode):
+    def __traverse_pre(self, node: BinNode):
         if node is None:
             return
 
@@ -81,7 +79,7 @@ class BinarySearchTree:
 
     #
     #
-    def __traverse_in(self, node: BstNode):
+    def __traverse_in(self, node: BinNode):
         if node is None:
             return
 
@@ -91,7 +89,7 @@ class BinarySearchTree:
 
     #
     #
-    def __traverse_post(self, node: BstNode):
+    def __traverse_post(self, node: BinNode):
         if node is None:
             return
 
@@ -117,7 +115,7 @@ class BinarySearchTree:
 
     #
     #
-    def __depth_level(self, node: BstNode):
+    def __depth_level(self, node: BinNode):
         if node is None:
             return 0
 
@@ -141,7 +139,7 @@ class BinarySearchTree:
 
     #
     #
-    def __search(self, node: BstNode, key):
+    def __search(self, node: BinNode, key):
         '''
         Searches for a key.
         Args:
@@ -179,7 +177,7 @@ class BinarySearchTree:
 
     #
     #
-    def __insert(self, node: BstNode, key):
+    def __insert(self, node: BinNode, key):
         '''
         Inserts a key (backend function)
         Args:
@@ -189,7 +187,7 @@ class BinarySearchTree:
             The current processing node itself.
         '''
         if node is None:
-            return BstNode(key)
+            return BinNode(key)
 
         if key < node.key:
             node.left = self.__insert(node.left, key)
@@ -270,7 +268,7 @@ class BinarySearchTree:
 
     #
     #
-    def __search_min(self, node: BstNode, parent: BstNode):
+    def __search_min(self, node: BinNode, parent: BinNode):
         '''
         Searches for the node with minimum key.
         Args:
@@ -290,7 +288,7 @@ class BinarySearchTree:
 
     #
     #
-    def __search_max(self, node: BstNode, parent: BstNode):
+    def __search_max(self, node: BinNode, parent: BinNode):
         '''
         Searches for the node with maximum key.
         Args:
@@ -341,7 +339,7 @@ class BinarySearchTree:
             return None
 
         mid_idx = (start_idx + end_idx) // 2
-        root_node = BstNode(lst[mid_idx])
+        root_node = BinNode(lst[mid_idx])
 
         root_node.left = self.__construct_from_sorted_list(lst, start_idx, mid_idx - 1)
         root_node.right = self.__construct_from_sorted_list(lst, mid_idx + 1, end_idx)

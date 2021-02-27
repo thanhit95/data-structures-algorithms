@@ -1,9 +1,9 @@
 import math
-from libbstnode import BstNode
-from libbst import BinarySearchTree
+from binnode import BinNode
+from bst import BinarySearchTree
 
 
-class BstDisplay:
+class BinTreeDisplay:
     #
     #
     def __init__(self, bst: BinarySearchTree, dash: str = '-', dash_size: int = 3):
@@ -26,7 +26,7 @@ class BstDisplay:
         width, _, _, _, _ = self.__get_width_node(self.bst.root)
         height = self.__depth_level * 2 - 1
 
-        self.__matrix = BstDisplayMatrix(width, height)
+        self.__matrix = BinTreeDisplayMatrix(width, height)
 
         self.__fill_matrix(self.bst.root, 1, 0)
 
@@ -38,7 +38,7 @@ class BstDisplay:
 
     #
     #
-    def __fill_matrix(self, node: BstNode, depth: int, margin_global: int):
+    def __fill_matrix(self, node: BinNode, depth: int, margin_global: int):
         if node is None:
             return
 
@@ -93,7 +93,7 @@ class BstDisplay:
 
     #
     #
-    def __get_width_node(self, node: BstNode):
+    def __get_width_node(self, node: BinNode):
         if node is None:
             return 0, 0, 0, 0, 0
 
@@ -152,7 +152,7 @@ class BstDisplay:
 
 #
 #
-class BstDisplayMatrix:
+class BinTreeDisplayMatrix:
     #
     #
     def __init__(self, width, height):
@@ -188,6 +188,6 @@ class BstDisplayMatrix:
     #
     def get_str(self):
         a = self.a
-        lst_rows = [''.join(a[i]) for i in range(self.height)]
+        lst_rows = [''.join(a[i]).rstrip() for i in range(self.height)]
         res = '\n'.join(lst_rows)
         return res
