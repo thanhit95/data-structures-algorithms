@@ -103,10 +103,18 @@ class BinTreeDisplayParser:
         size_right_overflow = len_key - (width_right_branch + size_right_dash)
         full_width += max(1, size_right_overflow)
 
+        margin_key = width_left_branch + size_left_dash
+        margin_left_child = 0 if node.left is None else node.left.margin_key
+        margin_right_child = 0 if node.right is None else margin_key + node.right.margin_key + size_right_dash + 1
+
         node.width = full_width
         node.width_left_branch = width_left_branch
         node.width_right_branch = width_right_branch
         node.size_left_dash = size_left_dash
         node.size_right_dash = size_right_dash
+
+        node.margin_key = margin_key
+        node.margin_left_child = margin_left_child
+        node.margin_right_child = margin_right_child
 
         return node

@@ -22,7 +22,10 @@ def test02():
 
     bst = BinarySearchTree()
 
-    for value in [30, 9, 500, -5.1, 26, 144, 800, 12.85, -7, 288, 100.72]:
+    # for value in [30, 9, 500, -5.1, 26, 144, 800, 12.85, -7, 288, 100.72]:
+    #     bst.insert(value)
+
+    for value in [100, 50, 70000, 10, 88, 20000, 900000, -123456, 14.78, 62, 500, 21000]:
         bst.insert(value)
 
     print(bst)

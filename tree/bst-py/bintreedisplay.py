@@ -43,7 +43,7 @@ class BinTreeDisplay:
         self.__parser.config_dash(dash, dash_size)
 
         self.__depth_level = bst.depth_level()
-        height = self.__depth_level * 2 - 1
+        height = self.__depth_level * 3 - 2
 
         parser_tree = self.__parser.build_tree(bst.root)
 
@@ -63,51 +63,42 @@ class BinTreeDisplay:
         if node is None:
             return
 
-        width_left_branch, size_left_dash, size_right_dash \
-            = node.width_left_branch, node.size_left_dash, node.size_right_dash
+        margin_key = margin_global + node.margin_key
+        margin_left = margin_global + node.margin_left_child
+        margin_right = margin_global + node.margin_right_child
+        margin_global_right = margin_key + 1 + node.size_right_dash
 
-        margin = margin_global + width_left_branch + size_left_dash
-
-        self.__buffer.fill(margin, depth * 2 - 2, node.key)
+        self.__buffer.fill(margin_key, depth * 3 - 3, node.key)
 
         if node.left is not None or node.right is not None:
-            self.__buffer.fill(margin, depth * 2 - 1, '|')
-
-        self.__fill_matrix(node.left, depth + 1, margin_global)
-        self.__fill_matrix(node.right, depth + 1, margin + 1 + size_right_dash)
+            self.__buffer.fill(margin_key, depth * 3 - 2, '|')
 
         if node.left is not None:
-            self.__fill_horizontal_dash(margin, depth * 2, 'left')
+            self.__fill_dash('left', node.left.key, depth * 3 - 1, margin_left, margin_key)
+            self.__fill_matrix(node.left, depth + 1, margin_global)
 
         if node.right is not None:
-            self.__fill_horizontal_dash(margin, depth * 2, 'right')
+            self.__fill_dash('right', node.right.key, depth * 3 - 1, margin_key, margin_right)
+            self.__fill_matrix(node.right, depth + 1, margin_global_right)
 
     #
     #
-    def __fill_horizontal_dash(self, posx, posy, direction):
-        buffer = self.__buffer
-        a = buffer.a
-        dash = self.__parser.dash
+    def __fill_dash(self, direction: str, child_key: str, y, margin_a, margin_b):
+        if direction == 'right':
+            self.__fill_dash_coord(y, margin_a, margin_b)
 
-        if direction == 'left':
-            if a[posy][posx] == dash:
-                posx -= 1
-
-            for x in range(posx, -1, -1):
-                if a[posy][x] == ' ':
-                    a[posy][x] = dash
-                else:
-                    break
-
-        elif direction == 'right':
-            if a[posy][posx] == dash:
-                posx += 1
-
-            for x in range(posx, buffer.width):
-                if a[posy][x] == ' ':
-                    a[posy][x] = dash
-                else:
-                    break
+        elif direction == 'left':
+            margin_a += len(child_key) - 1
+            self.__fill_dash_coord(y, margin_a, margin_b)
 
         else:
             raise ValueError('Invalid argument: direction')
+
+    #
+    #
+    def __fill_dash_coord(self, y, startx, endx):
+        a = self.__buffer.a
+        dash = self.__parser.dash
+
+        for x in range(startx, endx + 1):
+            a[y][x] = dash
