@@ -29,8 +29,8 @@ def test02():
 
     print()
 
-    displayer = BinTreeDisplay(bst)
-    res = displayer.get_str()
+    displayer = BinTreeDisplay()
+    res = displayer.get_str(bst)
 
     print(res)
 

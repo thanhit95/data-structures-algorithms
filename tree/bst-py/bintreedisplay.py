@@ -6,9 +6,12 @@ from bst import BinarySearchTree
 class BinTreeDisplay:
     #
     #
-    def __init__(self, bst: BinarySearchTree, dash: str = '-', dash_size: int = 3):
-        self.bst = bst
+    def __init__(self):
+        self.__config_str_float_format = '{value:.2f}'
 
+    #
+    #
+    def __config_dash(self, dash, dash_size):
         if type(dash) is not str or len(dash) != 1:
             raise ValueError('Invalid argument: dash must be string of length 1')
 
@@ -17,24 +20,48 @@ class BinTreeDisplay:
 
         self.__config_str_dash = dash
         self.__config_size_horizontal_dash = dash_size
-        self.__config_str_float_format = '{value:.2f}'
 
     #
     #
-    def get_str(self):
-        self.__depth_level = self.bst.depth_level()
-        width, _, _, _, _ = self.__get_width_node(self.bst.root)
+    def get_str(self, bst: BinarySearchTree, dash: str = '-', dash_size: int = 3):
+        self.__config_dash(dash, dash_size)
+
+        self.__depth_level = bst.depth_level()
+
+        width, _, _, _, _ = self.__get_width_node(bst.root)
         height = self.__depth_level * 2 - 1
 
         self.__matrix = BinTreeDisplayMatrix(width, height)
 
-        self.__fill_matrix(self.bst.root, 1, 0)
+        self.__fill_matrix(bst.root, 1, 0)
 
         matrix = self.__matrix
         del self.__depth_level
         del self.__matrix
 
         return matrix.get_str()
+
+    #
+    #
+    def __get_width_node(self, node: BinNode):
+        if node is None:
+            return 0, 0, 0, 0, 0
+
+        width_left_branch, _, _, _, _ = self.__get_width_node(node.left)
+        width_right_branch, _, _, _, _ = self.__get_width_node(node.right)
+
+        full_dash_size = self.__config_size_horizontal_dash
+        len_key = self.__get_len_value(node.key)
+
+        size_left_dash = 0 if node.left is None else full_dash_size // 2
+        size_right_dash = 0 if node.right is None else full_dash_size // 2
+
+        full_width = width_left_branch + width_right_branch + size_left_dash + size_right_dash
+
+        size_right_overflow = len_key - (width_right_branch + size_right_dash)
+        full_width += max(1, size_right_overflow)
+
+        return full_width, width_left_branch, width_right_branch, size_left_dash, size_right_dash
 
     #
     #
@@ -90,28 +117,6 @@ class BinTreeDisplay:
 
         else:
             raise ValueError('Invalid argument: direction')
-
-    #
-    #
-    def __get_width_node(self, node: BinNode):
-        if node is None:
-            return 0, 0, 0, 0, 0
-
-        width_left_branch, _, _, _, _ = self.__get_width_node(node.left)
-        width_right_branch, _, _, _, _ = self.__get_width_node(node.right)
-
-        full_dash_size = self.__config_size_horizontal_dash
-        len_key = self.__get_len_value(node.key)
-
-        size_left_dash = 0 if node.left is None else full_dash_size // 2
-        size_right_dash = 0 if node.right is None else full_dash_size // 2
-
-        full_width = width_left_branch + width_right_branch + size_left_dash + size_right_dash
-
-        size_right_overflow = len_key - (width_right_branch + size_right_dash)
-        full_width += max(1, size_right_overflow)
-
-        return full_width, width_left_branch, width_right_branch, size_left_dash, size_right_dash
 
     #
     #
