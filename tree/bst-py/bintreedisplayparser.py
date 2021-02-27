@@ -3,9 +3,7 @@ from binnode import BinNode
 from bst import BinarySearchTree
 
 
-#
-#
-class ValueParserUtil:
+class ValueUtil:
     #
     #
     def __init__(self):
@@ -53,13 +51,19 @@ class ValueParserUtil:
 class BinTreeDisplayParser:
     #
     #
-    def __init__(self, parser_util: ValueParserUtil, dash: str = '-', dash_size: int = 3):
-        self.__util = parser_util
+    def __init__(self, value_util: ValueUtil, dash: str = '-', dash_size: int = 3):
+        self.__vutil = value_util
         self.config_dash(dash, dash_size)
 
     #
     #
     def config_dash(self, dash, dash_size):
+        '''
+        Configures dash information. The term "dash" means a horizontal line connecting left and right leaves.
+        Args:
+            dash: Dash character.
+            dash_size: Dash size (the length between left and right leaves).
+        '''
         if type(dash) is not str or len(dash) != 1:
             raise ValueError('Invalid argument: dash must be string of length 1')
 
@@ -71,27 +75,38 @@ class BinTreeDisplayParser:
 
     #
     #
-    def get_width_node(self, node: BinNode):
-        return self.__get_width_node(node)
+    def build_tree(self, input_root: BinNode):
+        '''
+        Builds parser tree which stores parsing information of each corresponding node.
+        Args:
+            input_root: Input root node.
+        Returns:
+            A node of type BinNode indicating parser tree.
+        '''
+        if input_root is None:
+            return None
 
-    #
-    #
-    def __get_width_node(self, node: BinNode):
-        if node is None:
-            return 0, 0, 0, 0, 0
+        node = BinNode(self.__vutil.get_str(input_root.key))
+        len_key = len(node.key)
 
-        width_left_branch, _, _, _, _ = self.__get_width_node(node.left)
-        width_right_branch, _, _, _, _ = self.__get_width_node(node.right)
+        node.left = self.build_tree(input_root.left)
+        node.right = self.build_tree(input_root.right)
 
-        full_dash_size = self.dash_size
-        len_key = self.__util.get_len(node.key)
+        width_left_branch = 0 if node.left is None else node.left.width
+        width_right_branch = 0 if node.right is None else node.right.width
 
-        size_left_dash = 0 if node.left is None else full_dash_size // 2
-        size_right_dash = 0 if node.right is None else full_dash_size // 2
+        size_left_dash = 0 if node.left is None else self.dash_size // 2
+        size_right_dash = 0 if node.right is None else self.dash_size // 2
 
         full_width = width_left_branch + width_right_branch + size_left_dash + size_right_dash
 
         size_right_overflow = len_key - (width_right_branch + size_right_dash)
         full_width += max(1, size_right_overflow)
 
-        return full_width, width_left_branch, width_right_branch, size_left_dash, size_right_dash
+        node.width = full_width
+        node.width_left_branch = width_left_branch
+        node.width_right_branch = width_right_branch
+        node.size_left_dash = size_left_dash
+        node.size_right_dash = size_right_dash
+
+        return node

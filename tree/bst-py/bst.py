@@ -2,7 +2,7 @@
 
 BINARY SEARCH TREE
 
-Description:    binary search tree immplementation
+Description:    Binary search tree immplementation
 
 Author:         Thanh Trung Nguyen
                 thanh.it1995 (at) gmail.com
@@ -40,7 +40,7 @@ class BinarySearchTree:
     #
     def traverse(self, order='in'):
         '''
-        Traverses entire tree.
+        Traverses tree entirely.
         Args:
             order: Type of traversal order.
                 - 'pre': pre-order

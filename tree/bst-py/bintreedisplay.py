@@ -1,32 +1,59 @@
+'''
+
+BINARY SEARCH TREE DISPLAYER
+
+Description:    This tool visualizes binary tree by drawing.
+
+Author:         Thanh Trung Nguyen
+                thanh.it1995 (at) gmail.com
+
+License:        (update later)
+
+'''
+
+
 from binnode import BinNode
 from bst import BinarySearchTree
-from bintreedisplayparser import ValueParserUtil, BinTreeDisplayParser
+from bintreedisplayparser import ValueUtil, BinTreeDisplayParser
+from matrixbuffer import MatrixBuffer
 
 
 class BinTreeDisplay:
+    '''
+    Binary tree displayer. This tool visualizes binary tree by drawing.
+    '''
     #
     #
     def __init__(self):
-        self.__putil = ValueParserUtil()
-        self.__parser = BinTreeDisplayParser(self.__putil)
+        self.__vutil = ValueUtil()
+        self.__parser = BinTreeDisplayParser(self.__vutil)
 
     #
     #
     def get_str(self, bst: BinarySearchTree, dash: str = '-', dash_size: int = 3):
+        '''
+        Gets display string for binary search tree.
+        Args:
+            bst: Input binary search tree.
+            dash: Dash character. The term "dash" means a horizontal line connecting left and right leaves.
+            dash_size: Dash size (the length between left and right leaves).
+        Returns:
+            String result.
+        '''
         self.__parser.config_dash(dash, dash_size)
 
         self.__depth_level = bst.depth_level()
-
-        width, _, _, _, _ = self.__parser.get_width_node(bst.root)
         height = self.__depth_level * 2 - 1
 
-        self.__matrix = BinTreeDisplayMatrix(width, height)
+        parser_tree = self.__parser.build_tree(bst.root)
 
-        self.__fill_matrix(bst.root, 1, 0)
+        self.__buffer = MatrixBuffer(parser_tree.width, height)
 
-        matrix = self.__matrix
+        self.__fill_matrix(parser_tree, 1, 0)
+
+        matrix = self.__buffer
         del self.__depth_level
-        del self.__matrix
+        del self.__buffer
 
         return matrix.get_str()
 
@@ -36,15 +63,15 @@ class BinTreeDisplay:
         if node is None:
             return
 
-        _, width_left_branch, _, size_left_dash, size_right_dash = self.__parser.get_width_node(node)
-        str_value = self.__putil.get_str(node.key)
+        width_left_branch, size_left_dash, size_right_dash \
+            = node.width_left_branch, node.size_left_dash, node.size_right_dash
 
         margin = margin_global + width_left_branch + size_left_dash
 
-        self.__matrix.fill(margin, depth * 2 - 2, str_value)
+        self.__buffer.fill(margin, depth * 2 - 2, node.key)
 
         if node.left is not None or node.right is not None:
-            self.__matrix.fill(margin, depth * 2 - 1, '|')
+            self.__buffer.fill(margin, depth * 2 - 1, '|')
 
         self.__fill_matrix(node.left, depth + 1, margin_global)
         self.__fill_matrix(node.right, depth + 1, margin + 1 + size_right_dash)
@@ -58,8 +85,8 @@ class BinTreeDisplay:
     #
     #
     def __fill_horizontal_dash(self, posx, posy, direction):
-        matrix = self.__matrix
-        a = matrix.a
+        buffer = self.__buffer
+        a = buffer.a
         dash = self.__parser.dash
 
         if direction == 'left':
@@ -76,7 +103,7 @@ class BinTreeDisplay:
             if a[posy][posx] == dash:
                 posx += 1
 
-            for x in range(posx, matrix.width):
+            for x in range(posx, buffer.width):
                 if a[posy][x] == ' ':
                     a[posy][x] = dash
                 else:
@@ -84,46 +111,3 @@ class BinTreeDisplay:
 
         else:
             raise ValueError('Invalid argument: direction')
-
-
-#
-#
-class BinTreeDisplayMatrix:
-    #
-    #
-    def __init__(self, width, height):
-        self.width = width
-        self.height = height
-
-        cell = ' '
-
-        self.a = [[cell] * width for i in range(height)]
-
-    #
-    #
-    def fill(self, posx: int, posy: int, value: str):
-        if posx < 0:
-            raise ValueError('Invalid argument: posx')
-
-        if posy >= self.height:
-            raise ValueError('Invalid argument: posy')
-
-        if type(value) is not str:
-            raise ValueError('Invalid argument: value --> must be string')
-
-        a = self.a
-        len_value = len(value)
-
-        for i in range(len_value):
-            if posx + i >= self.width:
-                break
-
-            a[posy][posx + i] = value[i]
-
-    #
-    #
-    def get_str(self):
-        a = self.a
-        lst_rows = [''.join(a[i]).rstrip() for i in range(self.height)]
-        res = '\n'.join(lst_rows)
-        return res
