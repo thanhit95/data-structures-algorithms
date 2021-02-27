@@ -30,7 +30,7 @@ def test02():
     print()
 
     displayer = BinTreeDisplay()
-    res = displayer.get_str(bst)
+    res = displayer.get_str(bst, dash_size=3)
 
     print(res)
 
