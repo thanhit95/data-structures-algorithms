@@ -119,10 +119,10 @@ class BinarySearchTree:
         if node is None:
             return 0
 
-        left_branch_depth = 1 + self.__depth_level(node.left)
-        right_branch_depth = 1 + self.__depth_level(node.right)
+        depth_left_branch = 1 + self.__depth_level(node.left)
+        depth_right_branch = 1 + self.__depth_level(node.right)
 
-        return max(left_branch_depth, right_branch_depth)
+        return max(depth_left_branch, depth_right_branch)
 
     #
     #

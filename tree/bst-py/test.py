@@ -32,8 +32,9 @@ def test02():
 
     print()
 
-    displayer = BinTreeDisplay()
-    res = displayer.get_str(bst, dash_size=3)
+    display = BinTreeDisplay()
+    # display.config(struct_node=('key', 'left', 'right'), dash_size=3, margin_left=7, float_format='{:.4f}')
+    res = display.get(bst.root)
 
     print(res)
 

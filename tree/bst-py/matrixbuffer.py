@@ -36,7 +36,13 @@ class MatrixBuffer:
     #
     #
     def get_str(self):
-        a = self.a
-        lst_rows = [''.join(a[i]).rstrip() for i in range(self.height)]
+        lst_rows = self.get_lst_rows()
         res = '\n'.join(lst_rows)
         return res
+
+    #
+    #
+    def get_lst_rows(self):
+        a = self.a
+        lst_rows = [''.join(a[i]).rstrip() for i in range(self.height)]
+        return lst_rows

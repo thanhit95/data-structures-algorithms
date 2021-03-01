@@ -7,7 +7,20 @@ class ValueUtil:
     #
     #
     def __init__(self):
-        self.float_format = '{value:.2f}'
+        self.__float_format = '{:.2f}'
+
+    #
+    #
+    def get_float_format(self):
+        return self.__float_format
+
+    #
+    #
+    def set_float_format(self, fmt: str):
+        if type(fmt) is not str:
+            raise ValueError('Invalid argument: fmt must be string')
+
+        self.__float_format = fmt
 
     #
     #
@@ -38,7 +51,7 @@ class ValueUtil:
         type_value = type(value)
 
         if type_value is float:
-            return self.float_format.format(value=value)
+            return self.__float_format.format(value)
 
         if type_value is str:
             return value
@@ -53,7 +66,31 @@ class BinTreeDisplayParser:
     #
     def __init__(self, value_util: ValueUtil, dash: str = '-', dash_size: int = 3):
         self.__vutil = value_util
+        self.config_struct_input_node('key', 'left', 'right')
         self.config_dash(dash, dash_size)
+
+    #
+    #
+    def config_struct_input_node(self, key: str, left_child: str, right_child: str):
+        '''
+        Configures input node structure for flexibility.
+        Args:
+            key: Name of key.
+            left_child: Name of left child.
+            right_child: Name of right child.
+        '''
+        if key is None or type(key) is not str:
+            raise ValueError('Invalid argument: key must be string')
+
+        if left_child is None or type(left_child) is not str:
+            raise ValueError('Invalid argument: left_child must be string')
+
+        if right_child is None or type(right_child) is not str:
+            raise ValueError('Invalid argument: right_child must be string')
+
+        self.struct_node_key = key
+        self.struct_node_le = left_child
+        self.struct_node_ri = right_child
 
     #
     #
@@ -75,9 +112,10 @@ class BinTreeDisplayParser:
 
     #
     #
-    def build_tree(self, input_root: BinNode):
+    def build_tree(self, input_root):
         '''
         Builds parser tree which stores parsing information of each corresponding node.
+        The structure of input_root (and its nodes) should be configured by function config_input_node_struct.
         Args:
             input_root: Input root node.
         Returns:
@@ -86,11 +124,15 @@ class BinTreeDisplayParser:
         if input_root is None:
             return None
 
-        node = BinNode(self.__vutil.get_str(input_root.key))
+        input_key = getattr(input_root, self.struct_node_key)
+        input_left = getattr(input_root, self.struct_node_le)
+        input_right = getattr(input_root, self.struct_node_ri)
+
+        node = BinNode(self.__vutil.get_str(input_key))
         len_key = len(node.key)
 
-        node.left = self.build_tree(input_root.left)
-        node.right = self.build_tree(input_root.right)
+        node.left = self.build_tree(input_left)
+        node.right = self.build_tree(input_right)
 
         width_left_branch = 0 if node.left is None else node.left.width
         width_right_branch = 0 if node.right is None else node.right.width
@@ -118,3 +160,24 @@ class BinTreeDisplayParser:
         node.margin_right_child = margin_right_child
 
         return node
+
+    #
+    #
+    def get_depth_level(self, node):
+        '''
+        Gets depth level of the tree.
+        Args:
+            node: Input root of the tree.
+        Returns:
+            Depth level.
+        '''
+        if node is None:
+            return 0
+
+        node_left = getattr(node, self.struct_node_le)
+        node_right = getattr(node, self.struct_node_ri)
+
+        depth_left_branch = 1 + self.get_depth_level(node_left)
+        depth_right_branch = 1 + self.get_depth_level(node_right)
+
+        return max(depth_left_branch, depth_right_branch)
