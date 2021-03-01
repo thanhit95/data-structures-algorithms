@@ -1,6 +1,5 @@
 import math
 from binnode import BinNode
-from bst import BinarySearchTree
 
 
 class ValueUtil:
@@ -115,7 +114,7 @@ class BinTreeDisplayParser:
     def build_tree(self, input_root):
         '''
         Builds parser tree which stores parsing information of each corresponding node.
-        The structure of input_root (and its nodes) should be configured by function config_input_node_struct.
+        The structure of input_root (and its nodes) should be configured by function config_struct_input_node.
         Args:
             input_root: Input root node.
         Returns:

@@ -1,5 +1,4 @@
 from bst import BinarySearchTree
-from bintreedisplay import BinTreeDisplay
 
 
 def test01():
@@ -18,8 +17,14 @@ def test01():
 #
 #
 def test02():
-    # bst = BinarySearchTree(lst=[15, 20, 23, 25, 30, 35, 38, 40, 45])
+    # WARNING! THESE FOLLOWING 4 LINES OF CODE SHOULD BE MODIFIED TO INCLUDE MODULE "bintreedisplay" CORRECTLY.
+    import sys
+    sys.path.append('./tree/bintreedisp_py')
+    sys.path.append('.')
+    from tree.bintreedisp_py.bintreedisplay import BinTreeDisplay
+    ###
 
+    # bst = BinarySearchTree(lst=[15, 20, 23, 25, 30, 35, 38, 40, 45])
     bst = BinarySearchTree()
 
     # for value in [30, 9, 500, -5.1, 26, 144, 800, 12.85, -7, 288, 100.72]:
@@ -29,13 +34,12 @@ def test02():
         bst.insert(value)
 
     print(bst)
-
     print()
 
     display = BinTreeDisplay()
     # display.config(struct_node=('key', 'left', 'right'), dash_size=3, margin_left=7, float_format='{:.4f}')
-    res = display.get(bst.root)
 
+    res = display.get(bst.root)
     print(res)
 
 

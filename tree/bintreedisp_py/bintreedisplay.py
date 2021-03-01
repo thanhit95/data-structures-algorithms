@@ -13,7 +13,6 @@ License:        (update later)
 
 
 from binnode import BinNode
-from bst import BinarySearchTree
 from bintreedisplayparser import ValueUtil, BinTreeDisplayParser
 from matrixbuffer import MatrixBuffer
 
