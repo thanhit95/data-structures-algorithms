@@ -8,10 +8,12 @@ def test01():
         bst.insert(value)
 
     print(bst)
+    print('Count:', bst.count())
 
-    bst.remove(12)
+    rm_result = bst.remove(12)
 
     print(bst)
+    print('Count:', bst.count())
 
 
 #

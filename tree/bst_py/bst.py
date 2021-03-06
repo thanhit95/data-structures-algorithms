@@ -33,8 +33,33 @@ class BinarySearchTree:
 
         self.__option_candidate_removal = candd_removal
 
+        self.__count = 0
+
         if lst is not None:
             self.__construct_from_list(lst)
+
+    #
+    #
+    def count(self):
+        '''
+        Returns number of elements.
+        '''
+        return self.__count
+
+    #
+    #
+    def __count_traversal(self, node):
+        '''
+        Counts number of elements by traversal.
+        '''
+        if node is None:
+            return 0
+
+        count_le = self.__count_traversal(node.left)
+        count_ri = self.__count_traversal(node.right)
+
+        res = count_le + count_ri
+        return res
 
     #
     #
@@ -187,6 +212,7 @@ class BinarySearchTree:
             The current processing node itself.
         '''
         if node is None:
+            self.__count += 1
             return BinNode(key)
 
         if key < node.key:
@@ -212,6 +238,8 @@ class BinarySearchTree:
             return False
 
         self.__remove_node(node, parent)
+        self.__count -= 1
+
         return True
 
     #
@@ -321,6 +349,7 @@ class BinarySearchTree:
         len_lst = len(lst)
 
         self.root = self.__construct_from_sorted_list(lst, 0, len_lst - 1)
+        self.__count = self.__count_traversal(self.root)
 
     #
     #
