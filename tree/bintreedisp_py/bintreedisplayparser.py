@@ -63,10 +63,10 @@ class ValueUtil:
 class BinTreeDisplayParser:
     #
     #
-    def __init__(self, value_util: ValueUtil, dash: str = '-', dash_size: int = 3):
+    def __init__(self, value_util: ValueUtil, character: str = '-', branch_space: int = 3):
         self.__vutil = value_util
         self.config_struct_input_node('key', 'left', 'right')
-        self.config_dash(dash, dash_size)
+        self.config_line(character, branch_space)
 
     #
     #
@@ -93,21 +93,21 @@ class BinTreeDisplayParser:
 
     #
     #
-    def config_dash(self, dash, dash_size):
+    def config_line(self, character, branch_spacing):
         '''
-        Configures dash information. The term "dash" means a horizontal line connecting left and right leaves.
+        Configures line information. The term "line" means a horizontal line connecting left-right branches.
         Args:
-            dash: Dash character.
-            dash_size: Dash size (the length between left and right leaves).
+            character: Display character.
+            branch_spacing: Branch spacing.
         '''
-        if type(dash) is not str or len(dash) != 1:
-            raise ValueError('Invalid argument: dash must be string of length 1')
+        if type(character) is not str or len(character) != 1:
+            raise ValueError('Invalid argument: character must be string of length 1')
 
-        if type(dash_size) is not int or dash_size < 1:
-            raise ValueError('Invalid argument: dash_size must be positive integer')
+        if type(branch_spacing) is not int or branch_spacing < 1:
+            raise ValueError('Invalid argument: branch_spacing must be positive integer')
 
-        self.dash = dash
-        self.dash_size = dash_size
+        self.line_char = character
+        self.line_brsp = branch_spacing
 
     #
     #
@@ -136,23 +136,23 @@ class BinTreeDisplayParser:
         width_left_branch = 0 if node.left is None else node.left.width
         width_right_branch = 0 if node.right is None else node.right.width
 
-        size_left_dash = 0 if node.left is None else self.dash_size // 2
-        size_right_dash = 0 if node.right is None else self.dash_size // 2
+        size_left_line = 0 if node.left is None else self.line_brsp
+        size_right_line = 0 if node.right is None else self.line_brsp
 
-        full_width = width_left_branch + width_right_branch + size_left_dash + size_right_dash
+        full_width = width_left_branch + width_right_branch + size_left_line + size_right_line
 
-        size_right_overflow = len_key - (width_right_branch + size_right_dash)
+        size_right_overflow = len_key - (width_right_branch + size_right_line)
         full_width += max(1, size_right_overflow)
 
-        margin_key = width_left_branch + size_left_dash
+        margin_key = width_left_branch + size_left_line
         margin_left_child = 0 if node.left is None else node.left.margin_key
-        margin_right_child = 0 if node.right is None else margin_key + node.right.margin_key + size_right_dash + 1
+        margin_right_child = 0 if node.right is None else margin_key + node.right.margin_key + size_right_line + 1
 
         node.width = full_width
         node.width_left_branch = width_left_branch
         node.width_right_branch = width_right_branch
-        node.size_left_dash = size_left_dash
-        node.size_right_dash = size_right_dash
+        node.size_left_line = size_left_line
+        node.size_right_line = size_right_line
 
         node.margin_key = margin_key
         node.margin_left_child = margin_left_child

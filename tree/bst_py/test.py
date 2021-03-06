@@ -8,12 +8,12 @@ def test01():
         bst.insert(value)
 
     print(bst)
-    print('Count:', bst.count())
+    print('count:', bst.count())
 
-    rm_result = bst.remove(12)
+    _ = bst.remove(12)
 
     print(bst)
-    print('Count:', bst.count())
+    print('count:', bst.count())
 
 
 #
@@ -32,14 +32,14 @@ def test02():
     # for value in [30, 9, 500, -5.1, 26, 144, 800, 12.85, -7, 288, 100.72]:
     #     bst.insert(value)
 
-    for value in [100, 50, 70000, 10, 88, 20000, 900000, -123456, 14.78, 62, 500, 21000]:
+    for value in [100, 50, 70000, 10, 88.52, 20000, 90000, -123456, 14.78, 62, 500, 30000.19, 40000]:
         bst.insert(value)
 
     print(bst)
     print()
 
     display = BinTreeDisplay()
-    # display.config(struct_node=('key', 'left', 'right'), dash_size=3, margin_left=7, float_format='{:.4f}')
+    # display.config(struct_node=('key', 'left', 'right'), line_brsp=2, margin_left=7, float_format='{:.4f}')
 
     res = display.get(bst.root)
     print(res)
@@ -49,4 +49,5 @@ def test02():
 ########################################################
 
 
+# test01()
 test02()

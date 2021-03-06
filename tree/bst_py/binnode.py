@@ -12,9 +12,6 @@ class BinNode:
         self.left = None
         self.right = None
 
-        if self.key is None:
-            raise ValueError('Invalid argument: key cannot be None')
-
     #
     #
     def __str__(self):
@@ -22,7 +19,7 @@ class BinNode:
 
     #
     #
-    def assign(self, other_node: 'BstNode'):
+    def assign(self, other_node: 'BinNode'):
         '''
         Assigns current-node values from other-node values.
         Args:

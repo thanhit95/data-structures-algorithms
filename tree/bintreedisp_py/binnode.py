@@ -12,9 +12,6 @@ class BinNode:
         self.left = None
         self.right = None
 
-        if self.key is None:
-            raise ValueError('Invalid argument: key cannot be None')
-
     #
     #
     def __str__(self):
@@ -22,7 +19,7 @@ class BinNode:
 
     #
     #
-    def assign(self, other_node: 'BstNode'):
+    def assign(self, other_node: 'BinNode'):
         '''
         Assigns current-node values from other-node values.
         Args:
@@ -34,24 +31,3 @@ class BinNode:
         self.key = other_node.key
         self.left = other_node.left
         self.right = other_node.right
-
-    #
-    #
-    def remove_child(self, child):
-        '''
-        Fully removes child node and its branch (no recursive).
-        Args:
-            child: Child node to be removed.
-        Returns:
-            1 if child is on the left.
-            2 if child is on the right.
-            0 if child is not found.
-        '''
-        if self.left is child:
-            self.left = None
-            return 1
-        elif self.right is child:
-            self.right = None
-            return 2
-
-        return 0

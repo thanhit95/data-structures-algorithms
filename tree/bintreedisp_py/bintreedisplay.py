@@ -34,7 +34,7 @@ class BinTreeDisplay:
         '''
         Gets display string for binary search tree.
         Output result can be configured by calling "config" method. Configurable properties are:
-            inp_struct_node, dash, dash_size, margin_left, float_format
+            struct_node, line_char, line_brsp, margin_left, float_format
         Args:
             inp_root: Input root of binary search tree.
         Returns:
@@ -49,7 +49,7 @@ class BinTreeDisplay:
         '''
         Gets display string for binary search tree.
         Output result can be configured by calling "config" method. Configurable properties are:
-            inp_struct_node, dash, dash_size, margin_left, float_format
+            struct_node, line_char, line_brsp, margin_left, float_format
         Returns:
             List of rows. Each row is a string.
         '''
@@ -87,7 +87,7 @@ class BinTreeDisplay:
         margin_key = margin_global + node.margin_key
         margin_left = margin_global + node.margin_left_child
         margin_right = margin_global + node.margin_right_child
-        margin_global_right = margin_key + 1 + node.size_right_dash
+        margin_global_right = margin_key + 1 + node.size_right_line
 
         self.__buffer.fill(margin_key, depth * 3 - 3, node.key)
 
@@ -95,45 +95,45 @@ class BinTreeDisplay:
             self.__buffer.fill(margin_key, depth * 3 - 2, '|')
 
         if node.left is not None:
-            self.__fill_dash('left', node.left.key, depth * 3 - 1, margin_left, margin_key)
+            self.__fill_line('left', node.left.key, depth * 3 - 1, margin_left, margin_key)
             self.__fill_buffer(node.left, depth + 1, margin_global)
 
         if node.right is not None:
-            self.__fill_dash('right', node.right.key, depth * 3 - 1, margin_key, margin_right)
+            self.__fill_line('right', node.right.key, depth * 3 - 1, margin_key, margin_right)
             self.__fill_buffer(node.right, depth + 1, margin_global_right)
 
     #
     #
-    def __fill_dash(self, direction: str, child_key: str, y, margin_a, margin_b):
+    def __fill_line(self, direction: str, child_key: str, y, margin_a, margin_b):
         if direction == 'right':
-            self.__fill_dash_coord(y, margin_a, margin_b)
+            self.__fill_line_coord(y, margin_a, margin_b)
 
         elif direction == 'left':
             margin_a += len(child_key) - 1
-            self.__fill_dash_coord(y, margin_a, margin_b)
+            self.__fill_line_coord(y, margin_a, margin_b)
 
         else:
             raise ValueError('Invalid argument: direction')
 
     #
     #
-    def __fill_dash_coord(self, y, startx, endx):
+    def __fill_line_coord(self, y, startx, endx):
         a = self.__buffer.a
-        dash = self.__parser.dash
+        line_char = self.__parser.line_char
 
         for x in range(startx, endx + 1):
-            a[y][x] = dash
+            a[y][x] = line_char
 
     #
     #
-    def config(self, struct_node: tuple = None, dash: str = '-', dash_size: int = 3, margin_left: int = 0, float_format: str = '{:.2f}'):
+    def config(self, struct_node: tuple = None, line_char: str = '-', line_brsp: int = 1, margin_left: int = 0, float_format: str = '{:.2f}'):
         '''
         Configures settings.
         Args:
             struct_node: Structure information of input node. This is a tuple which comprises 3 elemenets:
                 (name_key, name_left_child, name_right_child)
-            dash: Dash character. The term "dash" means a horizontal line connecting left and right leaves.
-            dash_size: Dash size (the length between left and right leaves).
+            line_char: Display character for the horizontal line connecting left-right branches.
+            line_brsp: Branch spacing value for the horizontal line connecting left-right branches.
             margin_left: Left margin of output string result.
             float_format: Format string for displaying floating-point numbers.
         Returns:
@@ -146,11 +146,11 @@ class BinTreeDisplay:
         if type(margin_left) is not int or margin_left < 0:
             raise ValueError('Invalid argument: margin_left must be non-negative integer')
 
-        if type(dash) is not str or len(dash) != 1:
-            raise ValueError('Invalid argument: dash must be string of length 1')
+        if type(line_char) is not str or len(line_char) != 1:
+            raise ValueError('Invalid argument: line_char must be string of length 1')
 
-        if type(dash_size) is not int or dash_size < 1:
-            raise ValueError('Invalid argument: dash_size must be positive integer')
+        if type(line_brsp) is not int or line_brsp < 1:
+            raise ValueError('Invalid argument: line_brsp must be positive integer')
 
         if type(float_format) is not str:
             raise ValueError('Invalid argument: float_format must be string')
@@ -160,7 +160,7 @@ class BinTreeDisplay:
         if struct_node is not None:
             self.__parser.config_struct_input_node(struct_node[0], struct_node[1], struct_node[2])
 
-        self.__parser.config_dash(dash, dash_size)
+        self.__parser.config_line(line_char, line_brsp)
 
         self.__margin_left = margin_left
         self.__vutil.set_float_format(float_format)
