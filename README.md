@@ -19,10 +19,10 @@ Thanh Trung Nguyen
 
 ## CONVENTION
 
-Naming rules:
-
-- Python: snake_case
-- C++: camelCase, mostly Java style
+1. Respecting the clean code.
+2. Respecting the simplicity over the complexity.
+3. Respecting the organization over the algorithms.
+4. Focusing on high performance, code reuse, code maintenance.
 
 &nbsp;
 
