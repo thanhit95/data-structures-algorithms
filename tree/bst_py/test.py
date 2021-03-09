@@ -19,6 +19,19 @@ def test01():
 #
 #
 def test02():
+    bst = BinarySearchTree(candd_removal='right')
+
+    for value in [12, 39, 20, 7, 26, 45, 8]:
+        bst.insert(value)
+
+    print(bst)
+    print(bst.min())
+    print(bst.max())
+
+
+#
+#
+def test03():
     # WARNING! THESE FOLLOWING 4 LINES OF CODE SHOULD BE MODIFIED TO INCLUDE MODULE "bintreedisplay" CORRECTLY.
     import sys
     sys.path.append('./tree/bintreedisp_py')
@@ -50,4 +63,5 @@ def test02():
 
 
 # test01()
-test02()
+# test02()
+# test03()

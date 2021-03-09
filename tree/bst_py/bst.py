@@ -336,6 +336,34 @@ class BinarySearchTree:
 
     #
     #
+    def min(self):
+        '''
+        Searches for minimum key.
+        Args:
+            None.
+        Returns:
+            Minimum key if exists. Otherwise, None.
+        '''
+        node, _ = self.__search_min(self.root, None)
+        res = node.key if node is not None else None
+        return res
+
+    #
+    #
+    def max(self):
+        '''
+        Searches for maximum key.
+        Args:
+            None.
+        Returns:
+            Maximum key if exists. Otherwise, None.
+        '''
+        node, _ = self.__search_max(self.root, None)
+        res = node.key if node is not None else None
+        return res
+
+    #
+    #
     def __construct_from_list(self, lst: list):
         '''
         Constructs tree from a list. WARNING: The list will change its value (i.e. sorting).
