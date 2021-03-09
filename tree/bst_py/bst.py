@@ -17,7 +17,7 @@ from binnode import BinNode
 
 class BinarySearchTree:
     '''
-    Binary search tree.
+    Binary Search Tree.
 
     Args:
         lst: The list to construct from. If lst if None, the tree is empty.
@@ -121,14 +121,6 @@ class BinarySearchTree:
         self.__traverse_post(node.left)
         self.__traverse_post(node.right)
         self.__res_traveral.append(node.key)
-
-    #
-    #
-    def __str__(self):
-        traversal_res = self.traverse()
-        res = '  '.join(str(x) for x in traversal_res)
-        res = f'BST({res})'
-        return res
 
     #
     #
@@ -402,3 +394,50 @@ class BinarySearchTree:
         root_node.right = self.__construct_from_sorted_list(lst, mid_idx + 1, end_idx)
 
         return root_node
+
+    #
+    #
+    def __str__(self):
+        traversal_res = self.traverse()
+        res = '  '.join(str(x) for x in traversal_res)
+        res = f'BST({res})'
+        return res
+
+    #
+    #
+    def __iter__(self):
+        return BinarySearchTreeIterIn(self)
+
+
+#
+#
+class BinarySearchTreeIterIn:
+    '''
+    Binary Search Tree Interator.
+    This class uses in-order traversal.
+    '''
+    def __init__(self, bst: BinarySearchTree):
+        self.__bst = bst
+        self.__stack = []
+        self.__node = bst.root
+
+    #
+    #
+    def __next__(self):
+        stack = self.__stack
+        node = self.__node
+
+        while node is not None:
+            stack.append(node)
+            node = node.left
+
+        if not stack:
+            raise StopIteration()
+
+        res_node = stack.pop()
+        self.__node = res_node.right
+
+        del stack
+        del node
+
+        return res_node.key

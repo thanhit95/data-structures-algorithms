@@ -25,8 +25,11 @@ def test02():
         bst.insert(value)
 
     print(bst)
-    print(bst.min())
-    print(bst.max())
+    print('min:', bst.min())
+    print('max:', bst.max())
+
+    for value in bst:
+        print(value, end='  ')
 
 
 #
@@ -63,5 +66,5 @@ def test03():
 
 
 # test01()
-# test02()
+test02()
 # test03()
