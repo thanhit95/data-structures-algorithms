@@ -30,4 +30,4 @@ Thanh Trung Nguyen
 
 Copyright (c) Thanh Trung NGUYEN.
 
-Licensed under the [BSD-3-Clause license](LICENSE.txt).
+By default, all sub projects in this repo are licensed under the [BSD-3-Clause license](LICENSE.txt).
