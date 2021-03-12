@@ -28,6 +28,5 @@ Thanh Trung Nguyen
 
 ## LICENSE
 
-(Update later)
-
-Until I update the license, this repo will stand "proprietary license".
+Copyright (c) Thanh Trung NGUYEN.
+Licensed under the [BSD-3-Clause license](LICENSES.txt).
