@@ -7,7 +7,7 @@ Description:    Binary search tree immplementation
 Author:         Thanh Trung Nguyen
                 thanh.it1995 (at) gmail.com
 
-License:        (update later)
+License:        MIT
 
 '''
 

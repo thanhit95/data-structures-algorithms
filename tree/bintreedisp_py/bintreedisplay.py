@@ -7,7 +7,7 @@ Description:    This tool visualizes binary tree by drawing.
 Author:         Thanh Trung Nguyen
                 thanh.it1995 (at) gmail.com
 
-License:        (update later)
+License:        BSD-3-Clause
 
 '''
 
