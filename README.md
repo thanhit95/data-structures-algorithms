@@ -29,4 +29,5 @@ Thanh Trung Nguyen
 ## LICENSE
 
 Copyright (c) Thanh Trung NGUYEN.
-Licensed under the [BSD-3-Clause license](LICENSES.txt).
+
+Licensed under the [BSD-3-Clause license](LICENSE.txt).
