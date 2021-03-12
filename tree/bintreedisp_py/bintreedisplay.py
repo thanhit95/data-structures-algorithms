@@ -19,7 +19,7 @@ from matrixbuffer import MatrixBuffer
 
 class BinTreeDisplay:
     '''
-    Binary tree displayer. This tool visualizes binary tree by drawing.
+    Binary tree displayer. This tool visualizes binary tree by ASCII text.
     '''
     #
     #
