@@ -2,7 +2,7 @@
 
 BINARY SEARCH TREE DISPLAY
 
-Description:    This tool visualizes binary tree by drawing.
+Description:    This tool visualizes binary tree by ASCII text.
 
 Author:         Thanh Trung Nguyen
                 thanh.it1995 (at) gmail.com
