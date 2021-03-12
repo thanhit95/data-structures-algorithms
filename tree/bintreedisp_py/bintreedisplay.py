@@ -1,6 +1,6 @@
 '''
 
-BINARY SEARCH TREE DISPLAYER
+BINARY SEARCH TREE DISPLAY
 
 Description:    This tool visualizes binary tree by drawing.
 
@@ -63,8 +63,8 @@ class BinTreeDisplay:
         Backend function for "get" method.
         '''
 
-        self.__depth_level = self.__parser.get_depth_level(inp_root)
-        height = self.__depth_level * 3 - 2
+        self.__height = self.__parser.get_height(inp_root)
+        height = self.__height * 3 - 2
 
         parser_tree = self.__parser.build_tree(inp_root)
 
@@ -73,7 +73,7 @@ class BinTreeDisplay:
         self.__fill_buffer(parser_tree, 1, self.__margin_left)
 
         buffer = self.__buffer
-        del self.__depth_level
+        del self.__height
         del self.__buffer
 
         return buffer

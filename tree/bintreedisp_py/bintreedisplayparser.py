@@ -162,13 +162,13 @@ class BinTreeDisplayParser:
 
     #
     #
-    def get_depth_level(self, node):
+    def get_height(self, node):
         '''
-        Gets depth level of the tree.
+        Gets height of the tree.
         Args:
             node: Input root of the tree.
         Returns:
-            Depth level.
+            Height.
         '''
         if node is None:
             return 0
@@ -176,7 +176,7 @@ class BinTreeDisplayParser:
         node_left = getattr(node, self.struct_node_le)
         node_right = getattr(node, self.struct_node_ri)
 
-        depth_left_branch = 1 + self.get_depth_level(node_left)
-        depth_right_branch = 1 + self.get_depth_level(node_right)
+        height_le_branch = 1 + self.get_height(node_left)
+        height_ri_branch = 1 + self.get_height(node_right)
 
-        return max(depth_left_branch, depth_right_branch)
+        return max(height_le_branch, height_ri_branch)

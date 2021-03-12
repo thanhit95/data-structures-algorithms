@@ -124,22 +124,22 @@ class BinarySearchTree:
 
     #
     #
-    def depth_level(self):
+    def height(self):
         '''
-        Gets depth level of the tree.
+        Gets height of the tree.
         '''
-        return self.__depth_level(self.root)
+        return self.__height(self.root)
 
     #
     #
-    def __depth_level(self, node: BinNode):
+    def __height(self, node: BinNode):
         if node is None:
             return 0
 
-        depth_left_branch = 1 + self.__depth_level(node.left)
-        depth_right_branch = 1 + self.__depth_level(node.right)
+        height_le_branch = 1 + self.__height(node.left)
+        height_ri_branch = 1 + self.__height(node.right)
 
-        return max(depth_left_branch, depth_right_branch)
+        return max(height_le_branch, height_ri_branch)
 
     #
     #
