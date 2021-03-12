@@ -126,7 +126,7 @@ class BinTreeDisplay:
 
     #
     #
-    def config(self, struct_node: tuple = None, line_char: str = '-', line_brsp: int = 1, margin_left: int = 0, float_format: str = '{:.2f}'):
+    def config(self, struct_node: tuple = None, line_char: str = '-', line_brsp: int = 1, margin_left: int = 0, float_pre: int = 2):
         '''
         Configures settings.
         Args:
@@ -135,7 +135,7 @@ class BinTreeDisplay:
             line_char: Display character for the horizontal line connecting left-right branches.
             line_brsp: Branch spacing value for the horizontal line connecting left-right branches.
             margin_left: Left margin of output string result.
-            float_format: Format string for displaying floating-point numbers.
+            float_pre: Maximum precision of floating-point numbers when displays.
         Returns:
             String result.
         '''
@@ -152,8 +152,8 @@ class BinTreeDisplay:
         if type(line_brsp) is not int or line_brsp < 1:
             raise ValueError('Invalid argument: line_brsp must be positive integer')
 
-        if type(float_format) is not str:
-            raise ValueError('Invalid argument: float_format must be string')
+        if type(float_pre) is not int or float_pre < 1:
+            raise ValueError('Invalid argument: float_pre must be positive integer')
 
         # Finish arguments validation
 
@@ -163,4 +163,4 @@ class BinTreeDisplay:
         self.__parser.config_line(line_char, line_brsp)
 
         self.__margin_left = margin_left
-        self.__vutil.set_float_format(float_format)
+        self.__vutil.set_float_precision(float_pre)

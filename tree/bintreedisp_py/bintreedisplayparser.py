@@ -6,43 +6,20 @@ class ValueUtil:
     #
     #
     def __init__(self):
-        self.__float_format = '{:.2f}'
+        self.__float_precision = 2
 
     #
     #
-    def get_float_format(self):
-        return self.__float_format
+    def get_float_precision(self):
+        return self.__float_precision
 
     #
     #
-    def set_float_format(self, fmt: str):
-        if type(fmt) is not str:
-            raise ValueError('Invalid argument: fmt must be string')
+    def set_float_precision(self, precision: int):
+        if type(precision) is not int or precision < 1:
+            raise ValueError('Invalid argument: precision must be positive integer')
 
-        self.__float_format = fmt
-
-    #
-    #
-    def get_len(self, value):
-        type_value = type(value)
-        res = 0
-
-        if type_value is int:
-            if value > 0:
-                res = int(math.log10(value)) + 1
-            elif value == 0:
-                res = 1
-            else:
-                res = int(math.log10(-value)) + 2
-        elif type_value is float:
-            value_str = self.get_str(value)
-            res = len(value_str)
-        elif type_value is str:
-            res = len(value)
-        else:
-            res = len(str(value))
-
-        return res
+        self.__float_precision = precision
 
     #
     #
@@ -50,7 +27,7 @@ class ValueUtil:
         type_value = type(value)
 
         if type_value is float:
-            return self.__float_format.format(value)
+            return str(round(value, self.__float_precision))
 
         if type_value is str:
             return value
