@@ -12,7 +12,7 @@ License:        MIT
 '''
 
 
-from binnode import BinNode
+from .binnode import BinNode
 
 
 class BinarySearchTree:

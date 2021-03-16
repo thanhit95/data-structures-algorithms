@@ -12,9 +12,10 @@ License:        BSD-3-Clause
 '''
 
 
-from binnode import BinNode
-from bintreedisplayparser import ValueUtil, BinTreeDisplayParser
-from matrixbuffer import MatrixBuffer
+from .binnode import BinNode
+from .valueutil import ValueUtil
+from .displayparser import DisplayParser
+from .matrixbuffer import MatrixBuffer
 
 
 class BinTreeDisplay:
@@ -25,7 +26,7 @@ class BinTreeDisplay:
     #
     def __init__(self):
         self.__vutil = ValueUtil()
-        self.__parser = BinTreeDisplayParser(self.__vutil)
+        self.__parser = DisplayParser(self.__vutil)
         self.config(('key', 'left', 'right'))
 
     #
