@@ -166,13 +166,13 @@ class BinarySearchTree(BinTree):
             elif node.right is None:
                 node = node.left
             else:
-                self.__remove_candidate(node)
+                self._remove_candidate(node, self.__remove)
 
         return node
 
     #
     #
-    def __remove_candidate(self, node: BinNode):
+    def _remove_candidate(self, node: BinNode, fn_remove):
         '''
         Finds a candidate for replacement of current node, and then removes that candidate from the tree.
         Args:
@@ -185,12 +185,12 @@ class BinarySearchTree(BinTree):
         if option == 'right':
             candidate, _ = self.__search_min(node.right, node)
             node.key = candidate.key
-            node.right = self.__remove(node.right, candidate.key)
+            node.right = fn_remove(node.right, candidate.key)
 
         elif option == 'left':
             candidate, _ = self.__search_max(node.left, node)
             node.key = candidate.key
-            node.left = self.__remove(node.left, candidate.key)
+            node.left = fn_remove(node.left, candidate.key)
 
     #
     #

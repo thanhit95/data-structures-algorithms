@@ -1,3 +1,3 @@
-import binarytreetest.test04 as tester
+import binarytreetest.testavl02 as tester
 
 tester.dotask()

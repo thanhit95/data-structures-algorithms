@@ -76,29 +76,89 @@ class AvlTree(BinarySearchTree):
         elif key > node.key:
             node.right = self.__insert(node.right, key)
 
-        # Step 2. Updates the height of the node
+        # Step 2. Adjusts balance
+        node = self.__adjust_balance(node)
+        return node
+
+    #
+    #
+    def remove(self, key):
+        '''
+        Removes the node of given key.
+        Args:
+            key: The key to be removed.
+        Returns:
+            If key exists, return True. Otherwise, rerturn False.
+        '''
+        if self.root is None:
+            return False
+
+        self.root = self.__remove(self.root, key)
+
+        self._count -= 1
+
+        return True
+
+    #
+    #
+    def __remove(self, node: AvlNode, key):
+        '''
+        Removes the node from the tree.
+        Args:
+            node: The current processing node.
+            key: The key to search and remove.
+        Returns:
+            The node (root) itself.
+        '''
+
+        # Step 1. Performs normal BST
+        if node is None:
+            return None
+
+        if key < node.key:
+            node.left = self.__remove(node.left, key)
+        elif key > node.key:
+            node.right = self.__remove(node.right, key)
+        else:
+            if node.left is None:
+                return node.right
+            elif node.right is None:
+                return node.left
+
+            self._remove_candidate(node, self.__remove)
+
+        # Step 2. Adjusts balance
+        node = self.__adjust_balance(node)
+        return node
+
+    #
+    #
+    def __adjust_balance(self, node: AvlNode):
+        # STEP 1. Updates the height of the node
         node.update_height()
 
-        # Step 3. Gets the balance factor
+        # STEP 2. Gets the balance factor
         balance = node.balance()
+        balance_le = node.balance_left()
+        balance_ri = node.balance_right()
 
-        # Step 4. Processes if the node is unbalanced ==> 4 cases
+        # STEP 3. Processes if the node is unbalanced ==> 4 cases
 
         # Case 1: left-left
-        if balance > 1 and key < node.left.key:
+        if balance > 1 and balance_le >= 0:
             return self.__rotate_right(node)
 
         # Case 2: right-right
-        if balance < -1 and key > node.right.key:
+        if balance < -1 and balance_ri <= 0:
             return self.__rotate_left(node)
 
         # Case 3: left-right
-        if balance > 1 and key > node.left.key:
+        if balance > 1 and balance_le < 0:
             node.left = self.__rotate_left(node.left)
             return self.__rotate_right(node)
 
         # Case 4: right-left
-        if balance < -1 and key < node.right.key:
+        if balance < -1 and balance_ri > 0:
             node.right = self.__rotate_right(node.right)
             return self.__rotate_left(node)
 
