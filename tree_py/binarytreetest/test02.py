@@ -1,15 +1,22 @@
 from binarytree import BinarySearchTree
+from binarytreedisp import BinTreeDisplay
 
 
 def dotask():
-    bst = BinarySearchTree(candd_removal='right')
+    # bst = BinarySearchTree(lst=[15, 20, 23, 25, 30, 35, 38, 40, 45])
+    bst = BinarySearchTree()
 
-    for value in [12, 39, 20, 7, 26, 45, 8]:
+    # for value in [30, 9, 500, -5.1, 26, 144, 800, 12.85, -7, 288, 100.72]:
+    #     bst.insert(value)
+
+    for value in [100, 50, 70000, 10, 88.523816, 20000, 90000, -123456, 14.78, 62, 500, 30000.19, 40000]:
         bst.insert(value)
 
     print(bst)
-    print('min:', bst.min())
-    print('max:', bst.max())
+    print()
 
-    for value in bst:
-        print(value, end='  ')
+    display = BinTreeDisplay()
+    display.config(struct_node=('key', 'left', 'right'), line_brsp=1, margin_left=7, float_pre=3)
+
+    res = display.get(bst.root)
+    print(res)

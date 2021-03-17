@@ -2,14 +2,23 @@ from binarytree import BinarySearchTree
 
 
 def dotask():
-    print('ok 2')
     bst = BinarySearchTree(candd_removal='right')
 
-    for value in [12, 39, 20, 7, 26, 45, 8]:
+    for value in [12, 39, 20, 7, 26, 45, 19, 8]:
         bst.insert(value)
 
     print(bst)
+
     print('count:', bst.count())
+    print('min:', bst.min())
+    print('max:', bst.max())
+
+    print('Using for each to iterate nodes in tree')
+
+    for value in bst:
+        print(value, end='  ')
+
+    print(end='\n')
 
     _ = bst.remove(12)
 

@@ -3,20 +3,17 @@ from binarytreedisp import BinTreeDisplay
 
 
 def dotask():
-    # bst = BinarySearchTree(lst=[15, 20, 23, 25, 30, 35, 38, 40, 45])
-    bst = BinarySearchTree()
+    display = BinTreeDisplay()
+    bst = BinarySearchTree(candd_removal='right')
 
-    # for value in [30, 9, 500, -5.1, 26, 144, 800, 12.85, -7, 288, 100.72]:
-    #     bst.insert(value)
-
-    for value in [100, 50, 70000, 10, 88.523816, 20000, 90000, -123456, 14.78, 62, 500, 30000.19, 40000]:
+    for value in [12, 39, 20, 7, 26, 45, 19, 8]:
         bst.insert(value)
 
-    print(bst)
-    print()
+    print(display.get(bst.root), end='\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
 
-    display = BinTreeDisplay()
-    display.config(struct_node=('key', 'left', 'right'), line_brsp=1, margin_left=7, float_pre=3)
+    for value in [12, 39, 45, 20, 7, 26, 19, 8]:
+        print(f'REMOVES {value} \n')
+        bst.remove(value)
 
-    res = display.get(bst.root)
-    print(res)
+        if bst.root is not None:
+            print(display.get(bst.root), end='\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n')

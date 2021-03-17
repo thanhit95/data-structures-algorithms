@@ -132,67 +132,65 @@ class BinarySearchTree(BinTree):
         Returns:
             If key exists, return True. Otherwise, rerturn False.
         '''
-        node, parent = self.__search(self.root, key)
-
-        if node is None:
+        if self.root is None:
             return False
 
-        self.__remove_node(node, parent)
+        self.root = self.__remove(self.root, key)
+
         self._count -= 1
 
         return True
 
     #
     #
-    def __remove_node(self, node: BinNode, parent):
+    def __remove(self, node: BinNode, key):
         '''
         Removes the node from the tree.
         Args:
-            node: The node to be removed.
-            parent: The node's parent.
+            node: The current processing node.
+            key: The key to search and remove.
         Returns:
-            None.
+            The node (root) itself.
         '''
 
-        has_left_child, has_right_child = node.left is not None, node.right is not None
+        if node is None:
+            return None
 
-        if has_left_child and has_right_child:
-            candidate, candidate_pa = self.__get_candidate_removal(node)
-            node.key = candidate.key
-            self.__remove_node(candidate, candidate_pa)
-
-        elif has_left_child:
-            node.assign(node.left)
-
-        elif has_right_child:
-            node.assign(node.right)
-
+        if key < node.key:
+            node.left = self.__remove(node.left, key)
+        elif key > node.key:
+            node.right = self.__remove(node.right, key)
         else:
-            # node is leaf and does not have any children
-            if parent is not None:
-                parent.remove_child(node)
+            if node.left is None:
+                node = node.right
+            elif node.right is None:
+                node = node.left
             else:
-                # node has no parent, so that node is the root of the tree
-                self.root = None
+                self.__remove_candidate(node)
+
+        return node
 
     #
     #
-    def __get_candidate_removal(self, node: BinNode):
+    def __remove_candidate(self, node: BinNode):
         '''
-        Gets a candidate for replacement. This is the helper function for "remove node" action.
+        Finds a candidate for replacement of current node, and then removes that candidate from the tree.
         Args:
             node: The starting node.
         Returns:
-            The tuple (node, parent) indicating result node and its parent.
+            None.
         '''
         option = self.__option_candidate_removal
 
         if option == 'right':
-            return self.__search_min(node.right, node)
-        elif option == 'left':
-            return self.__search_max(node.left, node)
+            candidate, _ = self.__search_min(node.right, node)
+            node.key = candidate.key
+            node.right = self.__remove(node.right, candidate.key)
 
-        raise ValueError('Invalid __option_candidate_removal')
+        elif option == 'left':
+            candidate, _ = self.__search_max(node.left, node)
+            node.key = candidate.key
+            node.left = self.__remove(node.left, candidate.key)
 
     #
     #
