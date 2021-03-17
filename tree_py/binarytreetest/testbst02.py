@@ -14,6 +14,4 @@ def dotask():
     for value in [12, 39, 45, 20, 7, 26, 19, 8]:
         print(f'REMOVES {value} \n')
         bst.remove(value)
-
-        if bst.root is not None:
-            print(display.get(bst.root), end='\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
+        print(display.get(bst.root), end='\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n')

@@ -39,8 +39,11 @@ class BinTreeDisplay:
         Args:
             inp_root: Input root of binary search tree.
         Returns:
-            String result.
+            String result. If inp_root is None then returns None.
         '''
+        if inp_root is None:
+            return None
+
         buffer = self.__process(inp_root)
         return buffer.get_str()
 
@@ -52,8 +55,11 @@ class BinTreeDisplay:
         Output result can be configured by calling "config" method. Configurable properties are:
             struct_node, line_char, line_brsp, margin_left, float_format
         Returns:
-            List of rows. Each row is a string.
+            List of rows. Each row is a string. If inp_root is None then returns None.
         '''
+        if inp_root is None:
+            return None
+
         buffer = self.__process(inp_root)
         return buffer.get_lst_rows()
 

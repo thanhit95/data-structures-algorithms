@@ -15,9 +15,7 @@ def dotask():
     for value in [30, 50, 140, 25, 20, 10, 40, 100, 28]:
         print(f'REMOVES {value} \n')
         avl.remove(value)
-
-        if avl.root is not None:
-            print(display.get(avl.root), end='\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
+        print(display.get(avl.root), end='\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
 
     # print(avl)
     # print()
