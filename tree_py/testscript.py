@@ -1,3 +1,3 @@
-import bintree_testscript.test03 as tester
+import binarytreetest.test04 as tester
 
 tester.dotask()

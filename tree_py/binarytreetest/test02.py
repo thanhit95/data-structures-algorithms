@@ -1,4 +1,4 @@
-from bintree.bst import BinarySearchTree
+from binarytree import BinarySearchTree
 
 
 def dotask():

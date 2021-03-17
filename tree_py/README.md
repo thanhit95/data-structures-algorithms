@@ -8,6 +8,6 @@ General directory specialed for "tree data structure".
 
 ## DIRECTORY STRUCTURE
 
-- bintree: binary search tree
-- bintreedisp: binary tree display
-- bintree_testscript: testing script (for binary tree)
+- ```binarytree```: package "binary search tree", which comprises modules ```BinarySearchTree```, ```AvlTree```.
+- ```binarytreedisp```: package "binary tree display", which comprises module ```BinTreeDisplay```.
+- ```binarytreetest```: testing script (for binary tree).

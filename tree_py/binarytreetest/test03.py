@@ -1,5 +1,5 @@
-from bintree.bst import BinarySearchTree
-from bintreedisp import BinTreeDisplay
+from binarytree import BinarySearchTree
+from binarytreedisp import BinTreeDisplay
 
 
 def dotask():
