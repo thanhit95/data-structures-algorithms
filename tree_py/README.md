@@ -2,7 +2,7 @@
 
 ## DESCRIPTION
 
-General directory specialed for "tree data structure".
+General directory specialized for "tree data structure".
 
 &nbsp;
 
