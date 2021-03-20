@@ -2,16 +2,7 @@
 
 ## DESCRIPTION
 
-My implementation of tree in C++.
-
-&nbsp;
-
-## AUTHOR
-
-Thanh Trung Nguyen
-
-- Email: thanh.it1995@gmail.com
-- Facebook: <https://www.facebook.com/thanh.it95>
+My implementation of trees in C++.
 
 &nbsp;
 
