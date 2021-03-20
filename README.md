@@ -31,4 +31,5 @@ Thanh Trung Nguyen
 Copyright (c) Thanh Trung NGUYEN.
 
 By default, all sub projects in this repo are licensed under the [BSD-3-Clause license](LICENSE.txt).
+
 Some sub projects are licensed under the [MIT license](LICENSE_MIT.txt).
