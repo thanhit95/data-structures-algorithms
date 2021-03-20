@@ -29,8 +29,6 @@ class AvlTree(BinarySearchTree):
     def __init__(self, lst: list = None, candd_removal='right'):
         super().__init__(lst=None, candd_removal=candd_removal)
 
-        self._func_create_node = AvlTree.__create_node
-
         if lst is not None:
             self.construct_from_list(lst)
 
@@ -208,8 +206,7 @@ class AvlTree(BinarySearchTree):
 
     #
     #
-    @staticmethod
-    def __create_node(key=None):
+    def _create_node(self, key=None):
         return AvlNode(key)
 
     #

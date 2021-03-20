@@ -31,8 +31,6 @@ class BinarySearchTree(BinTree):
 
         self._count = 0
 
-        self._func_create_node = BinarySearchTree.__create_node
-
         if candd_removal not in ('left', 'right'):
             raise ValueError('Invalid argument: candd_removal')
 
@@ -88,7 +86,7 @@ class BinarySearchTree(BinTree):
             else:
                 node = node.right
 
-        return (None, None)  # ensure a value to return, unreachable statement...
+        return (None, None)  # ensures a value to return, unreachable statement...
 
     #
     #
@@ -295,7 +293,7 @@ class BinarySearchTree(BinTree):
 
         mid_idx = (start_idx + end_idx) // 2
         # node = BinNode(lst[mid_idx])
-        node = self._func_create_node(lst[mid_idx])
+        node = self._create_node(lst[mid_idx])
 
         node.left = self._construct_from_sorted_list(lst, start_idx, mid_idx - 1)
         node.right = self._construct_from_sorted_list(lst, mid_idx + 1, end_idx)
@@ -304,8 +302,7 @@ class BinarySearchTree(BinTree):
 
     #
     #
-    @staticmethod
-    def __create_node(key=None):
+    def _create_node(self, key=None):
         return BinNode(key)
 
     #
