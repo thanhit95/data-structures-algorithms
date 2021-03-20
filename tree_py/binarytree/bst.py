@@ -51,9 +51,9 @@ class BinarySearchTree(BinTree):
 
     #
     #
-    def search(self, key):
+    def get(self, key):
         '''
-        Searches for a key.
+        Gets a node of given key.
         Args:
             key: The key to search for.
         Returns:
