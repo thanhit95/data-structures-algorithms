@@ -57,12 +57,12 @@ class BinarySearchTree(BinTree):
         Returns:
             The node containing the key, if found. Otherwise, None.
         '''
-        res, _ = self.__search(self.root, key)
+        res, _ = self._search(self.root, key)
         return res
 
     #
     #
-    def __search(self, node: BinNode, key):
+    def _search(self, node: BinNode, key):
         '''
         Searches for a key.
         Args:
