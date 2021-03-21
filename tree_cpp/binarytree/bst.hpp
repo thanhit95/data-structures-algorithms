@@ -52,6 +52,15 @@ public:
     }
 
 
+
+public:
+    void insert(T key)
+    {
+        this->root = __insert(this->root, key);
+    }
+
+
+
 protected:
     std::tuple< BinNode<T>*, BinNode<T>* > __search(BinNode<T> *node, T key) const
     {
@@ -74,6 +83,21 @@ protected:
         }
 
         return std::make_tuple(nullptr, nullptr);  // ensures a value to return, unreachable statement...
+    }
+
+
+
+    BinNode<T> * __insert(BinNode<T> *node, T key)
+    {
+        if (nullptr == node)
+            return new BinNode<T>(key);
+
+        if (key < node->key)
+            node->left = __insert(node->left, key);
+        else
+            node->right = __insert(node->right, key);
+
+        return node;
     }
 };
 

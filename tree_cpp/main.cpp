@@ -9,20 +9,12 @@ int main(int, char**)
 
     BinarySearchTree<int> tree;
 
-    BinNode<> *a = new BinNode<>(50);
-    BinNode<> *b = new BinNode<>(25);
-    BinNode<> *c = new BinNode<>(80);
-    BinNode<> *d = new BinNode<>(10);
-    BinNode<> *e = new BinNode<>(40);
-    BinNode<> *f = new BinNode<>(90);
-
-    a->left = b;
-    a->right = c;
-    b->left = d;
-    b->right = e;
-    c->right = f;
-
-    tree.root = a;
+    tree.insert(50);
+    tree.insert(25);
+    tree.insert(80);
+    tree.insert(10);
+    tree.insert(40);
+    tree.insert(90);
 
     auto res = tree.traverse(TraverseOrder::IN);
 
