@@ -101,7 +101,7 @@ class AvlTree(BinarySearchTree):
         else:
             if node.left is None:
                 return node.right
-            elif node.right is None:
+            if node.right is None:
                 return node.left
 
             self._remove_candidate(node)

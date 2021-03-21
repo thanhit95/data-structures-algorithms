@@ -163,10 +163,10 @@ class BinarySearchTree(BinTree):
         else:
             if node.left is None:
                 return node.right
-            elif node.right is None:
+            if node.right is None:
                 return node.left
-            else:
-                self._remove_candidate(node)
+
+            self._remove_candidate(node)
 
         return node
 
