@@ -16,7 +16,8 @@ int main(int, char**)
     tree.insert(40);
     tree.insert(90);
 
-    auto res = tree.traverse(TraverseOrder::IN);
+    std::vector<int*> res = tree.traverse(TraverseOrder::IN);
+    std::cout << "counts: " << res.size() << std::endl;
 
     for (auto &e : res)
     {
@@ -24,8 +25,20 @@ int main(int, char**)
     }
 
     BinNode<int> *getRes = tree.get(40);
+    std::cout << "count: " << tree.count() << std::endl;
 
-    std::cout << "get res: " << getRes->key << std::endl;
+
+    std::cout << "\n\nremove key" << std::endl;
+
+    tree.remove(50);
+
+    res = tree.traverse(TraverseOrder::IN);
+    std::cout << "count: " << tree.count() << std::endl;
+
+    for (auto &e : res)
+    {
+        std::cout << *e << std::endl;
+    }
 
     return 0;
 }
