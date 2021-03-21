@@ -162,9 +162,9 @@ class BinarySearchTree(BinTree):
             node.right = self._remove(node.right, key)
         else:
             if node.left is None:
-                node = node.right
+                return node.right
             elif node.right is None:
-                node = node.left
+                return node.left
             else:
                 self._remove_candidate(node)
 
