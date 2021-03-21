@@ -133,15 +133,17 @@ class BinarySearchTree(BinTree):
         if self.root is None:
             return False
 
-        self.root = self.__remove(self.root, key)
+        if self.get(key) is None:
+            return False
+
+        self.root = self._remove(self.root, key)
 
         self._count -= 1
-
         return True
 
     #
     #
-    def __remove(self, node: BinNode, key):
+    def _remove(self, node: BinNode, key):
         '''
         Removes the node from the tree.
         Args:
@@ -155,22 +157,22 @@ class BinarySearchTree(BinTree):
             return None
 
         if key < node.key:
-            node.left = self.__remove(node.left, key)
+            node.left = self._remove(node.left, key)
         elif key > node.key:
-            node.right = self.__remove(node.right, key)
+            node.right = self._remove(node.right, key)
         else:
             if node.left is None:
                 node = node.right
             elif node.right is None:
                 node = node.left
             else:
-                self._remove_candidate(node, self.__remove)
+                self._remove_candidate(node)
 
         return node
 
     #
     #
-    def _remove_candidate(self, node: BinNode, fn_remove):
+    def _remove_candidate(self, node: BinNode):
         '''
         Finds a candidate for replacement of current node, and then removes that candidate from the tree.
         Args:
@@ -181,18 +183,18 @@ class BinarySearchTree(BinTree):
         option = self.__option_candidate_removal
 
         if option == 'right':
-            candidate, _ = self.__search_min(node.right, node)
+            candidate, _ = self._search_min(node.right, node)
             node.key = candidate.key
-            node.right = fn_remove(node.right, candidate.key)
+            node.right = self._remove(node.right, candidate.key)
 
         elif option == 'left':
-            candidate, _ = self.__search_max(node.left, node)
+            candidate, _ = self._search_max(node.left, node)
             node.key = candidate.key
-            node.left = fn_remove(node.left, candidate.key)
+            node.left = self._remove(node.left, candidate.key)
 
     #
     #
-    def __search_min(self, node: BinNode, parent: BinNode):
+    def _search_min(self, node: BinNode, parent: BinNode):
         '''
         Searches for the node with minimum key.
         Args:
@@ -212,7 +214,7 @@ class BinarySearchTree(BinTree):
 
     #
     #
-    def __search_max(self, node: BinNode, parent: BinNode):
+    def _search_max(self, node: BinNode, parent: BinNode):
         '''
         Searches for the node with maximum key.
         Args:
@@ -240,7 +242,7 @@ class BinarySearchTree(BinTree):
         Returns:
             Minimum key if exists. Otherwise, None.
         '''
-        node, _ = self.__search_min(self.root, None)
+        node, _ = self._search_min(self.root, None)
         res = node.key if node is not None else None
         return res
 
@@ -254,7 +256,7 @@ class BinarySearchTree(BinTree):
         Returns:
             Maximum key if exists. Otherwise, None.
         '''
-        node, _ = self.__search_max(self.root, None)
+        node, _ = self._search_max(self.root, None)
         res = node.key if node is not None else None
         return res
 

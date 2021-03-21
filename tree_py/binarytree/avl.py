@@ -80,26 +80,7 @@ class AvlTree(BinarySearchTree):
 
     #
     #
-    def remove(self, key):
-        '''
-        Removes the node of given key.
-        Args:
-            key: The key to be removed.
-        Returns:
-            If key exists, return True. Otherwise, rerturn False.
-        '''
-        if self.root is None:
-            return False
-
-        self.root = self.__remove(self.root, key)
-
-        self._count -= 1
-
-        return True
-
-    #
-    #
-    def __remove(self, node: AvlNode, key):
+    def _remove(self, node: AvlNode, key):
         '''
         Removes the node from the tree.
         Args:
@@ -114,16 +95,16 @@ class AvlTree(BinarySearchTree):
             return None
 
         if key < node.key:
-            node.left = self.__remove(node.left, key)
+            node.left = self._remove(node.left, key)
         elif key > node.key:
-            node.right = self.__remove(node.right, key)
+            node.right = self._remove(node.right, key)
         else:
             if node.left is None:
                 return node.right
             elif node.right is None:
                 return node.left
 
-            self._remove_candidate(node, self.__remove)
+            self._remove_candidate(node)
 
         # Step 2. Adjusts balance
         node = self.__adjust_balance(node)

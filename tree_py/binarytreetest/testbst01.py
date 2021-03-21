@@ -21,6 +21,7 @@ def dotask():
 
     print(end='\n')
 
+    _ = bst.remove(800)
     _ = bst.remove(12)
 
     print(bst)
