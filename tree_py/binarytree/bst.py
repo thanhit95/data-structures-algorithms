@@ -180,6 +180,8 @@ class BinarySearchTree(BinTree):
         Returns:
             None.
         '''
+        assert node is not None
+
         option = self.__option_candidate_removal
 
         if option == 'right':
