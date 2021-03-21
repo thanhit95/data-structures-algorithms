@@ -13,7 +13,10 @@ My implementation of trees in C++.
 3. Respects the organization over the algorithms.
 4. Focuses on high performance, code reuse, code maintenance.
 
-Plus, due to portablility in C++, **each module are fully presented on a single file**.
+Plus, by using C++:
+
+- Due to portability, **each module is fully presented in a single file**.
+- **Prefers C++ pointers** to C++ references (because C++ pointers are compatible with other common programming languages).
 
 &nbsp;
 
