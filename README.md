@@ -17,7 +17,7 @@ Thanh Trung Nguyen
 
 &nbsp;
 
-## CONVENTION
+## CONVENTIONS
 
 1. Respects the clean code.
 2. Respects the simplicity over the complexity.
