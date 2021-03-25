@@ -96,11 +96,11 @@ class BinarySearchTree(BinTree):
         Args:
             key: The key to insert.
         '''
-        self.root = self.__insert(self.root, key)
+        self.root = self._insert(self.root, key)
 
     #
     #
-    def __insert(self, node: BinNode, key):
+    def _insert(self, node: BinNode, key):
         '''
         Inserts a key (backend function)
         Args:
@@ -114,9 +114,9 @@ class BinarySearchTree(BinTree):
             return BinNode(key)
 
         if key < node.key:
-            node.left = self.__insert(node.left, key)
+            node.left = self._insert(node.left, key)
         elif key > node.key:
-            node.right = self.__insert(node.right, key)
+            node.right = self._insert(node.right, key)
 
         return node
 

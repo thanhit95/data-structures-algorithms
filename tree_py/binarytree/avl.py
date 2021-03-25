@@ -45,17 +45,7 @@ class AvlTree(BinarySearchTree):
 
     #
     #
-    def insert(self, key):
-        '''
-        Inserts a key.
-        Args:
-            key: The key to insert.
-        '''
-        self.root = self.__insert(self.root, key)
-
-    #
-    #
-    def __insert(self, node: AvlNode, key):
+    def _insert(self, node: AvlNode, key):
         '''
         Inserts a key (backend function)
         Args:
@@ -70,9 +60,9 @@ class AvlTree(BinarySearchTree):
 
         # Step 1. Performs normal BST
         if key < node.key:
-            node.left = self.__insert(node.left, key)
+            node.left = self._insert(node.left, key)
         elif key > node.key:
-            node.right = self.__insert(node.right, key)
+            node.right = self._insert(node.right, key)
 
         # Step 2. Adjusts balance
         node = self.__adjust_balance(node)
