@@ -12,7 +12,7 @@ namespace mybt
 
 
 
-template<typename T>
+template <typename T>
 class BinTree
 {
 ////////////////////////////////////////////////////////

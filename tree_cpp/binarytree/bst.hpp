@@ -16,7 +16,7 @@ namespace mybt
 
 
 
-template<typename T>
+template <typename T>
 class BinarySearchTree : public BinTree<T>
 {
 ////////////////////////////////////////////////////////
