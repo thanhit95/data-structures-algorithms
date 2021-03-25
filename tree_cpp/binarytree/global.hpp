@@ -1,5 +1,5 @@
-#ifndef __PUBLIC_STUFF_HPP__
-#define __PUBLIC_STUFF_HPP__
+#ifndef __GLOBAL_HPP__
+#define __GLOBAL_HPP__
 
 
 namespace mybt

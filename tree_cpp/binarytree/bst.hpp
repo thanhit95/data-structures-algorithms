@@ -5,9 +5,9 @@
 #include <tuple>
 #include "binnode.hpp"
 #include "bintree.hpp"
-#include "public.hpp"
+#include "global.hpp"
 
-// #define NDEBUG
+// #define NDEBUG // disable assertion
 #include <cassert>
 
 
@@ -36,6 +36,9 @@ public:
     {
         this->_optionCanddRemoval = canddRemoval;
     }
+
+
+    virtual ~BinarySearchTree() { }
 
 
 
@@ -78,6 +81,35 @@ public:
 
 
 
+public:
+    T * getMin() const
+    {
+        auto temp = searchMin(this->root, nullptr);
+
+        BinNode<T> *res = std::get<0>(temp);
+
+        if (nullptr == res)
+            return nullptr;
+
+        return &res->key;
+    }
+
+
+
+    T * getMax() const
+    {
+        auto temp = searchMax(this->root, nullptr);
+
+        BinNode<T> *res = std::get<0>(temp);
+
+        if (nullptr == res)
+            return nullptr;
+
+        return &res->key;
+    }
+
+
+
 protected:
     std::tuple< BinNode<T>*, BinNode<T>* > search(BinNode<T> *node, T key) const
     {
@@ -104,7 +136,7 @@ protected:
 
 
 
-    BinNode<T> * __insert(BinNode<T> *node, T key)
+    virtual BinNode<T> * __insert(BinNode<T> *node, T key)
     {
         if (nullptr == node)
         {
@@ -122,7 +154,7 @@ protected:
 
 
 
-    BinNode<T> * __remove(BinNode<T> *node, T key)
+    virtual BinNode<T> * __remove(BinNode<T> *node, T key)
     {
         if (nullptr == node)
             return nullptr;

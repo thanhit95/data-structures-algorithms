@@ -4,7 +4,7 @@
 
 #include <vector>
 #include "binnode.hpp"
-#include "public.hpp"
+#include "global.hpp"
 
 
 namespace mybt
