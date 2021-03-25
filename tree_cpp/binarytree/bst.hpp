@@ -16,8 +16,8 @@ namespace mybt
 
 
 
-template <typename T>
-class BinarySearchTree : public BinTree<T>
+template < typename TKey, typename TNode=BinNode<TKey> >
+class BinarySearchTree : public BinTree<TKey, TNode>
 {
 ////////////////////////////////////////////////////////
 //                       FIELDS
@@ -32,7 +32,8 @@ protected:
 //                       METHOHDS
 ////////////////////////////////////////////////////////
 public:
-    BinarySearchTree(CandidateRemoval canddRemoval = CandidateRemoval::RIGHT)
+    BinarySearchTree(CandidateRemoval canddRemoval = CandidateRemoval::RIGHT):
+        BinTree<TKey, TNode>()
     {
         this->_optionCanddRemoval = canddRemoval;
     }
@@ -51,7 +52,7 @@ public:
 
 
 public:
-    BinNode<T> * get(T key) const
+    TNode* get(TKey key) const
     {
         auto res = search(this->root, key);
         return std::get<0>(res);
@@ -60,7 +61,7 @@ public:
 
 
 public:
-    void insert(T key)
+    void insert(TKey key)
     {
         this->root = __insert(this->root, key);
     }
@@ -68,7 +69,7 @@ public:
 
 
 public:
-    bool remove(T key)
+    bool remove(TKey key)
     {
         if (nullptr == this->get(key))
             return false;
@@ -82,11 +83,11 @@ public:
 
 
 public:
-    T * getMin() const
+    TKey* getMin() const
     {
         auto temp = searchMin(this->root, nullptr);
 
-        BinNode<T> *res = std::get<0>(temp);
+        TNode *res = std::get<0>(temp);
 
         if (nullptr == res)
             return nullptr;
@@ -96,11 +97,11 @@ public:
 
 
 
-    T * getMax() const
+    TKey* getMax() const
     {
         auto temp = searchMax(this->root, nullptr);
 
-        BinNode<T> *res = std::get<0>(temp);
+        TNode *res = std::get<0>(temp);
 
         if (nullptr == res)
             return nullptr;
@@ -111,9 +112,10 @@ public:
 
 
 protected:
-    std::tuple< BinNode<T>*, BinNode<T>* > search(BinNode<T> *node, T key) const
+    std::tuple< TNode*, TNode* >
+    search(TNode *node, TKey key) const
     {
-        BinNode<T> *parent = nullptr;
+        TNode *parent = nullptr;
 
         while (1)
         {
@@ -136,12 +138,12 @@ protected:
 
 
 
-    virtual BinNode<T> * __insert(BinNode<T> *node, T key)
+    virtual TNode* __insert(TNode *node, TKey key)
     {
         if (nullptr == node)
         {
             this->_count += 1;
-            return new BinNode<T>(key);
+            return new TNode(key);
         }
 
         if (key < node->key)
@@ -154,7 +156,7 @@ protected:
 
 
 
-    virtual BinNode<T> * __remove(BinNode<T> *node, T key)
+    virtual TNode* __remove(TNode *node, TKey key)
     {
         if (nullptr == node)
             return nullptr;
@@ -179,11 +181,11 @@ protected:
 
 
 
-    void removeCandidate(BinNode<T> *node)
+    void removeCandidate(TNode *node)
     {
         assert(nullptr != node);
 
-        BinNode<T> *candidate = nullptr;
+        TNode *candidate = nullptr;
 
         switch (this->_optionCanddRemoval)
         {
@@ -212,8 +214,8 @@ protected:
 
 
 
-    std::tuple< BinNode<T>*, BinNode<T>* >
-    searchMin(BinNode<T> *node, BinNode<T> *parent) const
+    std::tuple< TNode*, TNode* >
+    searchMin(TNode *node, TNode *parent) const
     {
         if (nullptr == node)
             return std::make_tuple(nullptr, nullptr);
@@ -229,8 +231,8 @@ protected:
 
 
 
-    std::tuple< BinNode<T>*, BinNode<T>* >
-    searchMax(BinNode<T> *node, BinNode<T> *parent) const
+    std::tuple< TNode*, TNode* >
+    searchMax(TNode *node, TNode *parent) const
     {
         if (nullptr == node)
             return std::make_tuple(nullptr, nullptr);

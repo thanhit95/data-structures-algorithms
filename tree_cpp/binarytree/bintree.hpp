@@ -3,6 +3,7 @@
 
 
 #include <vector>
+#include <algorithm>
 #include "binnode.hpp"
 #include "global.hpp"
 
@@ -12,16 +13,16 @@ namespace mybt
 
 
 
-template <typename T>
+template < typename TKey, typename TNode=BinNode<TKey> >
 class BinTree
 {
 ////////////////////////////////////////////////////////
 //                       FIELDS
 ////////////////////////////////////////////////////////
 public:
-    BinNode<T> * root = nullptr;
+    TNode *root = nullptr;
 
-    std::vector<T*> resTraversal;
+    std::vector<TKey*> resTraversal;
 
 
 
@@ -29,7 +30,7 @@ public:
 //                       METHOHDS
 ////////////////////////////////////////////////////////
 public:
-    std::vector<T*> traverse(TraverseOrder order)
+    std::vector<TKey*> traverse(TraverseOrder order)
     {
         resTraversal.clear();
 
@@ -65,7 +66,7 @@ public:
 
 
 protected:
-    void traversePre(BinNode<T> *node)
+    void traversePre(TNode *node)
     {
         if (nullptr == node)
             return;
@@ -76,7 +77,7 @@ protected:
     }
 
 
-    void traverseIn(BinNode<T> *node)
+    void traverseIn(TNode *node)
     {
         if (nullptr == node)
             return;
@@ -87,7 +88,7 @@ protected:
     }
 
 
-    void traversePost(BinNode<T> *node)
+    void traversePost(TNode *node)
     {
         if (nullptr == node)
             return;
@@ -99,7 +100,7 @@ protected:
 
 
 
-    int __height(BinNode<T> *node) const
+    int __height(TNode *node) const
     {
         if (nullptr == node)
             return 0;
@@ -107,7 +108,7 @@ protected:
         int heightLe = 1 + __height(node->left);
         int heightRi = 1 + __height(node->right);
 
-        return max(heightLe, heightRi);
+        return std::max(heightLe, heightRi);
     }
 };
 

@@ -1,5 +1,5 @@
-#ifndef __TEST_BST_01_HPP__
-#define __TEST_BST_01_HPP__
+#ifndef __TEST_BST_02_HPP__
+#define __TEST_BST_02_HPP__
 
 
 #include <iostream>
@@ -9,7 +9,7 @@
 
 namespace mybt
 {
-namespace testbst01
+namespace testbst02
 {
 
 
@@ -37,34 +37,13 @@ void dotask()
     for ( auto &&value : {12, 39, 20, 7, 26, 45, 19, 8} )
         bst.insert(value);
 
-    // std::cout << bst;
-
-    std::cout << "\n\n count: " << bst.count();
-
-    std::cout << "\n\n min: " << *bst.getMin();
-
-    std::cout << "\n\n max: " << *bst.getMax();
-
-    std::cout << "\n\n get key: " << bst.get(20)->key;
-
     printTree(bst);
 
 
-    /*
-    std::cout << "\n\nUsing for each to iterate nodes in tree";
-
-    for (auto &&value : bst)
-        std::cout << value << std::endl;
-    */
-
-
-    bst.remove(800);
-    bst.remove(12);
-
-    std::cout << "\n\n count: " << bst.count();
+    for ( auto &&value : {12, 39, 20, 7, 26, 45, 19, 8} )
+        bst.remove(value);
 
     printTree(bst);
-
 
     std::cout << std::endl;
 }

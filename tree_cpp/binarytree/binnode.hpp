@@ -7,23 +7,17 @@ namespace mybt
 
 
 
-/*
-Binary Node.
-
-Args:
-    key: The key stored in the node.
-*/
-template <typename T=int>
+template < typename TKey >
 class BinNode
 {
 public:
-    T key;
-    BinNode<T> *left = nullptr;
-    BinNode<T> *right = nullptr;
+    TKey key;
+    BinNode *left = nullptr;
+    BinNode *right = nullptr;
 
 
 public:
-    BinNode(T key = T())
+    BinNode(TKey key = TKey())
     {
         this->key = key;
     }
