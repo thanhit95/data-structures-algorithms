@@ -30,7 +30,7 @@ private:
 //                       METHOHDS
 ////////////////////////////////////////////////////////
 public:
-    AvlNode(TKey key = TKey())
+    AvlNode(const TKey &key = TKey())
     {
         this->key = key;
     }
@@ -38,31 +38,45 @@ public:
 
 
 public:
-    const int height() const
+    inline int height() const
     {
         return this->_height;
     }
 
 
 
+    inline int heightLeft() const
+    {
+        return (nullptr == this->left) ? 0 : this->left->height();
+    }
+
+
+
+    inline int heightRight() const
+    {
+        return (nullptr == this->right) ? 0 : this->right->height();
+    }
+
+
+
     void updateHeight()
     {
-        this->_height = 1 + std::max(heightChild(this->left), heightChild(this->right));
+        this->_height = 1 + std::max(heightLeft(), heightRight());
     }
 
 
 
 public:
-    const int balance() const
+    int balance() const
     {
-        int heightLe = heightChild(this->left);
-        int heightRi = heightChild(this->right);
+        int heightLe = heightLeft();
+        int heightRi = heightRight();
         return heightLe - heightRi;
     }
 
 
 
-    const int balanceLeft() const
+    int balanceLeft() const
     {
         if (nullptr == this->left)
             return 0;
@@ -72,29 +86,18 @@ public:
 
 
 
-    const int balanceRight() const
+    int balanceRight() const
     {
         if (nullptr == this->right)
             return 0;
 
         return this->right->balance();
     }
-
-
-
-protected:
-    const int heightChild(AvlNode *child) const
-    {
-        if (nullptr == child)
-            return 0;
-
-        return child->height();
-    }
 };
 
 
 
-}
+} // mybt
 
 
 #endif // __AVL_NODE_HPP__

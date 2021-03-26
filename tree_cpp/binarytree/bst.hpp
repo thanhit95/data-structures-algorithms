@@ -44,7 +44,7 @@ public:
 
 
 public:
-    const int count() const
+    inline int count() const
     {
         return this->_count;
     }
@@ -52,16 +52,17 @@ public:
 
 
 public:
-    TNode* get(TKey key) const
+    bool contain(const TKey &key) const
     {
-        auto res = search(this->root, key);
-        return std::get<0>(res);
+        auto temp = search(this->root, key);
+        TNode *node = std::get<0>(temp);
+        return (nullptr != node);
     }
 
 
 
 public:
-    void insert(TKey key)
+    void insert(const TKey &key)
     {
         this->root = __insert(this->root, key);
     }
@@ -69,15 +70,15 @@ public:
 
 
 public:
-    bool remove(TKey key)
+    bool remove(const TKey &key)
     {
         if (nullptr == this->root)
             return false;
 
-        if (nullptr == this->get(key))
+        if (false == contain(key))
             return false;
 
-        this->root = this->__remove(this->root, key);
+        this->root = __remove(this->root, key);
 
         this->_count -= 1;
         return true;
@@ -86,62 +87,34 @@ public:
 
 
 public:
-    TKey* getMin() const
+    TKey getMin() const
     {
-        auto temp = searchMin(this->root, nullptr);
+        if (this->empty())
+            throw "Tree is empty";
 
+        auto temp = searchMin(this->root, nullptr);
         TNode *res = std::get<0>(temp);
 
-        if (nullptr == res)
-            return nullptr;
-
-        return &res->key;
+        return res->key;
     }
 
 
 
-    TKey* getMax() const
+    TKey getMax() const
     {
-        auto temp = searchMax(this->root, nullptr);
+        if (this->empty())
+            throw "Tree is empty";
 
+        auto temp = searchMax(this->root, nullptr);
         TNode *res = std::get<0>(temp);
 
-        if (nullptr == res)
-            return nullptr;
-
-        return &res->key;
+        return res->key;
     }
 
 
 
 protected:
-    std::tuple< TNode*, TNode* >
-    search(TNode *node, TKey key) const
-    {
-        TNode *parent = nullptr;
-
-        while (1)
-        {
-            if (nullptr == node)
-                return std::make_tuple(nullptr, nullptr);
-
-            if (key == node->key)
-                return std::make_tuple(node, parent);
-
-            parent = node;
-
-            if (key < node->key)
-                node = node->left;
-            else
-                node = node->right;
-        }
-
-        return std::make_tuple(nullptr, nullptr);  // ensures a value to return, unreachable statement...
-    }
-
-
-
-    virtual TNode* __insert(TNode *node, TKey key)
+    virtual TNode* __insert(TNode *node, const TKey &key)
     {
         if (nullptr == node)
         {
@@ -150,24 +123,32 @@ protected:
         }
 
         if (key < node->key)
+        {
             node->left = __insert(node->left, key);
+        }
         else
+        {
             node->right = __insert(node->right, key);
+        }
 
         return node;
     }
 
 
 
-    virtual TNode* __remove(TNode *node, TKey key)
+    virtual TNode* __remove(TNode *node, const TKey &key)
     {
         if (nullptr == node)
             return nullptr;
 
         if (key < node->key)
+        {
             node->left = __remove(node->left, key);
+        }
         else if (key > node->key)
+        {
             node->right = __remove(node->right, key);
+        }
         else
         {
             if (nullptr == node->left)
@@ -218,6 +199,32 @@ protected:
 
 
     std::tuple< TNode*, TNode* >
+    search(TNode *node, TKey key) const
+    {
+        TNode *parent = nullptr;
+
+        while (1)
+        {
+            if (nullptr == node)
+                return std::make_tuple(nullptr, nullptr);
+
+            if (key == node->key)
+                return std::make_tuple(node, parent);
+
+            parent = node;
+
+            if (key < node->key)
+                node = node->left;
+            else
+                node = node->right;
+        }
+
+        return std::make_tuple(nullptr, nullptr);  // ensures a value to return, unreachable statement...
+    }
+
+
+
+    std::tuple< TNode*, TNode* >
     searchMin(TNode *node, TNode *parent) const
     {
         if (nullptr == node)
@@ -255,4 +262,4 @@ protected:
 } // mybt
 
 
-#endif
+#endif // __BINARY_SEARCH_TREE_HPP__

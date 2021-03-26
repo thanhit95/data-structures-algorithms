@@ -41,11 +41,11 @@ void dotask()
 
     std::cout << "\n\n count: " << bst.count();
 
-    std::cout << "\n\n min: " << *bst.getMin();
+    std::cout << "\n\n min: " << bst.getMin();
 
-    std::cout << "\n\n max: " << *bst.getMax();
+    std::cout << "\n\n max: " << bst.getMax();
 
-    std::cout << "\n\n get key: " << bst.get(20)->key;
+    std::cout << "\n\n contain: " << bst.contain(20);
 
     printTree(bst);
 

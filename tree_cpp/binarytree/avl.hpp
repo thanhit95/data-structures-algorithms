@@ -38,7 +38,7 @@ public:
 
 
 protected:
-    virtual TNode* __insert(TNode *node, TKey key) override
+    virtual TNode* __insert(TNode *node, const TKey &key) override
     {
         if (nullptr == node)
         {
@@ -57,7 +57,7 @@ protected:
 
 
 
-    virtual TNode* __remove(TNode *node, TKey key) override
+    virtual TNode* __remove(TNode *node, const TKey &key) override
     {
         if (nullptr == node)
             return nullptr;

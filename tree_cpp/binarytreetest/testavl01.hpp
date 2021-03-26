@@ -41,11 +41,11 @@ void dotask()
 
     std::cout << "\n\n count: " << avl.count();
 
-    std::cout << "\n\n min: " << *avl.getMin();
+    std::cout << "\n\n min: " << avl.getMin();
 
-    std::cout << "\n\n max: " << *avl.getMax();
+    std::cout << "\n\n max: " << avl.getMax();
 
-    std::cout << "\n\n get key: " << avl.get(50)->key;
+    std::cout << "\n\n contain: " << avl.contain(50);
 
     std::cout << "\n\n height: " << avl.height();
 

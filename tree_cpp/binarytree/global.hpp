@@ -32,4 +32,4 @@ enum class CandidateRemoval
 } // mybt
 
 
-#endif
+#endif // __GLOBAL_HPP__

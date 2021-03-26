@@ -30,7 +30,23 @@ public:
 //                       METHOHDS
 ////////////////////////////////////////////////////////
 public:
-    std::vector<TKey*> traverse(TraverseOrder order)
+    inline bool empty() const
+    {
+        return (nullptr == this->root);
+    }
+
+
+
+public:
+    int height() const
+    {
+        return __height(root);
+    }
+
+
+
+public:
+    std::vector<TKey*> traverse(const TraverseOrder &order)
     {
         resTraversal.clear();
 
@@ -53,14 +69,6 @@ public:
         }
 
         return resTraversal;
-    }
-
-
-
-public:
-    int const height() const
-    {
-        return __height(root);
     }
 
 
@@ -117,4 +125,4 @@ protected:
 } // mybt
 
 
-#endif
+#endif // __BIN_TREE_HPP__

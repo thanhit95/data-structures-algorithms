@@ -17,7 +17,7 @@ public:
 
 
 public:
-    BinNode(TKey key = TKey())
+    BinNode(const TKey &key = TKey())
     {
         this->key = key;
     }
@@ -28,4 +28,4 @@ public:
 } // mybt
 
 
-#endif
+#endif // __BIN_NODE_HPP__
