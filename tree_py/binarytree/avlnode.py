@@ -15,8 +15,18 @@ class AvlNode(BinNode):
 
     #
     #
+    def heightLeft(self):
+        return 0 if self.left is None else self.left.height()
+
+    #
+    #
+    def heightRight(self):
+        return 0 if self.right is None else self.right.height()
+
+    #
+    #
     def update_height(self):
-        self.__height = 1 + max(self.__height_child(self.left), self.__height_child(self.right))
+        self.__height = 1 + max(self.heightLeft(), self.heightRight())
 
     #
     #
@@ -24,8 +34,8 @@ class AvlNode(BinNode):
         '''
         Gets balance factor of the node.
         '''
-        height_le = self.__height_child(self.left)
-        height_ri = self.__height_child(self.right)
+        height_le = self.heightLeft()
+        height_ri = self.heightRight()
         return height_le - height_ri
 
     #
@@ -43,8 +53,3 @@ class AvlNode(BinNode):
         Gets balance factor of the right branch.
         '''
         return 0 if self.right is None else self.right.balance()
-
-    #
-    #
-    def __height_child(self, child):
-        return 0 if child is None else child.height()

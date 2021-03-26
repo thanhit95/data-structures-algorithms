@@ -49,44 +49,16 @@ class BinarySearchTree(BinTree):
 
     #
     #
-    def get(self, key):
+    def contain(self, key):
         '''
-        Gets a node of given key.
+        Checks if key exists.
         Args:
             key: The key to search for.
         Returns:
-            The node containing the key, if found. Otherwise, None.
+            True if key exists. Otherwise, None.
         '''
         res, _ = self._search(self.root, key)
-        return res
-
-    #
-    #
-    def _search(self, node: BinNode, key):
-        '''
-        Searches for a key.
-        Args:
-            key: The key to search for.
-        Returns:
-            The tuple (node, parent) indicating result node and its parent.
-        '''
-        parent = None
-
-        while True:
-            if node is None:
-                return (None, None)
-
-            if key == node.key:
-                return (node, parent)
-
-            parent = node
-
-            if key < node.key:
-                node = node.left
-            else:
-                node = node.right
-
-        return (None, None)  # ensures a value to return, unreachable statement...
+        return res is not None
 
     #
     #
@@ -133,7 +105,7 @@ class BinarySearchTree(BinTree):
         if self.root is None:
             return False
 
-        if self.get(key) is None:
+        if self.contain(key) is False:
             return False
 
         self.root = self._remove(self.root, key)
@@ -193,6 +165,34 @@ class BinarySearchTree(BinTree):
             candidate, _ = self._search_max(node.left, node)
             node.key = candidate.key
             node.left = self._remove(node.left, candidate.key)
+
+    #
+    #
+    def _search(self, node: BinNode, key):
+        '''
+        Searches for a key.
+        Args:
+            key: The key to search for.
+        Returns:
+            The tuple (node, parent) indicating result node and its parent.
+        '''
+        parent = None
+
+        while True:
+            if node is None:
+                return (None, None)
+
+            if key == node.key:
+                return (node, parent)
+
+            parent = node
+
+            if key < node.key:
+                node = node.left
+            else:
+                node = node.right
+
+        return (None, None)  # ensures a value to return, unreachable statement...
 
     #
     #

@@ -27,6 +27,19 @@ class BinTree:
 
     #
     #
+    def empty(self):
+        return self.root is None
+
+    #
+    #
+    def height(self):
+        '''
+        Gets height of the tree.
+        '''
+        return self.__height(self.root)
+
+    #
+    #
     def _count_traversal(self, node: BinNode):
         '''
         Counts number of elements by traversal.
@@ -100,14 +113,6 @@ class BinTree:
         self.__traverse_post(node.left)
         self.__traverse_post(node.right)
         self.__res_traveral.append(node.key)
-
-    #
-    #
-    def height(self):
-        '''
-        Gets height of the tree.
-        '''
-        return self.__height(self.root)
 
     #
     #

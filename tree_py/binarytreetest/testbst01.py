@@ -12,7 +12,7 @@ def dotask():
     print('count:', bst.count())
     print('min:', bst.min())
     print('max:', bst.max())
-    print('get key:', bst.get(20))
+    print('contain:', bst.contain(20))
 
     print('Using for each to iterate nodes in tree')
 
