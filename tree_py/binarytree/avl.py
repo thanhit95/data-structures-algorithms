@@ -139,20 +139,20 @@ class AvlTree(BinarySearchTree):
         r'''
             node
             /  \
-           ..   T
+           ..   V
                / \
               a   b
         '''
-        T = node.right
-        a = T.left
+        V = node.right
+        a = V.left
 
-        T.left = node
+        V.left = node
         node.right = a
 
         node.update_height()
-        T.update_height()
+        V.update_height()
 
-        return T
+        return V
 
     #
     #
@@ -160,20 +160,20 @@ class AvlTree(BinarySearchTree):
         r'''
             node
             /  \
-           T   ..
+           V   ..
           / \
          a   b
         '''
-        T = node.left
-        b = T.right
+        V = node.left
+        b = V.right
 
-        T.right = node
+        V.right = node
         node.left = b
 
         node.update_height()
-        T.update_height()
+        V.update_height()
 
-        return T
+        return V
 
     #
     #

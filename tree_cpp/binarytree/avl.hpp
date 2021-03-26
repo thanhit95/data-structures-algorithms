@@ -48,7 +48,6 @@ protected:
 
         if (key < node->key)
             node->left = __insert(node->left, key);
-
         else if (key > node->key)
             node->right = __insert(node->right, key);
 
