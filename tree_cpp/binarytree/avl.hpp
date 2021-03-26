@@ -38,7 +38,7 @@ public:
 
 
 protected:
-    virtual TNode * __insert(TNode *node, TKey key)
+    virtual TNode* __insert(TNode *node, TKey key) override
     {
         if (nullptr == node)
         {
@@ -48,9 +48,35 @@ protected:
 
         if (key < node->key)
             node->left = __insert(node->left, key);
+
         else if (key > node->key)
             node->right = __insert(node->right, key);
 
+        node = adjustBalance(node);
+        return node;
+    }
+
+
+
+    virtual TNode* __remove(TNode *node, TKey key) override
+    {
+        if (nullptr == node)
+            return nullptr;
+
+        if (key < node->key)
+            node->left = __remove(node->left, key);
+        else if (key > node->key)
+            node->right = __remove(node->right, key);
+        else
+        {
+            if (nullptr == node->left)
+                return node->right;
+
+            if (nullptr == node->right)
+                return node->left;
+
+            this->removeCandidate(node);
+        }
 
         node = adjustBalance(node);
         return node;

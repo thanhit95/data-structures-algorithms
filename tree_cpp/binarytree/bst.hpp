@@ -71,6 +71,9 @@ public:
 public:
     bool remove(TKey key)
     {
+        if (nullptr == this->root)
+            return false;
+
         if (nullptr == this->get(key))
             return false;
 

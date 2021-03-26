@@ -1,10 +1,10 @@
 #include <iostream>
-#include "binarytreetest/testavl01.hpp"
+#include "binarytreetest/testavl02.hpp"
 
 
 int main(int, char**)
 {
-    mybt::testavl01::dotask();
+    mybt::testavl02::dotask();
 
     return 0;
 }
