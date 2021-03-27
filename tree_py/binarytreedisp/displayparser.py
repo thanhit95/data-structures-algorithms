@@ -140,6 +140,7 @@ class DisplayParser:
         del size_left_line
         del size_right_line
         del full_width
+        del size_right_overflow
         del margin_key
         del margin_left_child
         del margin_right_child
