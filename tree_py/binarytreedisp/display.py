@@ -27,7 +27,7 @@ class BinTreeDisplay:
     def __init__(self):
         self.__vutil = ValueUtil()
         self.__parser = DisplayParser(self.__vutil)
-        self.config(('key', 'left', 'right'))
+        self.config(struct_node=('key', 'left', 'right'))
 
     #
     #
@@ -70,8 +70,8 @@ class BinTreeDisplay:
         Backend function for "get" method.
         '''
 
-        self.__height = self.__parser.get_height(inp_root)
-        height = self.__height * 3 - 2
+        height_inp_root = self.__parser.get_height(inp_root)
+        height = height_inp_root * 3 - 2
 
         parser_tree = self.__parser.build_tree(inp_root)
 
@@ -80,7 +80,6 @@ class BinTreeDisplay:
         self.__fill_buffer(parser_tree, 1, self.__margin_left)
 
         buffer = self.__buffer
-        del self.__height
         del self.__buffer
 
         return buffer
@@ -111,7 +110,7 @@ class BinTreeDisplay:
 
     #
     #
-    def __fill_line(self, direction: str, child_key: str, y, margin_a: int, margin_b: int):
+    def __fill_line(self, direction: str, child_key: str, y: int, margin_a: int, margin_b: int):
         if direction == 'right':
             self.__fill_line_coord(y, margin_a, margin_b)
 
@@ -168,6 +167,5 @@ class BinTreeDisplay:
             self.__parser.config_struct_input_node(struct_node[0], struct_node[1], struct_node[2])
 
         self.__parser.config_line(line_char, line_brsp)
-
-        self.__margin_left = margin_left
         self.__vutil.set_float_precision(float_pre)
+        self.__margin_left = margin_left
