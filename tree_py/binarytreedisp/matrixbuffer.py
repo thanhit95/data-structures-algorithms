@@ -18,7 +18,7 @@ class MatrixBuffer:
         if type(value) is not str:
             raise ValueError('Invalid argument: value must be string')
 
-        if posx < 0 or posx >= self.width + 1 - len(value):
+        if posx < 0 or posx >= self.width:
             raise ValueError('Invalid argument: posx')
 
         if posy < 0 or posy >= self.height:
