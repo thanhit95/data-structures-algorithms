@@ -120,10 +120,10 @@ class BinTree:
         if node is None:
             return 0
 
-        height_le = 1 + self.__height(node.left)
-        height_ri = 1 + self.__height(node.right)
+        height_le = self.__height(node.left)
+        height_ri = self.__height(node.right)
 
-        return max(height_le, height_ri)
+        return 1 + max(height_le, height_ri)
 
     #
     #
