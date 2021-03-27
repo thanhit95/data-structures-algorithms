@@ -12,7 +12,7 @@ License:        BSD-3-Clause
 '''
 
 
-from .binnode import BinNode
+from .parsingnode import ParsingNode
 from .valueutil import ValueUtil
 from .displayparser import DisplayParser
 from .matrixbuffer import MatrixBuffer
@@ -31,7 +31,7 @@ class BinTreeDisplay:
 
     #
     #
-    def get(self, inp_root):
+    def get(self, inp_root) -> str:
         '''
         Gets display string for binary search tree.
         Output result can be configured by calling "config" method. Configurable properties are:
@@ -49,7 +49,7 @@ class BinTreeDisplay:
 
     #
     #
-    def get_lst_rows(self, inp_root):
+    def get_lst_rows(self, inp_root) -> list:
         '''
         Gets display string for binary search tree.
         Output result can be configured by calling "config" method. Configurable properties are:
@@ -65,7 +65,7 @@ class BinTreeDisplay:
 
     #
     #
-    def __process(self, inp_root):
+    def __process(self, inp_root) -> MatrixBuffer:
         '''
         Backend function for "get" method.
         '''
@@ -87,7 +87,7 @@ class BinTreeDisplay:
 
     #
     #
-    def __fill_buffer(self, node: BinNode, depth: int, margin_global: int):
+    def __fill_buffer(self, node: ParsingNode, depth: int, margin_global: int):
         if node is None:
             return
 
@@ -111,7 +111,7 @@ class BinTreeDisplay:
 
     #
     #
-    def __fill_line(self, direction: str, child_key: str, y, margin_a, margin_b):
+    def __fill_line(self, direction: str, child_key: str, y, margin_a: int, margin_b: int):
         if direction == 'right':
             self.__fill_line_coord(y, margin_a, margin_b)
 
@@ -124,7 +124,7 @@ class BinTreeDisplay:
 
     #
     #
-    def __fill_line_coord(self, y, startx, endx):
+    def __fill_line_coord(self, y: int, startx: int, endx: int):
         a = self.__buffer.a
         line_char = self.__parser.line_char
 

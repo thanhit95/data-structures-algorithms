@@ -19,7 +19,7 @@ class ValueUtil:
 
     #
     #
-    def get_str(self, value):
+    def get_str(self, value) -> str:
         type_value = type(value)
 
         if type_value is float:

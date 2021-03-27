@@ -1,4 +1,4 @@
-from .binnode import BinNode
+from .parsingnode import ParsingNode
 from .valueutil import ValueUtil
 
 
@@ -7,10 +7,13 @@ from .valueutil import ValueUtil
 class DisplayParser:
     #
     #
-    def __init__(self, value_util: ValueUtil, character: str = '-', branch_space: int = 3):
+    def __init__(self, value_util: ValueUtil, character: str = '-', branch_spacing: int = 1):
+        if value_util is None:
+            raise ValueError('value_util cannot be None')
+
         self.__vutil = value_util
         self.config_struct_input_node('key', 'left', 'right')
-        self.config_line(character, branch_space)
+        self.config_line(character, branch_spacing)
 
     #
     #
@@ -37,7 +40,7 @@ class DisplayParser:
 
     #
     #
-    def config_line(self, character, branch_spacing):
+    def config_line(self, character: str, branch_spacing: int):
         '''
         Configures line information. The term "line" means a horizontal line connecting left-right branches.
         Args:
@@ -55,7 +58,28 @@ class DisplayParser:
 
     #
     #
-    def build_tree(self, input_root):
+    def get_height(self, node) -> int:
+        '''
+        Gets height of the tree.
+        Args:
+            node: Input root of the tree.
+        Returns:
+            Height.
+        '''
+        if node is None:
+            return 0
+
+        node_left = getattr(node, self.struct_node_le)
+        node_right = getattr(node, self.struct_node_ri)
+
+        height_le_branch = self.get_height(node_left)
+        height_ri_branch = self.get_height(node_right)
+
+        return 1 + max(height_le_branch, height_ri_branch)
+
+    #
+    #
+    def build_tree(self, input_root) -> ParsingNode:
         '''
         Builds parser tree which stores parsing information of each corresponding node.
         The structure of input_root (and its nodes) should be configured by function config_struct_input_node.
@@ -71,7 +95,7 @@ class DisplayParser:
         input_left = getattr(input_root, self.struct_node_le)
         input_right = getattr(input_root, self.struct_node_ri)
 
-        node = BinNode(self.__vutil.get_str(input_key))
+        node = ParsingNode(self.__vutil.get_str(input_key))
         len_key = len(node.key)
 
         node.left = self.build_tree(input_left)
@@ -103,24 +127,3 @@ class DisplayParser:
         node.margin_right_child = margin_right_child
 
         return node
-
-    #
-    #
-    def get_height(self, node):
-        '''
-        Gets height of the tree.
-        Args:
-            node: Input root of the tree.
-        Returns:
-            Height.
-        '''
-        if node is None:
-            return 0
-
-        node_left = getattr(node, self.struct_node_le)
-        node_right = getattr(node, self.struct_node_ri)
-
-        height_le_branch = 1 + self.get_height(node_left)
-        height_ri_branch = 1 + self.get_height(node_right)
-
-        return max(height_le_branch, height_ri_branch)

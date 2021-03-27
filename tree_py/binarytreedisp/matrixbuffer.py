@@ -4,7 +4,7 @@ class MatrixBuffer:
     '''
     #
     #
-    def __init__(self, width, height):
+    def __init__(self, width: int, height: int):
         self.width = width
         self.height = height
 
@@ -35,14 +35,14 @@ class MatrixBuffer:
 
     #
     #
-    def get_str(self):
+    def get_str(self) -> str:
         lst_rows = self.get_lst_rows()
         res = '\n'.join(lst_rows)
         return res
 
     #
     #
-    def get_lst_rows(self):
+    def get_lst_rows(self) -> list:
         a = self.a
         lst_rows = [''.join(a[i]).rstrip() for i in range(self.height)]
         return lst_rows
