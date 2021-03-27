@@ -101,11 +101,14 @@ class DisplayParser:
         node.left = self.build_tree(input_left)
         node.right = self.build_tree(input_right)
 
-        width_left_branch = 0 if node.left is None else node.left.width
-        width_right_branch = 0 if node.right is None else node.right.width
+        node_left_none = node.left is None
+        node_right_none = node.right is None
 
-        size_left_line = 0 if node.left is None else self.line_brsp
-        size_right_line = 0 if node.right is None else self.line_brsp
+        width_left_branch = 0 if node_left_none else node.left.width
+        width_right_branch = 0 if node_right_none else node.right.width
+
+        size_left_line = 0 if node_left_none else self.line_brsp
+        size_right_line = 0 if node_right_none else self.line_brsp
 
         full_width = width_left_branch + width_right_branch + size_left_line + size_right_line
 
@@ -113,8 +116,8 @@ class DisplayParser:
         full_width += max(1, size_right_overflow)
 
         margin_key = width_left_branch + size_left_line
-        margin_left_child = 0 if node.left is None else node.left.margin_key
-        margin_right_child = 0 if node.right is None else margin_key + node.right.margin_key + size_right_line + 1
+        margin_left_child = 0 if node_left_none else node.left.margin_key
+        margin_right_child = 0 if node_right_none else margin_key + node.right.margin_key + size_right_line + 1
 
         node.width = full_width
         node.width_left_branch = width_left_branch
@@ -125,5 +128,20 @@ class DisplayParser:
         node.margin_key = margin_key
         node.margin_left_child = margin_left_child
         node.margin_right_child = margin_right_child
+
+        del input_key
+        del input_left
+        del input_right
+        del len_key
+        del node_left_none
+        del node_right_none
+        del width_left_branch
+        del width_right_branch
+        del size_left_line
+        del size_right_line
+        del full_width
+        del margin_key
+        del margin_left_child
+        del margin_right_child
 
         return node
