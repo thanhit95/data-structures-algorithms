@@ -159,8 +159,8 @@ class BinTreeDisplay:
         if type(line_brsp) is not int or line_brsp < 1:
             raise ValueError('Invalid argument: line_brsp must be positive integer')
 
-        if type(float_pre) is not int or float_pre < 1:
-            raise ValueError('Invalid argument: float_pre must be positive integer')
+        if type(float_pre) is not int or float_pre < 0:
+            raise ValueError('Invalid argument: float_pre must be non-negative integer')
 
         # Finish arguments validation
 

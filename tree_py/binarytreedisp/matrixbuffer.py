@@ -15,14 +15,14 @@ class MatrixBuffer:
     #
     #
     def fill(self, posx: int, posy: int, value: str):
-        if posx < 0:
+        if type(value) is not str:
+            raise ValueError('Invalid argument: value must be string')
+
+        if posx < 0 or posx >= self.width + 1 - len(value):
             raise ValueError('Invalid argument: posx')
 
-        if posy >= self.height:
+        if posy < 0 or posy >= self.height:
             raise ValueError('Invalid argument: posy')
-
-        if type(value) is not str:
-            raise ValueError('Invalid argument: value --> must be string')
 
         a = self.a
         len_value = len(value)
