@@ -16,5 +16,7 @@ int main(int, char**)
     std::cout << "\n\n\n-----------------TEST AVL 02" << std::endl;
     my::testavl02::dotask();
 
+    // my::testdisplay01::dotask();
+
     return 0;
 }

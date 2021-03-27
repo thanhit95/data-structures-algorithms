@@ -48,6 +48,15 @@ public:
 
 
 public:
+    // WARNING: This getter method may cause the tree to malfunction.
+    TNode* _getRoot() const
+    {
+        return this->root;
+    }
+
+
+
+public:
     std::vector<TKey*> traverse(const TraverseOrder &order)
     {
         resTraversal.clear();
