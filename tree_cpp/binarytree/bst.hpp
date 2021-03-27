@@ -3,15 +3,15 @@
 
 
 #include <tuple>
+#include <cassert>
 #include "binnode.hpp"
 #include "bintree.hpp"
 #include "global.hpp"
 
-// #define NDEBUG // disable assertion
-#include <cassert>
 
-
-namespace mybt
+namespace my
+{
+namespace bt
 {
 
 
@@ -259,7 +259,8 @@ protected:
 
 
 
-} // mybt
+} // bt
+} // my
 
 
 #endif // __BINARY_SEARCH_TREE_HPP__

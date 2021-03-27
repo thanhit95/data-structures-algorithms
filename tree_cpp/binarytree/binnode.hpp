@@ -2,7 +2,9 @@
 #define __BIN_NODE_HPP__
 
 
-namespace mybt
+namespace my
+{
+namespace bt
 {
 
 
@@ -25,7 +27,8 @@ public:
 
 
 
-} // mybt
+} // bt
+} // my
 
 
 #endif // __BIN_NODE_HPP__

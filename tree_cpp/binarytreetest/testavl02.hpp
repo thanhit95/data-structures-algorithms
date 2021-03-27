@@ -6,8 +6,10 @@
 #include <vector>
 #include "binarytree/avl.hpp"
 
+using namespace my::bt;
 
-namespace mybt
+
+namespace my
 {
 namespace testavl02
 {
@@ -57,7 +59,7 @@ void dotask()
 
 
 } // test
-} // mybt
+} // my
 
 
 #endif

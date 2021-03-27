@@ -6,8 +6,10 @@
 #include <vector>
 #include "binarytree/bst.hpp"
 
+using namespace my::bt;
 
-namespace mybt
+
+namespace my
 {
 namespace testbst02
 {
@@ -51,7 +53,7 @@ void dotask()
 
 
 } // test
-} // mybt
+} // my
 
 
 #endif

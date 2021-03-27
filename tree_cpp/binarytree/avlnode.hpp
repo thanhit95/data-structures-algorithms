@@ -5,7 +5,9 @@
 #include <algorithm>
 
 
-namespace mybt
+namespace my
+{
+namespace bt
 {
 
 
@@ -97,7 +99,8 @@ public:
 
 
 
-} // mybt
+} // bt
+} // my
 
 
 #endif // __AVL_NODE_HPP__

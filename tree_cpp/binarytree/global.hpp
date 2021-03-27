@@ -2,7 +2,9 @@
 #define __GLOBAL_HPP__
 
 
-namespace mybt
+namespace my
+{
+namespace bt
 {
 
 
@@ -29,7 +31,8 @@ enum class CandidateRemoval
 
 
 
-} // mybt
+} // bt
+} // my
 
 
 #endif // __GLOBAL_HPP__

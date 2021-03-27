@@ -7,7 +7,9 @@
 #include "global.hpp"
 
 
-namespace mybt
+namespace my
+{
+namespace bt
 {
 
 
@@ -172,7 +174,8 @@ protected:
 
 
 
-} // mybt
+} // bt
+} // my
 
 
 #endif // __AVL_TREE_HPP__
