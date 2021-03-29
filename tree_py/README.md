@@ -1,4 +1,4 @@
-# TREE DATA STRUCTURE IN CPP
+# BINARY TREE DATA STRUCTURE IN PYTHON
 
 ## DESCRIPTION
 
@@ -27,4 +27,4 @@ My implementation of trees in Python.
 
 Copyright (c) Thanh Trung NGUYEN.
 
-Each package has a separate license. The license can be ```BSD-3-Clause license``` or ```MIT license```.
+This project is licensed under the [3-Clause BSD License](LICENSE.txt).

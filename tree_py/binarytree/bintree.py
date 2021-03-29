@@ -7,7 +7,7 @@ Description:    Binary tree (base class) immplementation
 Author:         Thanh Trung Nguyen
                 thanh.it1995 (at) gmail.com
 
-License:        MIT
+License:        3-Clause BSD License
 
 '''
 
@@ -16,6 +16,8 @@ from .binnode import BinNode
 from .bintreeiter import BinTreeIterIn
 
 
+#
+#
 class BinTree:
     '''
     Binary Tree.

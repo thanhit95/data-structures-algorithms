@@ -1,4 +1,4 @@
-# TREE DATA STRUCTURE IN CPP
+# BINARY TREE DATA STRUCTURE IN CPP
 
 ## DESCRIPTION
 
@@ -23,4 +23,5 @@ Plus, by using C++:
 ## LICENSE
 
 Copyright (c) Thanh Trung NGUYEN.
-This project is licensed under the MIT license.
+
+This project is licensed under the [MIT License](LICENSE.txt).

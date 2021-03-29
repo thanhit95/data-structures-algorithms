@@ -7,7 +7,7 @@ Description:    AVL tree immplementation
 Author:         Thanh Trung Nguyen
                 thanh.it1995 (at) gmail.com
 
-License:        MIT
+License:        3-Clause BSD License
 
 '''
 
@@ -16,6 +16,8 @@ from .bst import BinarySearchTree
 from .avlnode import AvlNode
 
 
+#
+#
 class AvlTree(BinarySearchTree):
     '''
     AVL Tree.

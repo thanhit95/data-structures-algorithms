@@ -7,7 +7,7 @@ Description:    This tool visualizes binary tree by ASCII text.
 Author:         Thanh Trung Nguyen
                 thanh.it1995 (at) gmail.com
 
-License:        BSD-3-Clause
+License:        3-Clause BSD License
 
 '''
 
@@ -18,6 +18,8 @@ from .displayparser import DisplayParser
 from .matrixbuffer import MatrixBuffer
 
 
+#
+#
 class BinTreeDisplay:
     '''
     Binary tree displayer. This tool visualizes binary tree by ASCII text.
