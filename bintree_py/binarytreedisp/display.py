@@ -144,8 +144,6 @@ class BinTreeDisplay:
             line_brsp: Branch spacing value for the horizontal line connecting left-right branches.
             margin_left: Left margin of output string result.
             float_pre: Maximum precision of floating-point numbers when displays.
-        Returns:
-            String result.
         '''
         if struct_node is not None:
             if type(struct_node) is not tuple or len(struct_node) != 3:
