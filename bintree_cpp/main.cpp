@@ -1,5 +1,5 @@
 #include <iostream>
-#include "binarytreetest/testtotal.hpp"
+#include "test/testtotal.hpp"
 
 
 int main(int, char**)
