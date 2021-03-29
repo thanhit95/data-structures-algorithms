@@ -1,5 +1,3 @@
-THE 3-CLAUSE BSD LICENSE
-
 Copyright (c) 2021, Thanh Trung NGUYEN, thanh.it1995 (at) gmail.com
 All rights reserved.
 
