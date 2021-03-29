@@ -22,7 +22,7 @@ from .matrixbuffer import MatrixBuffer
 #
 class BinTreeDisplay:
     '''
-    Binary tree displayer. This tool visualizes binary tree by ASCII text.
+    Binary tree display. This tool visualizes binary tree by ASCII text.
     '''
     #
     #
@@ -163,7 +163,7 @@ class BinTreeDisplay:
         if type(float_pre) is not int or float_pre < 0:
             raise ValueError('Invalid argument: float_pre must be non-negative integer')
 
-        # Finish arguments validation
+        # Finishes arguments validation
 
         if struct_node is not None:
             self.__parser.config_struct_input_node(struct_node[0], struct_node[1], struct_node[2])
