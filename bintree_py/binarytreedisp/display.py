@@ -37,7 +37,7 @@ class BinTreeDisplay:
         '''
         Gets display string for binary search tree.
         Output result can be configured by calling "config" method. Configurable properties are:
-            struct_node, line_char, line_brsp, margin_left, float_format
+            struct_node, line_char, line_brsp, margin_left, float_pre
         Args:
             inp_root: Input root of binary search tree.
         Returns:
@@ -55,7 +55,7 @@ class BinTreeDisplay:
         '''
         Gets display string for binary search tree.
         Output result can be configured by calling "config" method. Configurable properties are:
-            struct_node, line_char, line_brsp, margin_left, float_format
+            struct_node, line_char, line_brsp, margin_left, float_pre
         Returns:
             List of rows. Each row is a string. If inp_root is None then returns None.
         '''
