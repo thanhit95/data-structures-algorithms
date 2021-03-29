@@ -2,7 +2,7 @@
 
 ## DESCRIPTION
 
-My implementation of trees in Python.
+My implementation of binary trees in Python.
 
 &nbsp;
 
@@ -10,7 +10,7 @@ My implementation of trees in Python.
 
 - ```binarytree```: package "binary search tree", which comprises modules ```BinarySearchTree```, ```AvlTree```.
 - ```binarytreedisp```: package "binary tree display", which comprises module ```BinTreeDisplay```.
-- ```binarytreetest```: testing script (for binary tree).
+- ```test```: testing script.
 
 &nbsp;
 

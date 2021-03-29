@@ -2,7 +2,7 @@
 
 ## DESCRIPTION
 
-My implementation of trees in C++.
+My implementation of binary trees in C++.
 
 &nbsp;
 
