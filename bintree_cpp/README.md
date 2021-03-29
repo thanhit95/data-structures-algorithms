@@ -80,7 +80,7 @@ Plus, by using C++:
 
 ## BUILDING THE CODE
 
-### LINUX
+### Linux
 
 Simply runs build.sh:
 
@@ -94,7 +94,7 @@ If the build successes, there is a executable file named ```outputexec```. Makes
 ./outputexec
 ```
 
-### WINDOWS
+### Windows
 
 Updates later.
 
