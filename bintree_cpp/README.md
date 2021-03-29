@@ -96,7 +96,7 @@ If the build successes, there is a executable file named ```outputexec```. Makes
 
 ### WINDOWS
 
-Update later.
+Updates later.
 
 &nbsp;
 
