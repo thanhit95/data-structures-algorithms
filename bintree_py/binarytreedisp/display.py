@@ -1,6 +1,6 @@
 '''
 
-BINARY SEARCH TREE DISPLAY
+BINARY TREE DISPLAY
 
 Description:    This tool visualizes binary tree by ASCII text.
 
