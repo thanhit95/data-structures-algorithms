@@ -82,7 +82,7 @@ Plus, by using C++:
 
 ### LINUX
 
-Simply run build.sh:
+Simply runs build.sh:
 
 ```bash
 sh build.sh
@@ -91,7 +91,7 @@ sh build.sh
 If the build successes, there is a executable file named ```outputexec```. Makes sure this file has execute permission. Now we can run the program:
 
 ```bash
-sh ./outputexec
+./outputexec
 ```
 
 ### WINDOWS
