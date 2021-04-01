@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include <vector>
-#include "binarytree/avl.hpp"
+#include "binarytree/avltree.hpp"
 
 using namespace my::bt;
 
