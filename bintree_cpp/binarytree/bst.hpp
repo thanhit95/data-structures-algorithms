@@ -91,7 +91,7 @@ public:
     TKey getMin() const
     {
         if (this->empty())
-            throw "Tree is empty";
+            throw std::logic_error("Tree is empty");
 
         auto temp = searchMin(this->root, nullptr);
         TNode *res = std::get<0>(temp);
@@ -104,7 +104,7 @@ public:
     TKey getMax() const
     {
         if (this->empty())
-            throw "Tree is empty";
+            throw std::logic_error("Tree is empty");
 
         auto temp = searchMax(this->root, nullptr);
         TNode *res = std::get<0>(temp);
