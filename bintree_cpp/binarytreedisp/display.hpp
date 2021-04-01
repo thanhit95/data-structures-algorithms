@@ -12,6 +12,7 @@
 #include "matrixbuffer.hpp"
 
 
+
 namespace my
 {
 namespace btdisp
@@ -183,6 +184,7 @@ protected:
 
 } // btdisp
 } // my
+
 
 
 #endif // __DISPLAY_HPP__

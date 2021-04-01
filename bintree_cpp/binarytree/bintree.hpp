@@ -8,6 +8,7 @@
 #include "global.hpp"
 
 
+
 namespace my
 {
 namespace bt
@@ -135,6 +136,7 @@ protected:
 
 } // bt
 } // my
+
 
 
 #endif // __BIN_TREE_HPP__

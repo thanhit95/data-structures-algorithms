@@ -8,6 +8,7 @@
 #include <stdexcept>
 
 
+
 namespace my
 {
 namespace btdisp
@@ -123,6 +124,7 @@ public:
 
 } // btdisp
 } // my
+
 
 
 #endif // __MATRIX_BUFFER_HPP__

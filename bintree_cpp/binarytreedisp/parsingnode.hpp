@@ -5,6 +5,7 @@
 #include <string>
 
 
+
 namespace my
 {
 namespace btdisp
@@ -40,6 +41,7 @@ public:
 
 } // btdisp
 } // my
+
 
 
 #endif // __PARSING_NODE_HPP__

@@ -9,6 +9,7 @@
 using namespace my::bt;
 
 
+
 namespace my
 {
 namespace testavl01
@@ -60,6 +61,7 @@ void dotask()
 
 } // test
 } // my
+
 
 
 #endif

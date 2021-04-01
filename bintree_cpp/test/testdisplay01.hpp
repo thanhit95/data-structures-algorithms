@@ -12,6 +12,7 @@ using namespace my::bt;
 using namespace my::btdisp;
 
 
+
 namespace my
 {
 namespace testdisplay01
@@ -45,6 +46,7 @@ void dotask()
 
 } // test
 } // my
+
 
 
 #endif

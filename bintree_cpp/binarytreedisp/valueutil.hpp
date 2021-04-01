@@ -8,6 +8,7 @@
 #include <stdexcept>
 
 
+
 namespace my
 {
 namespace btdisp
@@ -106,6 +107,7 @@ public:
 
 } // btdisp
 } // my
+
 
 
 #endif // __VALUE_UTIL_HPP__

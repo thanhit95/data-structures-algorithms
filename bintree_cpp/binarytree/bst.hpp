@@ -9,6 +9,7 @@
 #include "global.hpp"
 
 
+
 namespace my
 {
 namespace bt
@@ -261,6 +262,7 @@ protected:
 
 } // bt
 } // my
+
 
 
 #endif // __BINARY_SEARCH_TREE_HPP__

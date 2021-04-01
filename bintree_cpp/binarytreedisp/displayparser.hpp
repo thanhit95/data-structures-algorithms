@@ -8,6 +8,7 @@
 #include "parsingnode.hpp"
 
 
+
 namespace my
 {
 namespace btdisp
@@ -133,6 +134,7 @@ public:
 
 } // btdisp
 } // my
+
 
 
 #endif // __DISPLAY_PARSER_HPP__
