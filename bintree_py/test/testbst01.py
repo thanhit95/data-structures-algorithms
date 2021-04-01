@@ -14,7 +14,10 @@ def dotask():
     print('max:', bst.max())
     print('contain:', bst.contain(20))
 
-    print('Using for each to iterate nodes in tree')
+    print('tree traveler: ', end='')
+    print(bst.traverse(order='in'))
+
+    print('using for each to iterate nodes in tree')
 
     for value in bst:
         print(value, end='  ')

@@ -5,7 +5,7 @@
 #include <vector>
 #include <algorithm>
 #include "binnode.hpp"
-#include "global.hpp"
+#include "traveler.hpp"
 
 
 
@@ -24,8 +24,7 @@ class BinTree
 ////////////////////////////////////////////////////////
 protected:
     TNode *root = nullptr;
-
-    std::vector<TKey*> resTraversal;
+    TravelerRecur<TKey, TNode> traveler;
 
 
 
@@ -58,64 +57,9 @@ public:
 
 
 public:
-    std::vector<TKey*> traverse(const TraverseOrder &order)
+    std::vector<TKey*> traverse(const OrderTraverse &order)
     {
-        resTraversal.clear();
-
-        switch (order)
-        {
-        case TraverseOrder::PRE :
-            traversePre(root);
-            break;
-
-        case TraverseOrder::IN :
-            traverseIn(root);
-            break;
-
-        case TraverseOrder::POST :
-            traversePost(root);
-            break;
-
-        default:
-            break;
-        }
-
-        return resTraversal;
-    }
-
-
-
-protected:
-    void traversePre(TNode *node)
-    {
-        if (nullptr == node)
-            return;
-
-        resTraversal.push_back(&node->key);
-        traversePre(node->left);
-        traversePre(node->right);
-    }
-
-
-    void traverseIn(TNode *node)
-    {
-        if (nullptr == node)
-            return;
-
-        traverseIn(node->left);
-        resTraversal.push_back(&node->key);
-        traverseIn(node->right);
-    }
-
-
-    void traversePost(TNode *node)
-    {
-        if (nullptr == node)
-            return;
-
-        traversePost(node->left);
-        traversePost(node->right);
-        resTraversal.push_back(&node->key);
+        return traveler.traverse(this->root, order);
     }
 
 

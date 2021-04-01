@@ -18,7 +18,7 @@ namespace testavl01
 
 void printTree(AvlTree<int> &avl)
 {
-    std::vector<int*> res = avl.traverse(TraverseOrder::IN);
+    std::vector<int*> res = avl.traverse(OrderTraverse::IN);
 
     std::cout << "\n\n print tree: ";
 

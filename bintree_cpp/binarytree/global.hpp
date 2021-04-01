@@ -15,15 +15,6 @@ namespace bt
 
 
 
-enum class TraverseOrder
-{
-    PRE,
-    IN,
-    POST
-};
-
-
-
 enum class CandidateRemoval
 {
     LEFT,

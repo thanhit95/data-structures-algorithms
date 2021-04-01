@@ -19,7 +19,7 @@ namespace testbst02
 
 void printTree(BinarySearchTree<int> &bst)
 {
-    std::vector<int*> res = bst.traverse(TraverseOrder::IN);
+    std::vector<int*> res = bst.traverse(OrderTraverse::IN);
 
     std::cout << "\n\n print tree: ";
 

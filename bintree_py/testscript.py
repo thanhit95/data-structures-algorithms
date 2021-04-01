@@ -1,3 +1,3 @@
-import test.testavl02 as tester
+import test.testbst01 as tester
 
 tester.dotask()
