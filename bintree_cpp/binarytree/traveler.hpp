@@ -48,14 +48,14 @@ template < typename TKey, typename TNode >
 class TravelerRecur : public Traveler<TKey, TNode>
 {
 protected:
-    std::vector<TKey*> resPath;
+    std::vector<TKey*> _resPath;
 
 
 
 public:
     virtual std::vector<TKey*> traverse(TNode *root, const OrderTraverse &order) override
     {
-        resPath.clear();
+        _resPath.clear();
 
         switch (order)
         {
@@ -75,7 +75,7 @@ public:
             break;
         }
 
-        return resPath;
+        return _resPath;
     }
 
 
@@ -86,7 +86,7 @@ protected:
         if (nullptr == node)
             return;
 
-        resPath.push_back(&node->key);
+        _resPath.push_back(&node->key);
         traversePre(node->left);
         traversePre(node->right);
     }
@@ -99,7 +99,7 @@ protected:
             return;
 
         traverseIn(node->left);
-        resPath.push_back(&node->key);
+        _resPath.push_back(&node->key);
         traverseIn(node->right);
     }
 
@@ -112,10 +112,9 @@ protected:
 
         traversePost(node->left);
         traversePost(node->right);
-        resPath.push_back(&node->key);
+        _resPath.push_back(&node->key);
     }
 };
-
 
 
 
