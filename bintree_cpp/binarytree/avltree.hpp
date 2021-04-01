@@ -19,13 +19,13 @@ template < typename TKey, typename TNode=AvlNode<TKey> >
 class AvlTree : public BinarySearchTree<TKey, TNode>
 {
 ////////////////////////////////////////////////////////
-//                       FIELDS
+//                        FIELDS
 ////////////////////////////////////////////////////////
 
 
 
 ////////////////////////////////////////////////////////
-//                       METHOHDS
+//                        METHODS
 ////////////////////////////////////////////////////////
 public:
     AvlTree(CandidateRemoval canddRemoval = CandidateRemoval::RIGHT)

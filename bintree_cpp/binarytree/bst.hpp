@@ -21,7 +21,7 @@ template < typename TKey, typename TNode=BinNode<TKey> >
 class BinarySearchTree : public BinTree<TKey, TNode>
 {
 ////////////////////////////////////////////////////////
-//                       FIELDS
+//                        FIELDS
 ////////////////////////////////////////////////////////
 protected:
     int _count = 0;
@@ -30,7 +30,7 @@ protected:
 
 
 ////////////////////////////////////////////////////////
-//                       METHOHDS
+//                        METHODS
 ////////////////////////////////////////////////////////
 public:
     BinarySearchTree(CandidateRemoval canddRemoval = CandidateRemoval::RIGHT):

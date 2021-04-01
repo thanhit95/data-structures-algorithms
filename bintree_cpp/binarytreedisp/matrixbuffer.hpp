@@ -19,7 +19,7 @@ namespace btdisp
 class MatrixBuffer
 {
 ////////////////////////////////////////////////////////
-//                       FIELDS
+//                        FIELDS
 ////////////////////////////////////////////////////////
 protected:
     int _width = 0;
@@ -31,7 +31,7 @@ public:
 
 
 ////////////////////////////////////////////////////////
-//                       METHOHDS
+//                        METHODS
 ////////////////////////////////////////////////////////
 public:
     MatrixBuffer(const int &width, const int &height): _width(width), _height(height)

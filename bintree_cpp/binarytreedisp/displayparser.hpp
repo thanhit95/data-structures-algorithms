@@ -19,12 +19,19 @@ namespace btdisp
 template <typename TNode>
 class DisplayParser
 {
+////////////////////////////////////////////////////////
+//                        FIELDS
+////////////////////////////////////////////////////////
 public:
     ValueUtil * valueUtil = nullptr;
     char line_char = '-';
     int  line_brsp = 1;
 
 
+
+////////////////////////////////////////////////////////
+//                        METHODS
+////////////////////////////////////////////////////////
 public:
     DisplayParser(ValueUtil *valueUtil, char character = '-', int branchSpacing = 1) : valueUtil(valueUtil)
     {
