@@ -41,10 +41,7 @@ public:
 
     BinTree(const BinTree &other)
     {
-        this->root = other.root;
-
-        if (nullptr != this->root)
-            this->root = __clone(this->root);
+        this->root = __clone(other.root);
     }
 
 
@@ -71,10 +68,7 @@ public:
 
         freeMemory(this->root);
 
-        this->root = other.root;
-
-        if (nullptr != this->root)
-            this->root = __clone(this->root);
+        this->root = __clone(other.root);
 
         return *this;
     }
