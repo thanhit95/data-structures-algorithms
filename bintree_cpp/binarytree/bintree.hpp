@@ -29,6 +29,106 @@ protected:
 
 
 ////////////////////////////////////////////////////////
+//                     RULE OF FIVE
+////////////////////////////////////////////////////////
+public:
+    BinTree()
+    {
+
+    }
+
+
+
+    BinTree(const BinTree &other)
+    {
+        this->root = other.root;
+
+        if (nullptr != this->root)
+            this->root = __clone(this->root);
+    }
+
+
+
+    BinTree(BinTree &&other)
+    {
+        this->root = other.root;
+        other.root = nullptr;
+    }
+
+
+
+    virtual ~BinTree()
+    {
+        freeMemory(this->root);
+    }
+
+
+
+    virtual BinTree& operator=(const BinTree &other)
+    {
+        if (this == &other)
+            return *this;
+
+        freeMemory(this->root);
+
+        this->root = other.root;
+
+        if (nullptr != this->root)
+            this->root = __clone(this->root);
+
+        return *this;
+    }
+
+
+
+    virtual BinTree& operator=(BinTree &&other)
+    {
+        if (this == &other)
+            return *this;
+
+        freeMemory(this->root);
+
+        this->root = other.root;
+        other.root = nullptr;
+
+        return *this;
+    }
+
+
+
+protected:
+    virtual TNode* __clone(TNode *nodeSrc)
+    {
+        if (nullptr == nodeSrc)
+            return nullptr;
+
+        TNode *node = new TNode();
+        *node = *nodeSrc;
+
+        node->left = __clone(node->left);
+        node->right = __clone(node->right);
+
+        return node;
+    }
+
+
+
+protected:
+    virtual void freeMemory(TNode *&node)
+    {
+        if (nullptr == node)
+            return;
+
+        freeMemory(node->left);
+        freeMemory(node->right);
+
+        delete node;
+        node = nullptr;
+    }
+
+
+
+////////////////////////////////////////////////////////
 //                        METHODS
 ////////////////////////////////////////////////////////
 public:

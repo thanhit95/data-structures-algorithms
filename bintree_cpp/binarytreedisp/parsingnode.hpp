@@ -30,6 +30,7 @@ struct ParsingNode
     int marginRightChild = 0;
 
 
+
 public:
     ParsingNode(const std::string &key = ""): key(key)
     {

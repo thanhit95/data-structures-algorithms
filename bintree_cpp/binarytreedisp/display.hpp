@@ -110,11 +110,13 @@ protected:
         int heightInpRoot = this->_parser.getHeight(inputRoot);
         int height = heightInpRoot * 3 - 2;
 
-        ParsingNode *parserTree = this->_parser.buildTree(inputRoot);
+        ParsingNode *parsingTree = this->_parser.buildTree(inputRoot);
 
-        this->_buffer = new MatrixBuffer(parserTree->width + this->_marginLeft, height);
+        this->_buffer = new MatrixBuffer(parsingTree->width + this->_marginLeft, height);
 
-        fillBuffer(parserTree, 1, this->_marginLeft);
+        fillBuffer(parsingTree, 1, this->_marginLeft);
+
+        this->_parser.destroyTree(parsingTree);
     }
 
 

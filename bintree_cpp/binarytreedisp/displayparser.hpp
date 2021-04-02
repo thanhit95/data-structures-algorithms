@@ -115,22 +115,13 @@ public:
 
 
 public:
-    void destroyParsingTree(ParsingNode *node)
+    void destroyTree(ParsingNode *&node)
     {
         if (nullptr == node)
             return;
 
-        if (nullptr != node->left)
-        {
-            destroyParsingTree(node->left);
-            node->left = nullptr;
-        }
-
-        if (nullptr != node->right)
-        {
-            destroyParsingTree(node->right);
-            node->right = nullptr;
-        }
+        destroyTree(node->left);
+        destroyTree(node->right);
 
         delete node;
         node = nullptr;
