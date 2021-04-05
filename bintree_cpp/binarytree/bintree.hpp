@@ -91,7 +91,7 @@ public:
 
 
 protected:
-    virtual TNode* __clone(TNode *nodeSrc)
+    virtual TNode* __clone(TNode *nodeSrc) const
     {
         if (nullptr == nodeSrc)
             return nullptr;
@@ -145,6 +145,14 @@ public:
     void clear()
     {
         freeMemory(this->root);
+    }
+
+
+
+public:
+    virtual BinTree* clone() const
+    {
+        return new BinTree<TKey, TNode>(*this);
     }
 
 

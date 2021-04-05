@@ -45,6 +45,14 @@ public:
 
 
 public:
+    virtual BinarySearchTree* clone() const override
+    {
+        return new BinarySearchTree<TKey, TNode>(*this);
+    }
+
+
+
+public:
     inline int count() const
     {
         return this->_count;

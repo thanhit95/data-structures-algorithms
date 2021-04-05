@@ -54,6 +54,15 @@ void dotask()
     printTree(c);
 
 
+    std::cout << "\n\n\n";
+
+
+    auto d = a.clone();
+    d->insert(60);
+    d->insert(12);
+    printTree(*d);
+
+
     std::cout << std::endl;
 }
 

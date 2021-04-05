@@ -19,7 +19,8 @@ int main(int, char**)
     std::cout << "\n\n\n-----------------TEST DISPLAY 01" << std::endl;
     my::testdisplay01::dotask();
 
-    // my::testrulefive01::dotask();
+    std::cout << "\n\n\n-----------------TEST RULE OF FIVE 01" << std::endl;
+    my::testrulefive01::dotask();
 
     return 0;
 }

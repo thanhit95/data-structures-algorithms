@@ -40,6 +40,14 @@ public:
 
 
 
+public:
+    virtual AvlTree* clone() const override
+    {
+        return new AvlTree<TKey, TNode>(*this);
+    }
+
+
+
 protected:
     virtual TNode* __insert(TNode *node, const TKey &key) override
     {
