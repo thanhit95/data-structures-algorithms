@@ -43,6 +43,15 @@ class BinTree:
 
     #
     #
+    def clear(self):
+        '''
+        Clears tree completely.
+        '''
+        self._free_memory(self.root)
+        self.root = None
+
+    #
+    #
     def _count_traversal(self, node: BinNode):
         '''
         Counts number of elements by traversal.
@@ -74,6 +83,23 @@ class BinTree:
 
         del traveler
         return res
+
+    #
+    #
+    def _free_memory(self, node: BinNode):
+        '''
+        Helps garbage collection free memory used by tree.
+        Args:
+            node: Input node.
+        '''
+        if node is None:
+            return
+
+        self._free_memory(node.left)
+        self._free_memory(node.right)
+
+        del node.left
+        del node.right
 
     #
     #

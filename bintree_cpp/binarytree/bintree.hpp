@@ -142,6 +142,14 @@ public:
 
 
 public:
+    void clear()
+    {
+        freeMemory(this->root);
+    }
+
+
+
+public:
     // WARNING: This getter method may cause the tree to malfunction.
     TNode* _getRoot() const
     {
