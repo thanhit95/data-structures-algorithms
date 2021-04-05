@@ -12,6 +12,7 @@ License:        3-Clause BSD License
 '''
 
 
+import copy
 from .binnode import BinNode
 from .bintreeiter import BinTreeIterIn
 from .traveler import TravelerRecur
@@ -52,6 +53,16 @@ class BinTree:
 
     #
     #
+    def clone(self):
+        '''
+        Clones tree completely.
+        '''
+        tree = copy.copy(self)
+        tree.root = tree._clone(tree.root)
+        return tree
+
+    #
+    #
     def _count_traversal(self, node: BinNode):
         '''
         Counts number of elements by traversal.
@@ -83,6 +94,23 @@ class BinTree:
 
         del traveler
         return res
+
+    #
+    #
+    def _clone(self, node_src):
+        '''
+        Clones the tree.
+        Args:
+            node_src: Source node.
+        '''
+        if node_src is None:
+            return None
+
+        node = copy.copy(node_src)
+        node.left = self._clone(node.left)
+        node.right = self._clone(node.right)
+
+        return node
 
     #
     #
