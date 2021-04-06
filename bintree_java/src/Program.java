@@ -1,8 +1,11 @@
+import test.*;
+
 
 public class Program {
 
     public static void main(String[] args) {
-        System.out.println("Hello Binary Tree");
+        TestBase tester = new TestAvl01();
+        tester.doTask();
     }
-
 }
+
