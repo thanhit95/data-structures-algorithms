@@ -43,6 +43,7 @@ public class BinTree< TKey extends Number & Comparable<? super TKey>,
 
     public void clear() {
         freeMemory(this.root);
+        this.root = null;
     }
 
 
