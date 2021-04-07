@@ -36,7 +36,7 @@ public class BinTree< TKey extends Number & Comparable<? super TKey>,
 
 
     public int height() {
-        return 0;
+        return this._height(this.root);
     }
 
 

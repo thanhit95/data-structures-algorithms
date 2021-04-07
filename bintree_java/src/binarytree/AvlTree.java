@@ -20,6 +20,13 @@ public class AvlTree< TKey extends Number & Comparable<? super TKey> >
 
 
     @Override
+    public int height() {
+        return (null == this.root) ? 0 : this.root.height();
+    }
+
+
+
+    @Override
     public AvlTree<TKey> clone() {
         var theClone = new AvlTree<TKey>();
         theClone.assign(this);
