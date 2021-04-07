@@ -1,4 +1,5 @@
-package binarytree;
+package binarytree.traveler;
+
 
 
 public enum OrderTraverse {

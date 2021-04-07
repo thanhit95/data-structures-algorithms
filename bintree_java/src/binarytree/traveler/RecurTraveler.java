@@ -1,27 +1,15 @@
-package binarytree;
+package binarytree.traveler;
 
 
 import java.util.List;
+import binarytree.BinNode;
 
 
 
-public abstract class Traveler< TKey extends Number & Comparable<? super TKey>,
-                                TNode extends BinNode<TKey,TNode>
-                              >
-{
-    public abstract void traverse(TNode root, OrderTraverse order, List<?> result);
-}
-
-
-
-//////////////////////////////////////////////////////////////
-
-
-
-class TravelerRecur< TKey extends Number & Comparable<? super TKey>,
-                     TNode extends BinNode<TKey,TNode>
-                   >
-      extends Traveler<TKey, TNode>
+public class RecurTraveler< TKey extends Number & Comparable<? super TKey>,
+                            TNode extends BinNode<TKey, TNode>
+                          >
+             extends Traveler<TKey, TNode>
 {
 
 
@@ -32,7 +20,7 @@ class TravelerRecur< TKey extends Number & Comparable<? super TKey>,
     @SuppressWarnings("unchecked")
     @Override
     public void traverse(TNode root, OrderTraverse order, List<?> result) {
-        resPath = (List<TKey>)result;
+        resPath = (List<TKey>) result;
         resPath.clear();
 
         switch (order) {

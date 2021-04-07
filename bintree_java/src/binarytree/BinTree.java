@@ -2,6 +2,7 @@ package binarytree;
 
 
 import java.util.List;
+import binarytree.traveler.*;
 
 
 
@@ -18,7 +19,7 @@ public class BinTree< TKey extends Number & Comparable<? super TKey>,
 
 
     protected TNode root = null;
-    protected Traveler<TKey, TNode> traveler = new TravelerRecur<TKey, TNode>();
+    protected Traveler<TKey, TNode> traveler = new RecurTraveler<>();
 
 
 

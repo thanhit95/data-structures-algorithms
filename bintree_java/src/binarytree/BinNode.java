@@ -1,6 +1,7 @@
 package binarytree;
 
 
+
 public class BinNode< TKey extends Number & Comparable<? super TKey>,
                       TNode extends BinNode<TKey,TNode>
                     >
