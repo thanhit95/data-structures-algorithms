@@ -95,7 +95,7 @@ public class BinSearchTree< TKey extends Number & Comparable<? super TKey>,
 
 
 
-    public TKey getMin() {
+    public TKey min() {
         if (empty())
             throw new IllegalStateException("Tree is empty");
 
@@ -107,7 +107,7 @@ public class BinSearchTree< TKey extends Number & Comparable<? super TKey>,
 
 
 
-    public TKey getMax() {
+    public TKey max() {
         if (empty())
             throw new IllegalStateException("Tree is empty");
 
@@ -123,7 +123,7 @@ public class BinSearchTree< TKey extends Number & Comparable<? super TKey>,
     public BinSearchTree<TKey, TNode> clone() {
         var theClone = new BinSearchTree<TKey, TNode>();
         theClone.assign(this);
-        theClone.root = this.root.clone();
+        theClone.root = this._clone(this.root);
         return theClone;
     }
 
@@ -156,7 +156,7 @@ public class BinSearchTree< TKey extends Number & Comparable<? super TKey>,
 
 
     protected TNode _remove(TNode node, TKey key) {
-        int compareKey = key.compareTo(key);
+        int compareKey = key.compareTo(node.key);
 
         if (compareKey < 0) {
             node.left = _remove(node.left, key);
@@ -264,8 +264,22 @@ public class BinSearchTree< TKey extends Number & Comparable<? super TKey>,
 
 
 
+    protected TNode _clone(TNode node) {
+        if (null == node)
+            return null;
+
+        TNode theClone = createNode(node.key);
+
+        theClone.left = this._clone(node.left);
+        theClone.right = this._clone(node.right);
+
+        return theClone;
+    }
+
+
+
     @SuppressWarnings("unchecked")
     protected TNode createNode(TKey key) {
-        return (TNode) new BinNode<TKey, TNode>();
+        return (TNode) new BinNode<TKey, TNode>(key);
     }
 }

@@ -11,6 +11,12 @@ public class ValueUtil {
 
 
 
+    public ValueUtil() {
+        this(2);
+    }
+
+
+
     public ValueUtil(int floatPrecision) {
         if (floatPrecision < 0) {
             return;
@@ -29,7 +35,7 @@ public class ValueUtil {
 
     public void setFloatPrecision(int precision) {
         if (precision < 0)
-            throw new IllegalArgumentException("precision must be non-negative integer");
+            throw new IllegalArgumentException("precision must be a non-negative integer");
 
         this.floatPrecision = precision;
         nf.setMaximumFractionDigits(precision);

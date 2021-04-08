@@ -3,6 +3,7 @@ package binarytree;
 
 import java.util.List;
 import binarytree.traveler.*;
+import binarytreedisp.BinTreeDisplay;
 
 
 
@@ -48,16 +49,23 @@ public class BinTree< TKey extends Number & Comparable<? super TKey>,
 
 
 
-    public BinTree<TKey, TNode> clone() {
-        var theClone = new BinTree<TKey, TNode>();
-        theClone.root = theClone.root.clone();
-        return theClone;
+    public List<TKey> traverse(OrderTraverse order) {
+        var res = traveler.traverse(this.root, order);
+        return res;
     }
 
 
 
-    public void traverse(OrderTraverse order, List<?> result) {
-        traveler.traverse(this.root, order, result);
+    public String display(BinTreeDisplay disp) {
+        String res = disp.get(this.root);
+        return res;
+    }
+
+
+
+    public List<String> displayLstRows(BinTreeDisplay disp) {
+        var res = disp.getLstRows(this.root);
+        return res;
     }
 
 

@@ -14,6 +14,23 @@ public class AvlTree< TKey extends Number & Comparable<? super TKey> >
 
 
 //////////////////////////////////////////////////////////////
+//                        CONSTRUCTORS
+//////////////////////////////////////////////////////////////
+
+
+
+    public AvlTree() {
+    }
+
+
+
+    public AvlTree(CandidateRemoval canddRM) {
+        super(canddRM);
+    }
+
+
+
+//////////////////////////////////////////////////////////////
 //                        METHODS (PUBLIC)
 //////////////////////////////////////////////////////////////
 
@@ -30,7 +47,7 @@ public class AvlTree< TKey extends Number & Comparable<? super TKey> >
     public AvlTree<TKey> clone() {
         var theClone = new AvlTree<TKey>();
         theClone.assign(this);
-        theClone.root = this.root.clone();
+        theClone.root = this._clone(this.root);
         return theClone;
     }
 

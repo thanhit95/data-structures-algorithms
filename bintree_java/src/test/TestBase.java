@@ -1,19 +1,33 @@
 package test;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import binarytree.*;
 import binarytree.traveler.OrderTraverse;
 
+import binarytreedisp.*;
+
 
 
 public abstract class TestBase {
 
+
+
+    protected BinTreeDisplay disp;
+
+
+
+    public TestBase() {
+        disp = new BinTreeDisplay();
+        disp.config('-', 1, 0, 2);
+    }
+
+
+
     public void printTree(BinTree<?,?> tree) {
 
-        List<?> res = new ArrayList<>();
-        tree.traverse(OrderTraverse.IN, res);
+        List<?> res = tree.traverse(OrderTraverse.IN);
 
         System.out.println("\n\n print tree: ");
 
@@ -27,7 +41,8 @@ public abstract class TestBase {
 
 
     public void displayTree(BinTree<?,?> tree) {
-
+        var res = tree.display(disp);
+        System.out.println(res);
     }
 
 

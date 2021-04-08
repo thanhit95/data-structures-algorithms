@@ -7,7 +7,7 @@ import java.lang.StringBuffer;
 
 
 
-public class MatrixBuffer {
+class MatrixBuffer {
 
 
 //////////////////////////////////////////////////////////////
@@ -31,10 +31,10 @@ public class MatrixBuffer {
 
     public MatrixBuffer(int width, int height) {
         if (width < 1)
-            throw new IllegalArgumentException("width must be positive integer");
+            throw new IllegalArgumentException("width must be a positive integer");
 
         if (height < 1)
-            throw new IllegalArgumentException("height must be positive integer");
+            throw new IllegalArgumentException("height must be a positive integer");
 
         this._width = width;
         this._height = height;
@@ -73,7 +73,15 @@ public class MatrixBuffer {
                 break;
 
             // a[posy][posx] = value[i];
-            this.a.get(posy).setCharAt(posx, value.charAt(i));
+            a.get(posy).setCharAt(posx, value.charAt(i));
+        }
+    }
+
+
+
+    public void fillLine(char character, int y, int startx, int endx) {
+        for (int x = startx; x <= endx; ++x) {
+            a.get(y).setCharAt(x, character);
         }
     }
 
@@ -102,6 +110,9 @@ public class MatrixBuffer {
 //////////////////////////////////////////////////////////////
 //                        METHODS (PROTECTED)
 //////////////////////////////////////////////////////////////
+
+
+
     protected void initMatrix() {
         this.a = new ArrayList<>(this._height);
 
