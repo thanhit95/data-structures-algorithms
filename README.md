@@ -4,7 +4,7 @@
 
 My self-practice in "Data Structures and Algorithms".
 
-Languages used: Python and C++.
+Languages used: mostly Python, C++.
 
 &nbsp;
 
@@ -19,10 +19,10 @@ Thanh Trung Nguyen
 
 ## CONVENTIONS
 
-1. Respects the clean code.
-2. Respects the simplicity over the complexity.
-3. Respects the organization over the algorithms.
-4. Focuses on high performance, code reuse, code maintenance.
+1. Respect the clean code.
+2. Respect the simplicity over the complexity.
+3. Respect the organization over the algorithms.
+4. Focus on high performance, code reuse, code maintenance.
 
 &nbsp;
 
