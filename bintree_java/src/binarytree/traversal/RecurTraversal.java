@@ -1,16 +1,16 @@
-package binarytree.traveler;
+package binarytree.traversal;
 
 
+import binarytree.BinNode;
 import java.util.List;
 import java.util.ArrayList;
-import binarytree.BinNode;
 
 
 
-public class RecurTraveler< TKey extends Number & Comparable<? super TKey>,
+public class RecurTraversal< TKey extends Number & Comparable<? super TKey>,
                             TNode extends BinNode<TKey, TNode>
-                          >
-             extends Traveler<TKey, TNode>
+                           >
+             extends Traversal<TKey, TNode>
 {
 
 
@@ -19,7 +19,7 @@ public class RecurTraveler< TKey extends Number & Comparable<? super TKey>,
 
 
     @Override
-    public List<TKey> traverse(TNode root, OrderTraverse order) {
+    public List<TKey> traverse(TNode root, OrderTraversal order) {
         resPath = new ArrayList<>();
 
         switch (order) {

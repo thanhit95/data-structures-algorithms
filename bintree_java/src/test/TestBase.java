@@ -4,8 +4,7 @@ package test;
 import java.util.List;
 
 import binarytree.*;
-import binarytree.traveler.OrderTraverse;
-
+import binarytree.traversal.OrderTraversal;
 import binarytreedisp.*;
 
 
@@ -27,7 +26,7 @@ public abstract class TestBase {
 
     public void printTree(BinTree<?,?> tree) {
 
-        List<?> res = tree.traverse(OrderTraverse.IN);
+        List<?> res = tree.traverse(OrderTraversal.IN);
 
         System.out.println("\n\n print tree: ");
 

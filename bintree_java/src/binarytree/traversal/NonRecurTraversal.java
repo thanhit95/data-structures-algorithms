@@ -1,4 +1,4 @@
-package binarytree.traveler;
+package binarytree.traversal;
 
 
 import binarytree.BinNode;
@@ -9,15 +9,15 @@ import java.util.Stack;
 
 
 
-public class NonRecurTraveler< TKey extends Number & Comparable<? super TKey>,
+public class NonRecurTraversal< TKey extends Number & Comparable<? super TKey>,
                                TNode extends BinNode<TKey, TNode>
-                             >
-             extends Traveler<TKey, TNode>
+                              >
+             extends Traversal<TKey, TNode>
 {
 
 
     @Override
-    public List<TKey> traverse(TNode root, OrderTraverse order) {
+    public List<TKey> traverse(TNode root, OrderTraversal order) {
         var resPath = new ArrayList<TKey>();
 
         switch (order) {

@@ -2,7 +2,8 @@ package binarytree;
 
 
 import java.util.List;
-import binarytree.traveler.*;
+
+import binarytree.traversal.*;
 import binarytreedisp.BinTreeDisplay;
 
 
@@ -20,7 +21,7 @@ public class BinTree< TKey extends Number & Comparable<? super TKey>,
 
 
     protected TNode root = null;
-    protected Traveler<TKey, TNode> traveler = new RecurTraveler<>();
+    protected Traversal<TKey, TNode> traversal = new RecurTraversal<>();
 
 
 
@@ -49,8 +50,8 @@ public class BinTree< TKey extends Number & Comparable<? super TKey>,
 
 
 
-    public List<TKey> traverse(OrderTraverse order) {
-        var res = traveler.traverse(this.root, order);
+    public List<TKey> traverse(OrderTraversal order) {
+        var res = traversal.traverse(this.root, order);
         return res;
     }
 
