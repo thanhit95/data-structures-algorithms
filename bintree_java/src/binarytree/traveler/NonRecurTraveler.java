@@ -9,8 +9,8 @@ import java.util.Stack;
 
 
 public class NonRecurTraveler< TKey extends Number & Comparable<? super TKey>,
-                            TNode extends BinNode<TKey, TNode>
-                          >
+                               TNode extends BinNode<TKey, TNode>
+                             >
              extends Traveler<TKey, TNode>
 {
 
