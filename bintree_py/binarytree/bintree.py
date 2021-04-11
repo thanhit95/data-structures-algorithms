@@ -15,7 +15,7 @@ License:        3-Clause BSD License
 import copy
 from .binnode import BinNode
 from .bintreeiter import BinTreeIterIn
-from .traveler import TravelerRecur
+from .traversal import RecurTraversal
 
 
 #
@@ -89,10 +89,10 @@ class BinTree:
         Returns:
             A list of keys.
         '''
-        traveler = TravelerRecur()
-        res = traveler.traverse(self.root, order)
+        traversal = RecurTraversal()
+        res = traversal.traverse(self.root, order)
 
-        del traveler
+        del traversal
         return res
 
     #

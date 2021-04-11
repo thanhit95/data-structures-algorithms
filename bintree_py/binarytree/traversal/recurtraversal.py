@@ -1,41 +1,12 @@
-'''
-
-BINARY TREE TRAVELER
-
-Description:    Traverses through binary trees.
-
-Author:         Thanh Trung Nguyen
-                thanh.it1995 (at) gmail.com
-
-License:        3-Clause BSD License
-
-'''
+from .basetraversal import BaseTraversal
 
 
 #
 #
-class Traveler:
-    def traverse(self, root, order: str) -> list:
-        pass
-
-
-#
-#
-class TravelerRecur(Traveler):
+class RecurTraversal(BaseTraversal):
     #
     #
     def traverse(self, root, order: str) -> list:
-        '''
-        Traverses a tree entirely.
-        Args:
-            order: Type of traversal order.
-                - 'pre': pre-order
-                - 'in': in-order
-                - 'post': post-order
-        Returns:
-            A list of keys.
-        '''
-
         if order not in ('pre', 'in', 'post'):
             raise ValueError('Invalid argument: order')
 
@@ -43,8 +14,10 @@ class TravelerRecur(Traveler):
 
         if order == 'pre':
             self._traverse_pre(root)
+
         elif order == 'in':
             self._traverse_in(root)
+
         elif order == 'post':
             self._traverse_post(root)
 
