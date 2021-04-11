@@ -79,10 +79,10 @@ public class NonRecurTraversal< TKey extends Number & Comparable<? super TKey>,
                 break;
             }
 
-            TNode resultNode = stack.pop();
-            resPath.add(resultNode.key);
+            TNode pickedNode = stack.pop();
+            resPath.add(pickedNode.key);
 
-            node = resultNode.right;
+            node = pickedNode.right;
         }
     }
 
