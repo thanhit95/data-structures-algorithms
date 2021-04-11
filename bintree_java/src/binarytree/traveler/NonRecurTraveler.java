@@ -1,9 +1,9 @@
 package binarytree.traveler;
 
 
+import binarytree.BinNode;
 import java.util.List;
 import java.util.ArrayList;
-import binarytree.BinNode;
 import java.util.Stack;
 
 
