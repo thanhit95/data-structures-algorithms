@@ -1,6 +1,10 @@
 package binarytree;
 
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+
 
 public class BinSearchTree< TKey extends Number & Comparable<? super TKey>,
                             TNode extends BinNode<TKey,TNode>
@@ -34,6 +38,22 @@ public class BinSearchTree< TKey extends Number & Comparable<? super TKey>,
 
 
     public BinSearchTree(CandidateRemoval canddRM) {
+        this.optionCanddRM = canddRM;
+    }
+
+
+
+    public BinSearchTree(List<TKey> lst) {
+        if (null == lst)
+            throw new IllegalArgumentException("lst must not be null");
+
+        this.constructFromList(lst);
+    }
+
+
+
+    public BinSearchTree(List<TKey> lst, CandidateRemoval canddRM) {
+        this(lst);
         this.optionCanddRM = canddRM;
     }
 
@@ -281,5 +301,39 @@ public class BinSearchTree< TKey extends Number & Comparable<? super TKey>,
     @SuppressWarnings("unchecked")
     protected TNode createNode(TKey key) {
         return (TNode) new BinNode<TKey, TNode>(key);
+    }
+
+
+
+    protected void constructFromList(List<TKey> lst) {
+        this.root = null;
+
+        lst = lst.stream().distinct().sorted().collect(Collectors.toList());
+        int lenLst = lst.size();
+
+        this.root = buildTreeFromSortedList(lst, 0, lenLst - 1);
+        this._count = lenLst;
+    }
+
+
+
+    protected TNode buildTreeFromSortedList(List<TKey> lst, int indexStart, int indexEnd) {
+        if (indexStart > indexEnd)
+            return null;
+
+        int indexMid = (indexStart + indexEnd) / 2;
+        TNode node = createNode(lst.get(indexMid));
+
+        node.left = buildTreeFromSortedList(lst, indexStart, indexMid - 1);
+        node.right = buildTreeFromSortedList(lst, indexMid + 1, indexEnd);
+
+        buildTreeFromSortedListNodeFunc(node);
+
+        return node;
+    }
+
+
+
+    protected void buildTreeFromSortedListNodeFunc(TNode node) {
     }
 }

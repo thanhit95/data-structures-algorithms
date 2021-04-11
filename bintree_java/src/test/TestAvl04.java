@@ -6,7 +6,7 @@ import binarytree.CandidateRemoval;
 
 
 
-public class TestAvl02_disp extends TestBase {
+public class TestAvl04 extends TestBase {
 
     @Override
     public void doTask() {

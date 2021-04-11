@@ -1,6 +1,9 @@
 package binarytree;
 
 
+import java.util.List;
+
+
 
 public class AvlTree< TKey extends Number & Comparable<? super TKey> >
              extends BinSearchTree< TKey, AvlNode<TKey> >
@@ -26,6 +29,18 @@ public class AvlTree< TKey extends Number & Comparable<? super TKey> >
 
     public AvlTree(CandidateRemoval canddRM) {
         super(canddRM);
+    }
+
+
+
+    public AvlTree(List<TKey> lst) {
+        super(lst);
+    }
+
+
+
+    public AvlTree(List<TKey> lst, CandidateRemoval canddRM) {
+        super(lst, canddRM);
     }
 
 
@@ -190,5 +205,12 @@ public class AvlTree< TKey extends Number & Comparable<? super TKey> >
     @Override
     protected AvlNode<TKey> createNode(TKey key) {
         return new AvlNode<TKey>(key);
+    }
+
+
+
+    @Override
+    protected void buildTreeFromSortedListNodeFunc(AvlNode<TKey> node) {
+        node.updateHeight();
     }
 }
