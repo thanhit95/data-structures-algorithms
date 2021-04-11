@@ -12,7 +12,7 @@ import java.util.Stack;
 public class NonRecurTraversal< TKey extends Number & Comparable<? super TKey>,
                                TNode extends BinNode<TKey, TNode>
                               >
-             extends Traversal<TKey, TNode>
+             extends BaseTraversal<TKey, TNode>
 {
 
 
