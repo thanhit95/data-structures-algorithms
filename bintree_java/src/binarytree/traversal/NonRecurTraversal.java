@@ -20,6 +20,9 @@ public class NonRecurTraversal< TKey extends Number & Comparable<? super TKey>,
     public List<TKey> traverse(TNode root, OrderTraversal order) {
         var resPath = new ArrayList<TKey>();
 
+        if (null == root)
+            return resPath;
+
         switch (order) {
         case PRE:
             traversePre(root, resPath);
