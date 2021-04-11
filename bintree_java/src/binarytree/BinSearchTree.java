@@ -72,6 +72,9 @@ public class BinSearchTree< TKey extends Number & Comparable<? super TKey>,
 
 
     public boolean contain(TKey key) {
+        if (null == key)
+            throw new IllegalArgumentException("key must not be null");
+
         var temp = search(this.root, key);
         TNode node = temp.first;
         return null != node;
@@ -81,7 +84,7 @@ public class BinSearchTree< TKey extends Number & Comparable<? super TKey>,
 
     public boolean insert(TKey key) {
         if (null == key)
-            throw new IllegalArgumentException("key is null");
+            throw new IllegalArgumentException("key must not be null");
 
         this.successState = false;
 
@@ -99,7 +102,7 @@ public class BinSearchTree< TKey extends Number & Comparable<? super TKey>,
 
     public boolean remove(TKey key) {
         if (null == key)
-            throw new IllegalArgumentException("key is null");
+            throw new IllegalArgumentException("key must not be null");
 
         if (null == this.root)
             return false;
