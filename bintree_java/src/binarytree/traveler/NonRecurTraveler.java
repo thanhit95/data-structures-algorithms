@@ -4,6 +4,7 @@ package binarytree.traveler;
 import binarytree.BinNode;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Stack;
 
 
@@ -15,25 +16,21 @@ public class NonRecurTraveler< TKey extends Number & Comparable<? super TKey>,
 {
 
 
-    protected List<TKey> resPath;
-
-
-
     @Override
     public List<TKey> traverse(TNode root, OrderTraverse order) {
-        resPath = new ArrayList<>();
+        var resPath = new ArrayList<TKey>();
 
         switch (order) {
         case PRE:
-
+            traversePre(root, resPath);
             break;
 
         case IN:
-            traverseIn(root);
+            traverseIn(root, resPath);
             break;
 
         case POST:
-
+            traversePost(root, resPath);
             break;
 
         default:
@@ -45,13 +42,28 @@ public class NonRecurTraveler< TKey extends Number & Comparable<? super TKey>,
 
 
 
-    protected void traversePre(TNode node) {
-        // not implemented yet
+    protected void traversePre(TNode node, List<TKey> resPath) {
+        resPath.clear();
+        var stack = new Stack<TNode>();
+
+        stack.push(node);
+
+        while (false == stack.empty()) {
+            node = stack.pop();
+            resPath.add(node.key);
+
+            if (null != node.right)
+                stack.push(node.right);
+
+            if (null != node.left)
+                stack.push(node.left);
+        }
     }
 
 
 
-    protected void traverseIn(TNode node) {
+    protected void traverseIn(TNode node, List<TKey> resPath) {
+        resPath.clear();
         var stack = new Stack<TNode>();
 
         while (true) {
@@ -69,13 +81,27 @@ public class NonRecurTraveler< TKey extends Number & Comparable<? super TKey>,
 
             node = resultNode.right;
         }
-
-        return;
     }
 
 
 
-    protected void traversePost(TNode node) {
-        // not implemented yet
+    protected void traversePost(TNode node, List<TKey> resPath) {
+        resPath.clear();
+        var stack = new Stack<TNode>();
+
+        stack.push(node);
+
+        while (false == stack.empty()) {
+            node = stack.pop();
+            resPath.add(node.key);
+
+            if (null != node.left)
+                stack.push(node.left);
+
+            if (null != node.right)
+                stack.push(node.right);
+        }
+
+        Collections.reverse(resPath);
     }
 }
