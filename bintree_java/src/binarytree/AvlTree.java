@@ -123,15 +123,15 @@ public class AvlTree< TKey extends Number & Comparable<? super TKey> >
 
 
     protected AvlNode<TKey> adjustBalance(AvlNode<TKey> node) {
-        // STEP 1. Updates the height of the node
+        // STEP 1. Update the height of the node
         node.updateHeight();
 
-        // STEP 2. Gets the balance factor
+        // STEP 2. Get the balance factor
         int balance = node.balance();
         int balanceLe = node.balanceLeft();
         int balanceRi = node.balanceRight();
 
-        // STEP 3. Processes if the node is unbalanced ==> 4 cases
+        // STEP 3. Process if the node is unbalanced ==> 4 cases
 
         // Case 1: left-left
         if (  balance > 1 && balanceLe >= 0  )

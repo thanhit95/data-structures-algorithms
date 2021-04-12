@@ -247,7 +247,7 @@ public class BinSearchTree< TKey extends Number & Comparable<? super TKey>,
                 node = node.right;
         }
 
-        // return new Tuple<>(null, null); // ensures a value to return, unreachable statement...
+        // return new Tuple<>(null, null); // ensure a value to return, unreachable statement...
     }
 
 
