@@ -1,1 +1,1 @@
-from .display import BinTreeDisplay
+from .bintreedisplay import BinTreeDisplay

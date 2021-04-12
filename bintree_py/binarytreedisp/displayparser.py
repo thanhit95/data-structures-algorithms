@@ -11,7 +11,7 @@ class DisplayParser:
         if value_util is None:
             raise ValueError('value_util cannot be None')
 
-        self.__vutil = value_util
+        self.value_util = value_util
         self.config_struct_input_node('key', 'left', 'right')
         self.config_line(character, branch_spacing)
 
@@ -26,13 +26,13 @@ class DisplayParser:
             right_child: Name of right child.
         '''
         if key is None or type(key) is not str:
-            raise ValueError('Invalid argument: key must be string')
+            raise ValueError('Invalid argument: key must be a string')
 
         if left_child is None or type(left_child) is not str:
-            raise ValueError('Invalid argument: left_child must be string')
+            raise ValueError('Invalid argument: left_child must be a string')
 
         if right_child is None or type(right_child) is not str:
-            raise ValueError('Invalid argument: right_child must be string')
+            raise ValueError('Invalid argument: right_child must be a string')
 
         self.struct_node_key = key
         self.struct_node_le = left_child
@@ -48,34 +48,13 @@ class DisplayParser:
             branch_spacing: Branch spacing.
         '''
         if type(character) is not str or len(character) != 1:
-            raise ValueError('Invalid argument: character must be string of length 1')
+            raise ValueError('Invalid argument: character must be a string of length 1')
 
         if type(branch_spacing) is not int or branch_spacing < 1:
-            raise ValueError('Invalid argument: branch_spacing must be positive integer')
+            raise ValueError('Invalid argument: branch_spacing must be a positive integer')
 
         self.line_char = character
         self.line_brsp = branch_spacing
-
-    #
-    #
-    def get_height(self, node) -> int:
-        '''
-        Gets height of the tree.
-        Args:
-            node: Input root of the tree.
-        Returns:
-            Height.
-        '''
-        if node is None:
-            return 0
-
-        node_left = getattr(node, self.struct_node_le)
-        node_right = getattr(node, self.struct_node_ri)
-
-        height_le_branch = self.get_height(node_left)
-        height_ri_branch = self.get_height(node_right)
-
-        return 1 + max(height_le_branch, height_ri_branch)
 
     #
     #
@@ -86,7 +65,7 @@ class DisplayParser:
         Args:
             input_root: Input root node.
         Returns:
-            A node of type BinNode indicating parser tree.
+            A node of type ParsingNode indicating parsing tree.
         '''
         if input_root is None:
             return None
@@ -95,7 +74,7 @@ class DisplayParser:
         input_left = getattr(input_root, self.struct_node_le)
         input_right = getattr(input_root, self.struct_node_ri)
 
-        node = ParsingNode(self.__vutil.get_str(input_key))
+        node = ParsingNode(self.value_util.get_str(input_key))
         len_key = len(node.key)
 
         node.left = self.build_tree(input_left)
@@ -146,3 +125,26 @@ class DisplayParser:
         del margin_right_child
 
         return node
+
+    #
+    #
+    def destroy_tree(self, node: ParsingNode):
+        if node is None:
+            return
+
+        self.destroy_tree(node.left)
+        del node.left
+
+        self.destroy_tree(node.right)
+        del node.right
+
+    #
+    #
+    def get_height(self, node) -> int:
+        if node is None:
+            return 0
+
+        height_le = self.get_height(node.left)
+        height_ri = self.get_height(node.right)
+
+        return 1 + max(height_le, height_ri)
