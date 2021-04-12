@@ -145,8 +145,10 @@ public class BinSearchTree< TKey extends Number & Comparable<? super TKey>,
     @Override
     public BinSearchTree<TKey, TNode> clone() {
         var theClone = new BinSearchTree<TKey, TNode>();
-        theClone.assign(this);
         theClone.root = this._clone(this.root);
+        theClone.traversal = this.traversal;
+        theClone._count = this._count;
+        theClone.optionCanddRM = this.optionCanddRM;
         return theClone;
     }
 
@@ -276,18 +278,6 @@ public class BinSearchTree< TKey extends Number & Comparable<? super TKey>,
         }
 
         return new Tuple<>(node, parent);
-    }
-
-
-
-    @SuppressWarnings("unchecked")
-    @Override
-    protected void assign(Object objOther) {
-        var other = (BinSearchTree<TKey, TNode>)objOther;
-        super.assign(other);
-
-        this._count = other._count;
-        this.optionCanddRM = other.optionCanddRM;
     }
 
 
