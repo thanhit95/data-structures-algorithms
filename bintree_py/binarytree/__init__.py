@@ -1,2 +1,2 @@
-from .bst import BinarySearchTree
+from .binsearchtree import BinSearchTree
 from .avltree import AvlTree

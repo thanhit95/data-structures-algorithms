@@ -8,27 +8,27 @@ class AvlNode(BinNode):
     #
     def __init__(self, key=None):
         super().__init__(key)
-        self.__height = 1
+        self._height = 1
 
     #
     #
     def height(self):
-        return self.__height
+        return self._height
 
     #
     #
-    def heightLeft(self):
+    def height_left(self):
         return 0 if self.left is None else self.left.height()
 
     #
     #
-    def heightRight(self):
+    def height_right(self):
         return 0 if self.right is None else self.right.height()
 
     #
     #
     def update_height(self):
-        self.__height = 1 + max(self.heightLeft(), self.heightRight())
+        self._height = 1 + max(self.height_left(), self.height_right())
 
     #
     #
@@ -36,8 +36,8 @@ class AvlNode(BinNode):
         '''
         Gets balance factor of the node.
         '''
-        height_le = self.heightLeft()
-        height_ri = self.heightRight()
+        height_le = self.height_left()
+        height_ri = self.height_right()
         return height_le - height_ri
 
     #

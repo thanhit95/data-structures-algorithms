@@ -1,8 +1,8 @@
-from binarytree import BinarySearchTree
+from binarytree import BinSearchTree
 
 
 def dotask():
-    bst = BinarySearchTree(candd_removal='right')
+    bst = BinSearchTree(canddrm='right')
 
     for value in [12, 39, 20, 7, 26, 45, 19, 8]:
         bst.insert(value)

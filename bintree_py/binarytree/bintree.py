@@ -2,7 +2,7 @@
 
 BINARY TREE
 
-Description:    Binary tree (base class) immplementation
+Description:    Binary tree (base class) implementation
 
 Author:         Thanh Trung Nguyen
                 thanh.it1995 (at) gmail.com
@@ -14,8 +14,8 @@ License:        3-Clause BSD License
 
 import copy
 from .binnode import BinNode
-from .bintreeiter import BinTreeIterIn
 from .traversal import RecurTraversal
+from .bintreeiter import BinTreeIterIn
 
 
 #
@@ -26,13 +26,18 @@ class BinTree:
     '''
     #
     #
+    #################################################################
+    #                        METHODS (PUBLIC)
+    #################################################################
+    #
+    #
     def __init__(self):
-        self.root = None
+        self._root = None
 
     #
     #
     def empty(self):
-        return self.root is None
+        return self._root is None
 
     #
     #
@@ -40,7 +45,7 @@ class BinTree:
         '''
         Gets height of the tree.
         '''
-        return self.__height(self.root)
+        return self._height(self._root)
 
     #
     #
@@ -48,33 +53,8 @@ class BinTree:
         '''
         Clears tree completely.
         '''
-        self._free_memory(self.root)
-        self.root = None
-
-    #
-    #
-    def clone(self):
-        '''
-        Clones tree completely.
-        '''
-        tree = copy.copy(self)
-        tree.root = tree._clone(tree.root)
-        return tree
-
-    #
-    #
-    def _count_traversal(self, node: BinNode):
-        '''
-        Counts number of elements by traversal.
-        '''
-        if node is None:
-            return 0
-
-        count_le = self._count_traversal(node.left)
-        count_ri = self._count_traversal(node.right)
-
-        res = count_le + count_ri
-        return res
+        self._free_memory(self._root)
+        self._root = None
 
     #
     #
@@ -90,27 +70,40 @@ class BinTree:
             A list of keys.
         '''
         traversal = RecurTraversal()
-        res = traversal.traverse(self.root, order)
+        res = traversal.traverse(self._root, order)
 
         del traversal
         return res
 
     #
     #
-    def _clone(self, node_src):
+    def clone(self):
         '''
-        Clones the tree.
-        Args:
-            node_src: Source node.
+        Clones tree completely.
         '''
-        if node_src is None:
-            return None
+        the_clone = copy.deepcopy(self)
+        return the_clone
 
-        node = copy.copy(node_src)
-        node.left = self._clone(node.left)
-        node.right = self._clone(node.right)
+    #
+    #
+    #################################################################
+    #                        METHODS (PROTECTED)
+    #################################################################
+    #
+    #
+    def _height(self, node: BinNode):
+        if node is None:
+            return 0
 
-        return node
+        height_le = self._height(node.left)
+        height_ri = self._height(node.right)
+
+        return 1 + max(height_le, height_ri)
+
+    #
+    #
+    def _create_node(self, key=None):
+        return BinNode(key)
 
     #
     #
@@ -131,14 +124,16 @@ class BinTree:
 
     #
     #
-    def __height(self, node: BinNode):
-        if node is None:
-            return 0
-
-        height_le = self.__height(node.left)
-        height_ri = self.__height(node.right)
-
-        return 1 + max(height_le, height_ri)
+    #################################################################
+    #                        METHODS (EXTRA)
+    #################################################################
+    #
+    #
+    def __str__(self):
+        lst_traversal = self.traverse('in')
+        res = '  '.join(str(x) for x in lst_traversal)
+        res = f'({res})'
+        return res
 
     #
     #

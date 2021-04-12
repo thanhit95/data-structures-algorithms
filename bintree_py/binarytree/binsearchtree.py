@@ -2,7 +2,7 @@
 
 BINARY SEARCH TREE
 
-Description:    Binary search tree immplementation
+Description:    Binary search tree implementation
 
 Author:         Thanh Trung Nguyen
                 thanh.it1995 (at) gmail.com
@@ -18,34 +18,39 @@ from .bintree import BinTree
 
 #
 #
-class BinarySearchTree(BinTree):
+class BinSearchTree(BinTree):
     '''
     Binary Search Tree.
 
     Args:
         lst: The list to construct from. If lst if None, the tree is empty.
-        candd_removal: Candidate chosen for replacement when doing "remove" action. This argument can be "left" or "right".
+        canddrm: Candidate chosen for replacement when doing "remove" action. This argument can be "left" or "right".
     '''
     #
     #
-    def __init__(self, lst: list = None, candd_removal='right'):
+    #################################################################
+    #                        METHODS (PUBLIC)
+    #################################################################
+    #
+    #
+    def __init__(self, lst: list = None, canddrm: str = 'right'):
         super().__init__()
 
         self._count = 0
 
-        if candd_removal not in ('left', 'right'):
-            raise ValueError('Invalid argument: candd_removal')
+        if canddrm not in ('left', 'right'):
+            raise ValueError('Invalid argument: canddrm')
 
-        self.__option_candidate_removal = candd_removal
+        self._option_candd_rm = canddrm
 
         if lst is not None:
-            self.construct_from_list(lst)
+            self._construct_from_list(lst)
 
     #
     #
     def count(self):
         '''
-        Returns number of elements.
+        Returns number of nodes.
         '''
         return self._count
 
@@ -59,8 +64,11 @@ class BinarySearchTree(BinTree):
         Returns:
             True if key exists. Otherwise, None.
         '''
-        res, _ = self._search(self.root, key)
-        return res is not None
+        if key is None:
+            raise ValueError('Invalid argument: key must not be None')
+
+        node, _ = self._search(self._root, key)
+        return node is not None
 
     #
     #
@@ -69,9 +77,82 @@ class BinarySearchTree(BinTree):
         Inserts a key.
         Args:
             key: The key to insert.
+        Returns:
+            If insertion succeeds, return True. Otherwise, rerturn False.
         '''
-        self.root = self._insert(self.root, key)
+        if key is None:
+            raise ValueError('Invalid argument: key must not be None')
 
+        self._success_state = False
+
+        self._root = self._insert(self._root, key)
+
+        if self._success_state is False:
+            del self._success_state
+            return False
+
+        self._count += 1
+
+        del self._success_state
+        return True
+
+    #
+    #
+    def remove(self, key):
+        '''
+        Removes the node of given key.
+        Args:
+            key: The key to be removed.
+        Returns:
+            If key exists, return True. Otherwise, rerturn False.
+        '''
+        if key is None:
+            raise ValueError('Invalid argument: key must not be None')
+
+        if self._root is None:
+            return False
+
+        if self.contain(key) is False:
+            return False
+
+        self._root = self._remove(self._root, key)
+
+        self._count -= 1
+        return True
+
+    #
+    #
+    def min(self):
+        '''
+        Searches for minimum key.
+        Args:
+            None.
+        Returns:
+            Minimum key if exists. Otherwise, None.
+        '''
+        node, _ = self._search_min(self._root, None)
+        res = node.key if node is not None else None
+        return res
+
+    #
+    #
+    def max(self):
+        '''
+        Searches for maximum key.
+        Args:
+            None.
+        Returns:
+            Maximum key if exists. Otherwise, None.
+        '''
+        node, _ = self._search_max(self._root, None)
+        res = node.key if node is not None else None
+        return res
+
+    #
+    #
+    #################################################################
+    #                        METHODS (PROTECTED)
+    #################################################################
     #
     #
     def _insert(self, node: BinNode, key):
@@ -84,8 +165,8 @@ class BinarySearchTree(BinTree):
             The current processing node itself.
         '''
         if node is None:
-            self._count += 1
-            return BinNode(key)
+            self._success_state = True
+            return self._create_node(key)
 
         if key < node.key:
             node.left = self._insert(node.left, key)
@@ -96,27 +177,6 @@ class BinarySearchTree(BinTree):
 
     #
     #
-    def remove(self, key):
-        '''
-        Removes the node of given key.
-        Args:
-            key: The key to be removed.
-        Returns:
-            If key exists, return True. Otherwise, rerturn False.
-        '''
-        if self.root is None:
-            return False
-
-        if self.contain(key) is False:
-            return False
-
-        self.root = self._remove(self.root, key)
-
-        self._count -= 1
-        return True
-
-    #
-    #
     def _remove(self, node: BinNode, key):
         '''
         Removes the node from the tree.
@@ -124,9 +184,8 @@ class BinarySearchTree(BinTree):
             node: The current processing node.
             key: The key to search and remove.
         Returns:
-            The node (root) itself.
+            The current processing node itself.
         '''
-
         if node is None:
             return None
 
@@ -137,6 +196,7 @@ class BinarySearchTree(BinTree):
         else:
             if node.left is None:
                 return node.right
+
             if node.right is None:
                 return node.left
 
@@ -151,12 +211,10 @@ class BinarySearchTree(BinTree):
         Finds a candidate for replacement of current node, and then removes that candidate from the tree.
         Args:
             node: The starting node.
-        Returns:
-            None.
         '''
         assert node is not None
 
-        option = self.__option_candidate_removal
+        option = self._option_candd_rm
 
         if option == 'right':
             candidate, _ = self._search_min(node.right, node)
@@ -194,7 +252,7 @@ class BinarySearchTree(BinTree):
             else:
                 node = node.right
 
-        return (None, None)  # ensures a value to return, unreachable statement...
+        return (None, None)  # ensure a value to return, unreachable statement...
 
     #
     #
@@ -238,35 +296,7 @@ class BinarySearchTree(BinTree):
 
     #
     #
-    def min(self):
-        '''
-        Searches for minimum key.
-        Args:
-            None.
-        Returns:
-            Minimum key if exists. Otherwise, None.
-        '''
-        node, _ = self._search_min(self.root, None)
-        res = node.key if node is not None else None
-        return res
-
-    #
-    #
-    def max(self):
-        '''
-        Searches for maximum key.
-        Args:
-            None.
-        Returns:
-            Maximum key if exists. Otherwise, None.
-        '''
-        node, _ = self._search_max(self.root, None)
-        res = node.key if node is not None else None
-        return res
-
-    #
-    #
-    def construct_from_list(self, lst: list):
+    def _construct_from_list(self, lst: list):
         '''
         Constructs tree from a list. WARNING: The list will change its value (i.e. sorting).
         Args:
@@ -274,16 +304,17 @@ class BinarySearchTree(BinTree):
         Returns:
             None.
         '''
-        self.root = None
-        lst.sort()
+        self._root = None
+
+        lst = sorted(set(lst))
         len_lst = len(lst)
 
-        self.root = self._construct_from_sorted_list(lst, 0, len_lst - 1)
-        self._count = self._count_traversal(self.root)
+        self._root = self._build_tree_from_sorted_list(lst, 0, len_lst - 1)
+        self._count = len_lst
 
     #
     #
-    def _construct_from_sorted_list(self, lst: list, start_idx: int, end_idx: int):
+    def _build_tree_from_sorted_list(self, lst: list, index_start: int, index_end: int):
         '''
         Backend function for "__construct_from_list".
         Args:
@@ -293,28 +324,31 @@ class BinarySearchTree(BinTree):
         Returns:
             Root node (followed by its branch) constructed from lst[ start_idx to end_idx ]
         '''
-
-        if start_idx > end_idx:
+        if index_start > index_end:
             return None
 
-        mid_idx = (start_idx + end_idx) // 2
-        # node = BinNode(lst[mid_idx])
-        node = self._create_node(lst[mid_idx])
+        index_mid = (index_start + index_end) // 2
+        node = self._create_node(lst[index_mid])
 
-        node.left = self._construct_from_sorted_list(lst, start_idx, mid_idx - 1)
-        node.right = self._construct_from_sorted_list(lst, mid_idx + 1, end_idx)
+        node.left = self._build_tree_from_sorted_list(lst, index_start, index_mid - 1)
+        node.right = self._build_tree_from_sorted_list(lst, index_mid + 1, index_end)
+
+        self._build_tree_from_sorted_list_node_func(node)
 
         return node
 
     #
     #
-    def _create_node(self, key=None):
-        return BinNode(key)
+    def _build_tree_from_sorted_list_node_func(self, node):
+        pass
 
     #
     #
+    #################################################################
+    #                        METHODS (EXTRA)
+    #################################################################
+    #
+    #
     def __str__(self):
-        lst_traversal = self.traverse()
-        res = '  '.join(str(x) for x in lst_traversal)
-        res = f'BST({res})'
-        return res
+        res = BinTree.__str__(self)
+        return 'BST' + res

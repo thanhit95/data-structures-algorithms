@@ -2,7 +2,7 @@
 
 AVL TREE
 
-Description:    AVL tree immplementation
+Description:    AVL tree implementation
 
 Author:         Thanh Trung Nguyen
                 thanh.it1995 (at) gmail.com
@@ -12,27 +12,29 @@ License:        3-Clause BSD License
 '''
 
 
-from .bst import BinarySearchTree
+from .binsearchtree import BinSearchTree
 from .avlnode import AvlNode
 
 
 #
 #
-class AvlTree(BinarySearchTree):
+class AvlTree(BinSearchTree):
     '''
     AVL Tree.
 
     Args:
         lst: The list to construct from. If lst if None, the tree is empty.
-        candd_removal: Candidate chosen for replacement when doing "remove" action. This argument can be "left" or "right".
+        canddrm: Candidate chosen for replacement when doing "remove" action. This argument can be "left" or "right".
     '''
     #
     #
-    def __init__(self, lst: list = None, candd_removal='right'):
-        super().__init__(lst=None, candd_removal=candd_removal)
-
-        if lst is not None:
-            self.construct_from_list(lst)
+    #################################################################
+    #                        METHODS (PUBLIC)
+    #################################################################
+    #
+    #
+    def __init__(self, lst: list = None, canddrm: str = 'right'):
+        super().__init__(lst, canddrm)
 
     #
     #
@@ -40,11 +42,16 @@ class AvlTree(BinarySearchTree):
         '''
         Gets height of the tree.
         '''
-        if self.root is None:
+        if self._root is None:
             return 0
 
-        return self.root.height()
+        return self._root.height()
 
+    #
+    #
+    #################################################################
+    #                        METHODS (PROTECTED)
+    #################################################################
     #
     #
     def _insert(self, node: AvlNode, key):
@@ -57,17 +64,15 @@ class AvlTree(BinarySearchTree):
             The current processing node itself.
         '''
         if node is None:
-            self._count += 1
-            return AvlNode(key)
+            self._success_state = True
+            return self._create_node(key)
 
-        # Step 1. Performs normal BST
         if key < node.key:
             node.left = self._insert(node.left, key)
         elif key > node.key:
             node.right = self._insert(node.right, key)
 
-        # Step 2. Adjusts balance
-        node = self.__adjust_balance(node)
+        node = self._adjust_balance(node)
         return node
 
     #
@@ -79,10 +84,8 @@ class AvlTree(BinarySearchTree):
             node: The current processing node.
             key: The key to search and remove.
         Returns:
-            The node (root) itself.
+            The current processing node itself.
         '''
-
-        # Step 1. Performs normal BST
         if node is None:
             return None
 
@@ -93,51 +96,51 @@ class AvlTree(BinarySearchTree):
         else:
             if node.left is None:
                 return node.right
+
             if node.right is None:
                 return node.left
 
             self._remove_candidate(node)
 
-        # Step 2. Adjusts balance
-        node = self.__adjust_balance(node)
+        node = self._adjust_balance(node)
         return node
 
     #
     #
-    def __adjust_balance(self, node: AvlNode):
-        # STEP 1. Updates the height of the node
+    def _adjust_balance(self, node: AvlNode):
+        # STEP 1. Update the height of the node
         node.update_height()
 
-        # STEP 2. Gets the balance factor
+        # STEP 2. Get the balance factor
         balance = node.balance()
         balance_le = node.balance_left()
         balance_ri = node.balance_right()
 
-        # STEP 3. Processes if the node is unbalanced ==> 4 cases
+        # STEP 3. Process if the node is unbalanced ==> 4 cases
 
         # Case 1: left-left
         if balance > 1 and balance_le >= 0:
-            return self.__rotate_right(node)
+            return self._rotate_right(node)
 
         # Case 2: right-right
         if balance < -1 and balance_ri <= 0:
-            return self.__rotate_left(node)
+            return self._rotate_left(node)
 
         # Case 3: left-right
         if balance > 1 and balance_le < 0:
-            node.left = self.__rotate_left(node.left)
-            return self.__rotate_right(node)
+            node.left = self._rotate_left(node.left)
+            return self._rotate_right(node)
 
         # Case 4: right-left
         if balance < -1 and balance_ri > 0:
-            node.right = self.__rotate_right(node.right)
-            return self.__rotate_left(node)
+            node.right = self._rotate_right(node.right)
+            return self._rotate_left(node)
 
         return node
 
     #
     #
-    def __rotate_left(self, node: AvlNode):
+    def _rotate_left(self, node: AvlNode):
         r'''
             node
             /  \
@@ -158,7 +161,7 @@ class AvlTree(BinarySearchTree):
 
     #
     #
-    def __rotate_right(self, node: AvlNode):
+    def _rotate_right(self, node: AvlNode):
         r'''
             node
             /  \
@@ -182,6 +185,16 @@ class AvlTree(BinarySearchTree):
     def _create_node(self, key=None):
         return AvlNode(key)
 
+    #
+    #
+    def _build_tree_from_sorted_list_node_func(self, node: AvlNode):
+        node.update_height()
+
+    #
+    #
+    ################################################################
+    #                        METHOD (EXTRA)
+    ################################################################
     #
     #
     def __str__(self):

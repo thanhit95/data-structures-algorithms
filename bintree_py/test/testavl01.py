@@ -12,7 +12,7 @@ def dotask():
 
     for value in [10, 20, 30, 40, 50, 25]:
         avl.insert(value)
-        print(display.get(avl.root), end='\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n')
+        print(display.get(avl._root), end='\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n')
 
     # print(avl)
     # print()
