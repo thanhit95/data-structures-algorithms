@@ -319,10 +319,10 @@ class BinSearchTree(BinTree):
         Backend function for "__construct_from_list".
         Args:
             lst: The list.
-            start_idx: Starting index in list.
-            end_idx: Ending index in list (inclusive).
+            index_start: Starting index in list.
+            index_end: Ending index in list (inclusive).
         Returns:
-            Root node (followed by its branch) constructed from lst[ start_idx to end_idx ]
+            Root node (followed by its branch) constructed from lst[ index_start to index_end ]
         '''
         if index_start > index_end:
             return None

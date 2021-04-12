@@ -58,7 +58,7 @@ class BinTree:
 
     #
     #
-    def traverse(self, order='in'):
+    def traverse(self, order: str = 'in'):
         '''
         Traverses the tree entirely.
         Args:

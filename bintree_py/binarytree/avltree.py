@@ -12,6 +12,7 @@ License:        3-Clause BSD License
 '''
 
 
+from .bintree import BinTree
 from .binsearchtree import BinSearchTree
 from .avlnode import AvlNode
 
@@ -198,7 +199,5 @@ class AvlTree(BinSearchTree):
     #
     #
     def __str__(self):
-        lst_traversal = self.traverse()
-        res = '  '.join(str(x) for x in lst_traversal)
-        res = f'AVL({res})'
-        return res
+        res = BinTree.__str__(self)
+        return 'AVL' + res

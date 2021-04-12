@@ -6,7 +6,7 @@ class BinTreeIterIn:
     def __init__(self, tree):
         self.__tree = tree
         self.__stack = []
-        self.__node = tree.root
+        self.__node = tree._root
 
     #
     #
