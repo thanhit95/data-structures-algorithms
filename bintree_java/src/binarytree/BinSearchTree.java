@@ -145,10 +145,15 @@ public class BinSearchTree< TKey extends Number & Comparable<? super TKey>,
     @Override
     public BinSearchTree<TKey, TNode> clone() {
         var theClone = new BinSearchTree<TKey, TNode>();
-        theClone.root = this._clone(this.root);
+
+        if (null != this.root) {
+            theClone.root = this.root.cloneBranch();
+        }
+
         theClone.traversal = this.traversal;
         theClone._count = this._count;
         theClone.optionCanddRM = this.optionCanddRM;
+
         return theClone;
     }
 

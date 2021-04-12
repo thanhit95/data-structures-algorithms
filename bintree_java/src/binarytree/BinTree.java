@@ -60,8 +60,13 @@ public class BinTree< TKey extends Number & Comparable<? super TKey>,
 
     public BinTree<TKey, TNode> clone() {
         var theClone = new BinTree<TKey, TNode>();
-        theClone.root = this._clone(this.root);
+
+        if (null != this.root) {
+            theClone.root = this.root.cloneBranch();
+        }
+
         theClone.traversal = this.traversal;
+
         return theClone;
     }
 
@@ -95,20 +100,6 @@ public class BinTree< TKey extends Number & Comparable<? super TKey>,
         int heightRi = _height(node.right);
 
         return 1 + Math.max(heightLe, heightRi);
-    }
-
-
-
-    protected TNode _clone(TNode node) {
-        if (null == node)
-            return null;
-
-        TNode theClone = createNode(node.key);
-
-        theClone.left = this._clone(node.left);
-        theClone.right = this._clone(node.right);
-
-        return theClone;
     }
 
 

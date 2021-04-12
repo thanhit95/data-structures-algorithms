@@ -61,10 +61,15 @@ public class AvlTree< TKey extends Number & Comparable<? super TKey> >
     @Override
     public AvlTree<TKey> clone() {
         var theClone = new AvlTree<TKey>();
-        theClone.root = this._clone(this.root);
+
+        if (null != this.root) {
+            theClone.root = this.root.cloneBranch();
+        }
+
         theClone.traversal = this.traversal;
         theClone._count = this._count;
         theClone.optionCanddRM = this.optionCanddRM;
+
         return theClone;
     }
 
@@ -207,22 +212,6 @@ public class AvlTree< TKey extends Number & Comparable<? super TKey> >
     @Override
     protected AvlNode<TKey> createNode(TKey key) {
         return new AvlNode<TKey>(key);
-    }
-
-
-
-    @Override
-    protected AvlNode<TKey> _clone(AvlNode<TKey> node) {
-        if (null == node)
-            return null;
-
-        var theClone = createNode(node.key);
-
-        theClone.left = this._clone(node.left);
-        theClone.right = this._clone(node.right);
-        theClone._height = node._height;
-
-        return theClone;
     }
 
 

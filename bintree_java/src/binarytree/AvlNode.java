@@ -77,4 +77,20 @@ public class AvlNode< TKey extends Number & Comparable<? super TKey> >
     int balanceRight() {
         return (null == this.right) ? 0 : this.right.balance();
     }
+
+
+
+    @Override
+    public AvlNode<TKey> cloneBranch() {
+        var theClone = new AvlNode<TKey>(this.key);
+        theClone._height = this._height;
+
+        if (null != this.left)
+            theClone.left = this.left.cloneBranch();
+
+        if (null != this.right)
+            theClone.right = this.right.cloneBranch();
+
+        return theClone;
+    }
 }
