@@ -58,16 +58,6 @@ public class AvlTree< TKey extends Number & Comparable<? super TKey> >
 
 
 
-    @Override
-    public AvlTree<TKey> clone() {
-        var theClone = new AvlTree<TKey>();
-        theClone.assign(this);
-        theClone.root = this._clone(this.root);
-        return theClone;
-    }
-
-
-
 //////////////////////////////////////////////////////////////
 //                        METHODS (PROTECTED)
 //////////////////////////////////////////////////////////////

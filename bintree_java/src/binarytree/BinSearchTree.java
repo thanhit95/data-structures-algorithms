@@ -280,7 +280,12 @@ public class BinSearchTree< TKey extends Number & Comparable<? super TKey>,
 
 
 
-    protected void assign(BinSearchTree<TKey, TNode> other) {
+    @SuppressWarnings("unchecked")
+    @Override
+    protected void assign(Object objOther) {
+        var other = (BinSearchTree<TKey, TNode>)objOther;
+        super.assign(other);
+
         this._count = other._count;
         this.optionCanddRM = other.optionCanddRM;
     }

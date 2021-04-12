@@ -11,6 +11,7 @@ import binarytreedisp.BinTreeDisplay;
 public class BinTree< TKey extends Number & Comparable<? super TKey>,
                       TNode extends BinNode<TKey,TNode>
                     >
+             implements Cloneable
 {
 
 
@@ -53,6 +54,14 @@ public class BinTree< TKey extends Number & Comparable<? super TKey>,
     public List<TKey> traverse(OrderTraversal order) {
         var res = traversal.traverse(this.root, order);
         return res;
+    }
+
+
+
+    public BinTree<TKey, TNode> clone() {
+        var theClone = new BinTree<TKey, TNode>();
+        theClone.assign(this);
+        return theClone;
     }
 
 
@@ -106,6 +115,15 @@ public class BinTree< TKey extends Number & Comparable<? super TKey>,
     @SuppressWarnings("unchecked")
     protected TNode createNode(TKey key) {
         return (TNode) new BinNode<TKey, TNode>(key);
+    }
+
+
+
+    @SuppressWarnings("unchecked")
+    protected void assign(Object objOther) {
+        var other = (BinTree<TKey, TNode>)objOther;
+        this.root = other._clone(this.root);
+        this.traversal = other.traversal;
     }
 
 

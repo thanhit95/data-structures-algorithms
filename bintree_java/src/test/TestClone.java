@@ -18,6 +18,8 @@ public class TestClone extends TestBase {
 
         displayTree(b);
 
+        System.out.println("\n\n\n height: " + b.height());
+
         System.out.println();
     }
 
