@@ -2,7 +2,7 @@
 
 BINARY TREE DISPLAY
 
-Description:    A utility help visualize binary tree by using ASCII text.
+Description:    A utility help visualize binary trees by using ASCII text.
 
 Author:         Thanh Trung Nguyen
                 thanh.it1995 (at) gmail.com
@@ -22,7 +22,7 @@ from .displayparser import DisplayParser
 #
 class BinTreeDisplay:
     '''
-    Binary tree display. A utility help visualize binary tree by using ASCII text.
+    Binary tree display. A utility help visualize binary trees by using ASCII text.
     '''
     #
     #
