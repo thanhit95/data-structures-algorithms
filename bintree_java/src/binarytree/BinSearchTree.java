@@ -287,27 +287,6 @@ public class BinSearchTree< TKey extends Number & Comparable<? super TKey>,
 
 
 
-    protected TNode _clone(TNode node) {
-        if (null == node)
-            return null;
-
-        TNode theClone = createNode(node.key);
-
-        theClone.left = this._clone(node.left);
-        theClone.right = this._clone(node.right);
-
-        return theClone;
-    }
-
-
-
-    @SuppressWarnings("unchecked")
-    protected TNode createNode(TKey key) {
-        return (TNode) new BinNode<TKey, TNode>(key);
-    }
-
-
-
     protected void constructFromList(List<TKey> lst) {
         this.root = null;
 
