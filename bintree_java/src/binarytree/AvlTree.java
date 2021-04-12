@@ -105,6 +105,9 @@ public class AvlTree< TKey extends Number & Comparable<? super TKey> >
 
     @Override
     protected AvlNode<TKey> _remove(AvlNode<TKey> node, TKey key) {
+        if (null == node)
+            return null;
+
         int compareKey = key.compareTo(node.key);
 
         if (compareKey < 0) {

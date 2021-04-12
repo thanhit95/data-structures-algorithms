@@ -186,6 +186,9 @@ public class BinSearchTree< TKey extends Number & Comparable<? super TKey>,
 
 
     protected TNode _remove(TNode node, TKey key) {
+        if (null == node)
+            return null;
+
         int compareKey = key.compareTo(node.key);
 
         if (compareKey < 0) {
