@@ -141,8 +141,7 @@ public class BinTreeDisplay {
 
 
 
-    protected void fillLine(FillDirection direction, String childKey, int y, int margina, int marginb)
-    {
+    protected void fillLine(FillDirection direction, String childKey, int y, int margina, int marginb) {
         if (FillDirection.LEFT == direction) {
             margina += childKey.length() - 1;
         }
