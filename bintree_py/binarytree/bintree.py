@@ -16,6 +16,7 @@ import copy
 from .binnode import BinNode
 from .traversal import RecurTraversal
 from .bintreeiter import BinTreeIterIn
+from binarytreedisp import BinTreeDisplay  # may remove this line to make Python happy
 
 
 #
@@ -121,6 +122,20 @@ class BinTree:
 
         del node.left
         del node.right
+
+    #
+    #
+    # Adapter method connecting BinTreeDisplay and BinTree
+    def display(self, disp: BinTreeDisplay) -> str:
+        res = disp.get(self._root)
+        return res
+
+    #
+    #
+    # Adapter method connecting BinTreeDisplay and BinTree
+    def display_lst_rows(self, disp: BinTreeDisplay) -> list:
+        res = disp.get_lst_rows(self._root)
+        return res
 
     #
     #
