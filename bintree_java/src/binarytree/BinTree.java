@@ -72,6 +72,7 @@ public class BinTree< TKey extends Number & Comparable<? super TKey>,
 
 
 
+    // Adapter method connecting BinTreeDisplay and BinTree
     public String display(BinTreeDisplay disp) {
         String res = disp.get(this.root);
         return res;
@@ -79,6 +80,7 @@ public class BinTree< TKey extends Number & Comparable<? super TKey>,
 
 
 
+    // Adapter method connecting BinTreeDisplay and BinTree
     public List<String> displayLstRows(BinTreeDisplay disp) {
         var res = disp.getLstRows(this.root);
         return res;

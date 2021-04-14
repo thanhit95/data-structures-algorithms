@@ -25,8 +25,14 @@ public abstract class TestBase {
 
 
     public void printTree(BinTree<?,?> tree) {
+        this.printTree(tree, OrderTraversal.IN);
+    }
 
-        List<?> res = tree.traverse(OrderTraversal.IN);
+
+
+    public void printTree(BinTree<?,?> tree, OrderTraversal order) {
+
+        List<?> res = tree.traverse(order);
 
         System.out.println("\n\n print tree: ");
 

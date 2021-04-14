@@ -14,11 +14,21 @@ public class TestClone extends TestBase {
             a.insert(value);
 
 
+        System.out.println("display tree a:");
+        displayTree(a);
+
+
         var b = a.clone();
-
+        System.out.println("\n\n\n display tree b:");
         displayTree(b);
+        System.out.println("\n\n height tree b: " + b.height());
 
-        System.out.println("\n\n\n height: " + b.height());
+
+        var c = a.clone();
+        c.clear();
+        System.out.println("\n\n\n display tree c:");
+        displayTree(c);
+
 
         System.out.println();
     }
