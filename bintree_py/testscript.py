@@ -1,3 +1,3 @@
-import test.testavl02 as tester
+import test.testavl04 as tester
 
-tester.dotask()
+tester.do_task()

@@ -1,31 +1,31 @@
+from .testbase import print_tree
 from binarytree import BinSearchTree
 
 
-def dotask():
-    bst = BinSearchTree(canddrm='right')
+def do_task():
+    bst = BinSearchTree()
 
     for value in [12, 39, 20, 7, 26, 45, 19, 8]:
         bst.insert(value)
 
-    print(bst)
+    print('\n count:', bst.count())
+    print('\n min:', bst.min())
+    print('\n max:', bst.max())
+    print('\n contain:', bst.contain(20))
+    print('\n height:', bst.height())
 
-    print('count:', bst.count())
-    print('min:', bst.min())
-    print('max:', bst.max())
-    print('contain:', bst.contain(20))
+    print('\n print tree')
+    print_tree(bst)
 
-    print('tree traveler: ', end='')
-    print(bst.traverse(order='in'))
-
-    print('using for each to iterate nodes in tree')
-
-    for value in bst:
-        print(value, end='  ')
-
-    print(end='\n')
+    print('\n')
 
     _ = bst.remove(800)
     _ = bst.remove(12)
 
-    print(bst)
-    print('count:', bst.count())
+    print('\n count:', bst.count())
+    print('\n height:', bst.height())
+
+    print('\n print tree')
+    print_tree(bst)
+
+    print()

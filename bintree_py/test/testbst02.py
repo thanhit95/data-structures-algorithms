@@ -1,17 +1,26 @@
+from .testbase import print_tree
 from binarytree import BinSearchTree
-from binarytreedisp import BinTreeDisplay
 
 
-def dotask():
-    display = BinTreeDisplay()
-    bst = BinSearchTree(canddrm='right')
+def do_task():
+    bst = BinSearchTree()
 
     for value in [12, 39, 20, 7, 26, 45, 19, 8]:
         bst.insert(value)
 
-    print(display.get(bst._root), end='\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
+    print('\n print tree')
+    print_tree(bst)
 
-    for value in [12, 39, 45, 20, 7, 26, 19, 8]:
-        print(f'REMOVES {value} \n')
+    print('\n height:', bst.height())
+
+    print('\n')
+
+    for value in [12, 39, 20, 7, 26, 45, 19, 8]:
         bst.remove(value)
-        print(display.get(bst._root), end='\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
+
+    print('\n print tree')
+    print_tree(bst)
+
+    print('\n height:', bst.height())
+
+    print()

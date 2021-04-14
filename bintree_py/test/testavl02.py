@@ -1,21 +1,17 @@
+from .testbase import print_tree
 from binarytree import AvlTree
-from binarytreedisp import BinTreeDisplay
 
 
-def dotask():
-    display = BinTreeDisplay()
+def do_task():
+    avl = AvlTree(lst=[10, 20, 30, 40, 50, 25])
 
-    avl = AvlTree(canddrm='right')
+    print('\n count:', avl.count())
+    print('\n min:', avl.min())
+    print('\n max:', avl.max())
+    print('\n contain:', avl.contain(50))
+    print('\n height:', avl.height())
 
-    for value in [10, 20, 30, 40, 50, 25, 100, 28, 140]:
-        avl.insert(value)
+    print('\n print tree')
+    print_tree(avl)
 
-    print(display.get(avl._root), end='\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
-
-    for value in [30, 50, 140, 25, 20, 10, 40, 100, 28]:
-        print(f'REMOVES {value} \n')
-        avl.remove(value)
-        print(display.get(avl._root), end='\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
-
-    # print(avl)
-    # print()
+    print()
