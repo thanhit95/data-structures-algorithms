@@ -48,10 +48,10 @@ class BinTreeDisplay:
         Args:
             inp_root: Input root of binary search tree.
         Returns:
-            String result. If inp_root is None then returns None.
+            String result. If inp_root is None then returns an empty string.
         '''
         if inp_root is None:
-            return None
+            return ''
 
         self._process(inp_root)
         assert self._buffer is not None
