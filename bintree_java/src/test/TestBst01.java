@@ -15,13 +15,12 @@ public class TestBst01 extends TestBase {
             bst.insert(value);
 
         System.out.println("\n\n count: " + bst.count());
-
         System.out.println("\n\n min: " + bst.min());
-
         System.out.println("\n\n max: " + bst.max());
-
         System.out.println("\n\n contain: " + bst.contain(20));
+        System.out.println("\n\n height: " + bst.height());
 
+        System.out.println("\n\n print tree: ");
         printTree(bst);
 
 
@@ -29,7 +28,9 @@ public class TestBst01 extends TestBase {
         bst.remove(12);
 
         System.out.println("\n\n count: " + bst.count());
+        System.out.println("\n\n height: " + bst.height());
 
+        System.out.println("\n\n print tree: ");
         printTree(bst);
 
 

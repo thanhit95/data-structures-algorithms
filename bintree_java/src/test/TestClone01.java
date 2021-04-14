@@ -1,10 +1,11 @@
 package test;
 
+
 import binarytree.AvlTree;
 
 
 
-public class TestClone extends TestBase {
+public class TestClone01 extends TestBase {
 
     @Override
     public void doTask() {

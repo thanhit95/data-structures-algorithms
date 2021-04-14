@@ -31,10 +31,7 @@ public abstract class TestBase {
 
 
     public void printTree(BinTree<?,?> tree, OrderTraversal order) {
-
         List<?> res = tree.traverse(order);
-
-        System.out.println("\n\n print tree: ");
 
         for (var value: res) {
             System.out.print(value + "  ");

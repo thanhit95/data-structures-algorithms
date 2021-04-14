@@ -13,7 +13,7 @@ public class TestAvl04 extends TestBase {
         var avl = new AvlTree<Integer>(CandidateRemoval.RIGHT);
 
         for ( var value : new int[] {10, 20, 30, 40, 50, 25, 100, 28, 140} ) {
-            System.out.println("\n\n\n insert " + value);
+            System.out.println("\n\n\n\n insert " + value + "\n");
             avl.insert(value);
             displayTree(avl);
         }
@@ -22,11 +22,10 @@ public class TestAvl04 extends TestBase {
 
 
         for ( var value : new int[] {30, 50, 140, 25, 20, 10, 40, 100, 28} ) {
-            System.out.println("\n\n\n remove " + value);
+            System.out.println("\n\n\n\n remove " + value + "\n");
             avl.remove(value);
             displayTree(avl);
         }
-
 
         System.out.println();
     }
