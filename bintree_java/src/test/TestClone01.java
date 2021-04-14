@@ -15,7 +15,7 @@ public class TestClone01 extends TestBase {
             a.insert(value);
 
 
-        System.out.println("display tree a:");
+        System.out.println(" display tree a:");
         displayTree(a);
 
 
