@@ -8,7 +8,7 @@ import binarytreedisp.BinTreeDisplay;
 
 
 
-public class BinTree< TKey extends Number & Comparable<? super TKey>,
+public class BinTree< TKey extends Comparable<? super TKey>,
                       TNode extends BinNode<TKey,TNode>
                     >
              implements Cloneable

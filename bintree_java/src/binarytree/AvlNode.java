@@ -2,7 +2,7 @@ package binarytree;
 
 
 
-public class AvlNode< TKey extends Number & Comparable<? super TKey> >
+public class AvlNode< TKey extends Comparable<? super TKey> >
              extends BinNode< TKey, AvlNode<TKey> >
 {
 

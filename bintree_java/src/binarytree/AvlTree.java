@@ -5,7 +5,7 @@ import java.util.List;
 
 
 
-public class AvlTree< TKey extends Number & Comparable<? super TKey> >
+public class AvlTree< TKey extends Comparable<? super TKey> >
              extends BinSearchTree< TKey, AvlNode<TKey> >
 {
 

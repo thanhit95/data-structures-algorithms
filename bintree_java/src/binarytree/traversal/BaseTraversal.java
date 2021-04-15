@@ -6,7 +6,7 @@ import java.util.List;
 
 
 
-public abstract class BaseTraversal< TKey extends Number & Comparable<? super TKey>,
+public abstract class BaseTraversal< TKey extends Comparable<? super TKey>,
                                      TNode extends BinNode<TKey, TNode>
                                    >
 {

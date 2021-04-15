@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 
 
-public class BinSearchTree< TKey extends Number & Comparable<? super TKey>,
+public class BinSearchTree< TKey extends Comparable<? super TKey>,
                             TNode extends BinNode<TKey,TNode>
                           >
              extends BinTree<TKey,TNode>
