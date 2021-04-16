@@ -5,9 +5,10 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "binarytree/bst.hpp"
-#include "binarytreedisp/display.hpp"
+#include "binarytree/binsearchtree.hpp"
+#include "binarytreedisp/bintreedisplay.hpp"
 
+using namespace my::test;
 using namespace my::bt;
 using namespace my::btdisp;
 
@@ -15,35 +16,41 @@ using namespace my::btdisp;
 
 namespace my
 {
-namespace testdisplay01
+namespace test
+{
+namespace display01
 {
 
 
 
-void dotask()
+void doTask()
 {
-    auto bst = BinarySearchTree<double>();
+    auto bst = BinSearchTree<double>();
 
-    std::vector<double> arrInsert = {100, 50, 70000, 10, 88.523816, 20000, 90000, -123456, 14.78, 62, 500, 30000.19, 40000};
+    std::vector<double> arrValue = {100, 50, 70000, 10, 88.523816, 20000, 90000, -123456, 14.78, 62, 500, 30000.19, 40000};
 
-    for ( auto &&value : arrInsert )
+    for ( auto &&value : arrValue )
     {
         bst.insert(value);
     }
 
-    auto display = BinTreeDisplay<BinNode<double>>();
+    auto disp = BinTreeDisplay();
+    disp.config(
+        '-',    // lineChar
+        1,      // lineBrsp
+        0,      // marginLeft
+        2       // floatPre
+    );
 
-    display.config('-', 1, 0, 2);
+    auto res = bst.display(disp);
 
-    auto res = display.get(bst._getRoot());
-
-    std::cout << res;
-
+    std::cout << res << std::endl;
     std::cout << std::endl;
 }
 
 
 
+}
 } // test
 } // my
 

@@ -3,8 +3,8 @@
 
 
 #include "avlnode.hpp"
-#include "bst.hpp"
-#include "global.hpp"
+#include "binsearchtree.hpp"
+#include "candidateremoval.hpp"
 
 
 
@@ -16,51 +16,80 @@ namespace bt
 
 
 template < typename TKey, typename TNode=AvlNode<TKey> >
-class AvlTree : public BinarySearchTree<TKey, TNode>
+class AvlTree : public BinSearchTree<TKey, TNode>
 {
-////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////
 //                        FIELDS
-////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
 
 
 
-////////////////////////////////////////////////////////
-//                        METHODS
-////////////////////////////////////////////////////////
-public:
-    AvlTree(CandidateRemoval canddRemoval = CandidateRemoval::RIGHT)
-        : BinarySearchTree<TKey, TNode>(canddRemoval)
-    {
-
-    }
-
-
-
-    virtual ~AvlTree() {  }
+//////////////////////////////////////////////////////////////
+//                        CONSTRUCTORS
+//////////////////////////////////////////////////////////////
 
 
 
 public:
-    virtual AvlTree* clone() const override
+    virtual ~AvlTree() { }
+
+
+
+    AvlTree(CandidateRemoval canddRM = CandidateRemoval::RIGHT):
+        BinSearchTree<TKey, TNode>(canddRM)
     {
-        return new AvlTree<TKey, TNode>(*this);
     }
+
+
+
+    AvlTree(const std::vector<TKey> &lst):
+        BinSearchTree<TKey, TNode>(lst)
+    {
+    }
+
+
+
+    AvlTree(const std::vector<TKey> &lst, CandidateRemoval canddRM):
+        BinSearchTree<TKey, TNode>(lst, canddRM)
+    {
+    }
+
+
+
+//////////////////////////////////////////////////////////////
+//                        METHODS (PUBLIC)
+//////////////////////////////////////////////////////////////
+
+
+
+public:
+    virtual int height() const override
+    {
+        return (nullptr == this->root) ? 0 : this->root->height();
+    }
+
+
+
+//////////////////////////////////////////////////////////////
+//                        METHODS (PROTECTED)
+//////////////////////////////////////////////////////////////
 
 
 
 protected:
-    virtual TNode* __insert(TNode *node, const TKey &key) override
+    virtual TNode* _insert(TNode *node, const TKey &key) override
     {
         if (nullptr == node)
         {
-            this->_count += 1;
-            return new TNode(key);
+            this->successState = true;
+            return new TNode(key); // return createNode(key);
         }
 
         if (key < node->key)
-            node->left = __insert(node->left, key);
+            node->left = _insert(node->left, key);
         else if (key > node->key)
-            node->right = __insert(node->right, key);
+            node->right = _insert(node->right, key);
 
         node = adjustBalance(node);
         return node;
@@ -68,15 +97,15 @@ protected:
 
 
 
-    virtual TNode* __remove(TNode *node, const TKey &key) override
+    virtual TNode* _remove(TNode *node, const TKey &key) override
     {
         if (nullptr == node)
             return nullptr;
 
         if (key < node->key)
-            node->left = __remove(node->left, key);
+            node->left = _remove(node->left, key);
         else if (key > node->key)
-            node->right = __remove(node->right, key);
+            node->right = _remove(node->right, key);
         else
         {
             if (nullptr == node->left)
@@ -96,15 +125,15 @@ protected:
 
     virtual TNode* adjustBalance(TNode *node)
     {
-        // STEP 1. Updates the height of the node
+        // STEP 1. Update the height of the node
         node->updateHeight();
 
-        // STEP 2. Gets the balance factor
+        // STEP 2. Get the balance factor
         int balance = node->balance();
         int balanceLe = node->balanceLeft();
         int balanceRi = node->balanceRight();
 
-        // STEP 3. Processes if the node is unbalanced ==> 4 cases
+        // STEP 3. Process if the node is unbalanced ==> 4 cases
 
         // Case 1: left-left
         if (  balance > 1 && balanceLe >= 0  )
@@ -133,7 +162,6 @@ protected:
 
 
 
-protected:
     TNode* rotateLeft(TNode *node)
     {
         /*
@@ -178,6 +206,18 @@ protected:
         V->updateHeight();
 
         return V;
+    }
+
+
+
+    // do not need to override method
+    // virtual TNode* createNode(const TKey &key) const override
+
+
+
+    virtual void buildTreeFromSortedListNodeFunc(TNode *node) override
+    {
+        node->updateHeight();
     }
 };
 

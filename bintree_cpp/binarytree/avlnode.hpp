@@ -3,6 +3,7 @@
 
 
 #include <algorithm>
+#include "iclonebranch.hpp"
 
 
 
@@ -14,24 +15,31 @@ namespace bt
 
 
 template < typename TKey >
-class AvlNode
+class AvlNode : public ICloneBranch<AvlNode<TKey>>
 {
-////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////
 //                        FIELDS
-////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+
+
+
 public:
     TKey key;
     AvlNode *left = nullptr;
     AvlNode *right = nullptr;
 
-private:
+protected:
     int _height = 1;
 
 
 
-////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
 //                        METHODS
-////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+
+
+
 public:
     AvlNode(const TKey &key = TKey())
     {
@@ -81,20 +89,31 @@ public:
 
     int balanceLeft() const
     {
-        if (nullptr == this->left)
-            return 0;
-
-        return this->left->balance();
+        return (nullptr == this->left) ? 0 : this->left->balance();
     }
 
 
 
     int balanceRight() const
     {
-        if (nullptr == this->right)
-            return 0;
+        return (nullptr == this->right) ? 0 : this->right->balance();
+    }
 
-        return this->right->balance();
+
+
+public:
+    AvlNode* cloneBranch() const override
+    {
+        auto *theClone = new AvlNode<TKey>(this->key);
+        theClone->_height = this->_height;
+
+        if (nullptr != this->left)
+            theClone->left = this->left->cloneBranch();
+
+        if (nullptr != this->right)
+            theClone->right = this->right->cloneBranch();
+
+        return theClone;
     }
 };
 

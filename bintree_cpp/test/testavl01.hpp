@@ -3,62 +3,45 @@
 
 
 #include <iostream>
-#include <vector>
+#include "testbase.hpp"
 #include "binarytree/avltree.hpp"
 
+using namespace my::test;
 using namespace my::bt;
 
 
 
 namespace my
 {
-namespace testavl01
+namespace test
+{
+namespace avl01
 {
 
 
-void printTree(AvlTree<int> &avl)
-{
-    std::vector<int*> res = avl.traverse(OrderTraverse::IN);
 
-    std::cout << "\n\n print tree: ";
-
-    for (auto &&value : res)
-    {
-        std::cout << (*value) << "  ";
-    }
-
-    std::cout << std::endl;
-}
-
-
-
-void dotask()
+void doTask()
 {
     auto avl = AvlTree<int>();
 
     for ( auto &&value : {10, 20, 30, 40, 50, 25} )
         avl.insert(value);
 
-    // std::cout << bst;
+    std::cout << "\n count: " << avl.count() << std::endl;
+    std::cout << "\n min: " << avl.min() << std::endl;
+    std::cout << "\n max: " << avl.max() << std::endl;
+    std::cout << "\n contain: " << avl.contain(50) << std::endl;
+    std::cout << "\n height: " << avl.height() << std::endl;
 
-    std::cout << "\n\n count: " << avl.count();
-
-    std::cout << "\n\n min: " << avl.getMin();
-
-    std::cout << "\n\n max: " << avl.getMax();
-
-    std::cout << "\n\n contain: " << avl.contain(50);
-
-    std::cout << "\n\n height: " << avl.height();
-
-    printTree(avl);
-
+    std::cout << "\n print tree:" << std::endl;
+    base::printTree(avl);
 
     std::cout << std::endl;
 }
 
 
 
+}
 } // test
 } // my
 

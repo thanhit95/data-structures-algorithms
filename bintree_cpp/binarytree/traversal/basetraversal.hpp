@@ -4,7 +4,7 @@
 
 #include <vector>
 #include "ordertraversal.hpp"
-#include "binnode.hpp"
+#include "../binnode.hpp"
 
 
 
@@ -22,7 +22,7 @@ public:
     virtual ~BaseTraversal() { }
 
 public:
-    virtual std::vector<TKey*> traverse(const TNode *root, const OrderTraversal &order = OrderTraversal.IN) = 0;
+    virtual std::vector<TKey> traverse(const TNode *root, const OrderTraversal &order = OrderTraversal::IN) = 0;
 };
 
 

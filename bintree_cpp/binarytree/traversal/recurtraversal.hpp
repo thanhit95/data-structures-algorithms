@@ -5,7 +5,6 @@
 #include <vector>
 #include "basetraversal.hpp"
 #include "ordertraversal.hpp"
-#include "binnode.hpp"
 
 
 
@@ -20,7 +19,7 @@ template < typename TKey, typename TNode=BinNode<TKey> >
 class RecurTraversal : public BaseTraversal<TKey, TNode>
 {
 protected:
-    std::vector<TKey*> resPath;
+    std::vector<TKey> resPath;
 
 
 
@@ -30,7 +29,7 @@ public:
 
 
 public:
-    virtual std::vector<TKey*> traverse(const TNode *root, const OrderTraversal &order = OrderTraversal::IN) override
+    virtual std::vector<TKey> traverse(const TNode *root, const OrderTraversal &order = OrderTraversal::IN) override
     {
         resPath.clear();
 
@@ -58,38 +57,38 @@ public:
 
 
 protected:
-    virtual void traversePre(TNode *node)
+    virtual void traversePre(const TNode *node)
     {
         if (nullptr == node)
             return;
 
-        resPath.push_back(&node->key);
+        resPath.push_back(node->key);
         traversePre(node->left);
         traversePre(node->right);
     }
 
 
 
-    virtual void traverseIn(TNode *node)
+    virtual void traverseIn(const TNode *node)
     {
         if (nullptr == node)
             return;
 
         traverseIn(node->left);
-        resPath.push_back(&node->key);
+        resPath.push_back(node->key);
         traverseIn(node->right);
     }
 
 
 
-    virtual void traversePost(TNode *node)
+    virtual void traversePost(const TNode *node)
     {
         if (nullptr == node)
             return;
 
         traversePost(node->left);
         traversePost(node->right);
-        resPath.push_back(&node->key);
+        resPath.push_back(node->key);
     }
 };
 

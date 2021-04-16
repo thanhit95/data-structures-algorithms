@@ -3,70 +3,51 @@
 
 
 #include <iostream>
-#include <vector>
-#include "binarytree/bst.hpp"
+#include "testbase.hpp"
+#include "binarytree/binsearchtree.hpp"
 
+using namespace my::test;
 using namespace my::bt;
 
 
 
 namespace my
 {
-namespace testbst01
+namespace test
+{
+namespace bst01
 {
 
 
 
-void printTree(BinarySearchTree<int> &bst)
+void doTask()
 {
-    std::vector<int*> res = bst.traverse(OrderTraverse::IN);
-
-    std::cout << "\n\n print tree: ";
-
-    for (auto &&value : res)
-    {
-        std::cout << (*value) << "  ";
-    }
-
-    std::cout << std::endl;
-}
-
-
-
-void dotask()
-{
-    auto bst = BinarySearchTree<int>();
+    auto bst = BinSearchTree<int>();
 
     for ( auto &&value : {12, 39, 20, 7, 26, 45, 19, 8} )
         bst.insert(value);
 
-    // std::cout << bst;
+    std::cout << "\n count: " << bst.count() << std::endl;
+    std::cout << "\n min: " << bst.min() << std::endl;
+    std::cout << "\n max: " << bst.max() << std::endl;
+    std::cout << "\n contain: " << bst.contain(20) << std::endl;
+    std::cout << "\n height: " << bst.height() << std::endl;
 
-    std::cout << "\n\n count: " << bst.count();
-
-    std::cout << "\n\n min: " << bst.getMin();
-
-    std::cout << "\n\n max: " << bst.getMax();
-
-    std::cout << "\n\n contain: " << bst.contain(20);
-
-    printTree(bst);
+    std::cout << "\n print tree:" << std::endl;
+    base::printTree(bst);
 
 
-    /*
-    std::cout << "\n\nUsing for each to iterate nodes in tree";
-
-    for (auto &&value : bst)
-        std::cout << value << std::endl;
-    */
+    std::cout << "\n" << std::endl;
 
 
     bst.remove(800);
     bst.remove(12);
 
-    std::cout << "\n\n count: " << bst.count();
+    std::cout << "\n count: " << bst.count() << std::endl;
+    std::cout << "\n height: " << bst.height() << std::endl;
 
-    printTree(bst);
+    std::cout << "\n print tree:" << std::endl;
+    base::printTree(bst);
 
 
     std::cout << std::endl;
@@ -74,6 +55,7 @@ void dotask()
 
 
 
+}
 } // test
 } // my
 

@@ -3,36 +3,24 @@
 
 
 #include <iostream>
-#include <vector>
+#include "testbase.hpp"
 #include "binarytree/avltree.hpp"
-#include "binarytreedisp/display.hpp"
 
+using namespace my::test;
 using namespace my::bt;
-using namespace my::btdisp;
 
 
 
 namespace my
 {
-namespace testrulefive01
+namespace test
+{
+namespace rulefive01
 {
 
 
 
-void printTree(AvlTree<int> &avl)
-{
-    auto display = BinTreeDisplay< AvlNode<int> >();
-
-    display.config('-', 1, 0, 2);
-
-    auto res = display.get(avl._getRoot());
-
-    std::cout << res;
-}
-
-
-
-void dotask()
+void doTask()
 {
     auto a = AvlTree<int>();
 
@@ -43,24 +31,15 @@ void dotask()
     auto b = a; // copy constructor
     b.insert(60);
     b.insert(12);
-    printTree(b);
+    base::displayTree(b);
 
 
     std::cout << "\n\n\n";
 
 
-    auto c = b; // copy constructor
+    auto c = AvlTree<int>();
     c = a;      // copy assignment operator
-    printTree(c);
-
-
-    std::cout << "\n\n\n";
-
-
-    auto d = a.clone();
-    d->insert(60);
-    d->insert(12);
-    printTree(*d);
+    base::displayTree(c);
 
 
     std::cout << std::endl;
@@ -68,9 +47,9 @@ void dotask()
 
 
 
+}
 } // test
 } // my
-
 
 
 

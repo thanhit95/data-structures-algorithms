@@ -16,66 +16,57 @@ namespace btdisp
 
 
 
-template <typename TNode>
 class DisplayParser
 {
-////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////
 //                        FIELDS
-////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+
+
+
 public:
-    ValueUtil * valueUtil = nullptr;
-    char line_char = '-';
-    int  line_brsp = 1;
+    ValueUtil *valueUtil = nullptr;
+    char lineChar = '-';
+    int  lineBrsp = 1;
 
 
 
-////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
 //                        METHODS
-////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+
+
+
 public:
-    DisplayParser(ValueUtil *valueUtil, char character = '-', int branchSpacing = 1) : valueUtil(valueUtil)
+    DisplayParser(ValueUtil *valueUtil, char character = '-', int branchSpacing = 1): valueUtil(valueUtil)
     {
         if (nullptr == valueUtil)
             throw std::invalid_argument("valueUtil cannot be nullptr");
 
-        // configLine(character, branchSpacing);
+        configLine(character, branchSpacing);
     }
 
 
 
-public:
     void configLine(char character, int branchSpacing)
     {
         if (branchSpacing < 1)
-            throw std::invalid_argument("branchSpacing must be positive integer");
+            throw std::invalid_argument("branchSpacing must be a positive integer");
 
-        this->line_char = character;
-        this->line_brsp = branchSpacing;
+        this->lineChar = character;
+        this->lineBrsp = branchSpacing;
     }
 
 
 
-public:
-    int getHeight(TNode *node) const
-    {
-        if (nullptr == node)
-            return 0;
-
-        int heightLeBranch = getHeight(node->left);
-        int heightRiBranch = getHeight(node->right);
-
-        return 1 + std::max(heightLeBranch, heightRiBranch);
-    }
-
-
-
-public:
-    ParsingNode* buildTree(TNode *inputRoot)
+    template <typename TNode>
+    ParsingNode* buildTree(TNode *inputRoot) const
     {
         if (nullptr == inputRoot)
             return nullptr;
 
-        ParsingNode *node = new ParsingNode(this->valueUtil->getStr(inputRoot->key));
+        auto *node = new ParsingNode(this->valueUtil->getStr(inputRoot->key));
         int lenKey = node->key.length();
 
         node->left = buildTree(inputRoot->left);
@@ -87,8 +78,8 @@ public:
         int widthLeftBranch = nodeLeftNull ? 0 : node->left->width;
         int widthRightBranch = nodeRightNull ? 0 : node->right->width;
 
-        int sizeLeftLine = nodeLeftNull ? 0 : this->line_brsp;
-        int sizeRightLine = nodeRightNull ? 0 : this->line_brsp;
+        int sizeLeftLine = nodeLeftNull ? 0 : this->lineBrsp;
+        int sizeRightLine = nodeRightNull ? 0 : this->lineBrsp;
 
         int fullWidth = widthLeftBranch + widthRightBranch + sizeLeftLine + sizeRightLine;
 
@@ -114,8 +105,7 @@ public:
 
 
 
-public:
-    void destroyTree(ParsingNode *&node)
+    void destroyTree(ParsingNode *&node) const
     {
         if (nullptr == node)
             return;
@@ -125,6 +115,20 @@ public:
 
         delete node;
         node = nullptr;
+    }
+
+
+
+    template <typename TNode>
+    int getHeight(TNode *node) const
+    {
+        if (nullptr == node)
+            return 0;
+
+        int heightLe = getHeight(node->left);
+        int heightRi = getHeight(node->right);
+
+        return 1 + std::max(heightLe, heightRi);
     }
 };
 

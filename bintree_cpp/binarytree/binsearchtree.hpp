@@ -1,12 +1,23 @@
-#ifndef __BINARY_SEARCH_TREE_HPP__
-#define __BINARY_SEARCH_TREE_HPP__
+#ifndef __BIN_SEARCH_TREE_HPP__
+#define __BIN_SEARCH_TREE_HPP__
 
 
+#include <algorithm>
 #include <tuple>
 #include <cassert>
 #include "binnode.hpp"
 #include "bintree.hpp"
-#include "global.hpp"
+#include "candidateremoval.hpp"
+
+
+
+#ifdef min
+#undef min
+#endif
+
+#ifdef max
+#undef max
+#endif
 
 
 
@@ -18,49 +29,71 @@ namespace bt
 
 
 template < typename TKey, typename TNode=BinNode<TKey> >
-class BinarySearchTree : public BinTree<TKey, TNode>
+class BinSearchTree : public BinTree<TKey, TNode>
 {
-////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////
 //                        FIELDS
-////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+
+
+
 protected:
     int _count = 0;
-    CandidateRemoval _optionCanddRemoval = CandidateRemoval::RIGHT;
+    CandidateRemoval optionCanddRM = CandidateRemoval::RIGHT;
+    bool successState = false;
 
 
 
-////////////////////////////////////////////////////////
-//                        METHODS
-////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+//                        CONSTRUCTORS
+//////////////////////////////////////////////////////////////
+
+
+
 public:
-    BinarySearchTree(CandidateRemoval canddRemoval = CandidateRemoval::RIGHT):
+    virtual ~BinSearchTree() { }
+
+
+
+    BinSearchTree(CandidateRemoval canddRM = CandidateRemoval::RIGHT):
         BinTree<TKey, TNode>()
     {
-        this->_optionCanddRemoval = canddRemoval;
+        this->optionCanddRM = canddRM;
     }
 
 
-    virtual ~BinarySearchTree() { }
 
-
-
-public:
-    virtual BinarySearchTree* clone() const override
+    BinSearchTree(const std::vector<TKey> &lst): BinTree<TKey, TNode>()
     {
-        return new BinarySearchTree<TKey, TNode>(*this);
+        constructFromList(lst);
     }
 
 
 
+    BinSearchTree(const std::vector<TKey> &lst, CandidateRemoval canddRM):
+        BinTree<TKey, TNode>()
+    {
+        constructFromList(lst);
+        this->optionCanddRM = canddRM;
+    }
+
+
+
+//////////////////////////////////////////////////////////////
+//                        METHODS (PUBLIC)
+//////////////////////////////////////////////////////////////
+
+
+
 public:
-    inline int count() const
+    int count() const
     {
         return this->_count;
     }
 
 
 
-public:
     bool contain(const TKey &key) const
     {
         auto temp = search(this->root, key);
@@ -70,15 +103,22 @@ public:
 
 
 
-public:
-    void insert(const TKey &key)
+    bool insert(const TKey &key)
     {
-        this->root = __insert(this->root, key);
+        this->successState = false;
+
+        this->root = _insert(this->root, key);
+
+        if (false == this->successState) {
+            return false;
+        }
+
+        this->_count += 1;
+        return true;
     }
 
 
 
-public:
     bool remove(const TKey &key)
     {
         if (nullptr == this->root)
@@ -87,7 +127,7 @@ public:
         if (false == contain(key))
             return false;
 
-        this->root = __remove(this->root, key);
+        this->root = _remove(this->root, key);
 
         this->_count -= 1;
         return true;
@@ -95,8 +135,7 @@ public:
 
 
 
-public:
-    TKey getMin() const
+    TKey min() const
     {
         if (this->empty())
             throw std::logic_error("Tree is empty");
@@ -109,7 +148,7 @@ public:
 
 
 
-    TKey getMax() const
+    TKey max() const
     {
         if (this->empty())
             throw std::logic_error("Tree is empty");
@@ -122,22 +161,28 @@ public:
 
 
 
+//////////////////////////////////////////////////////////////
+//                        METHODS (PROTECTED)
+//////////////////////////////////////////////////////////////
+
+
+
 protected:
-    virtual TNode* __insert(TNode *node, const TKey &key)
+    virtual TNode* _insert(TNode *node, const TKey &key)
     {
         if (nullptr == node)
         {
             this->_count += 1;
-            return new TNode(key);
+            return new TNode(key); // return createNode(key);
         }
 
         if (key < node->key)
         {
-            node->left = __insert(node->left, key);
+            node->left = _insert(node->left, key);
         }
         else
         {
-            node->right = __insert(node->right, key);
+            node->right = _insert(node->right, key);
         }
 
         return node;
@@ -145,18 +190,18 @@ protected:
 
 
 
-    virtual TNode* __remove(TNode *node, const TKey &key)
+    virtual TNode* _remove(TNode *node, const TKey &key)
     {
         if (nullptr == node)
             return nullptr;
 
         if (key < node->key)
         {
-            node->left = __remove(node->left, key);
+            node->left = _remove(node->left, key);
         }
         else if (key > node->key)
         {
-            node->right = __remove(node->right, key);
+            node->right = _remove(node->right, key);
         }
         else
         {
@@ -180,18 +225,18 @@ protected:
 
         TNode *candidate = nullptr;
 
-        switch (this->_optionCanddRemoval)
+        switch (this->optionCanddRM)
         {
         case CandidateRemoval::RIGHT :
             candidate = std::get<0>( searchMin(node->right, node) );
             node->key = candidate->key;
-            node->right = this->__remove(node->right, candidate->key);
+            node->right = this->_remove(node->right, candidate->key);
             break;
 
         case CandidateRemoval::LEFT :
             candidate = std::get<0>( searchMax(node->left, node) );
             node->key = candidate->key;
-            node->left = this->__remove(node->left, candidate->key);
+            node->left = this->_remove(node->left, candidate->key);
             break;
 
         default:
@@ -264,6 +309,45 @@ protected:
 
         return std::make_tuple(node, parent);
     }
+
+
+
+    void constructFromList(std::vector<TKey> lst)
+    {
+        this->freeMemory(this->root);
+
+        std::sort(lst.begin(), lst.end());
+        lst.erase(std::unique(lst.begin(), lst.end()), lst.end());
+
+        int lenLst = lst.size();
+
+        this->root = buildTreeFromSortedList(lst, 0, lenLst - 1);
+        this->_count = lenLst;
+    }
+
+
+
+    TNode* buildTreeFromSortedList(const std::vector<TKey> &lst, int indexStart, int indexEnd)
+    {
+        if (indexStart > indexEnd)
+            return nullptr;
+
+        int indexMid = (indexStart + indexEnd) / 2;
+        TNode *node = this->createNode(lst[indexMid]);
+
+        node->left = buildTreeFromSortedList(lst, indexStart, indexMid - 1);
+        node->right = buildTreeFromSortedList(lst, indexMid + 1, indexEnd);
+
+        buildTreeFromSortedListNodeFunc(node);
+
+        return node;
+    }
+
+
+
+    virtual void buildTreeFromSortedListNodeFunc(TNode *node)
+    {
+    }
 };
 
 
@@ -273,4 +357,4 @@ protected:
 
 
 
-#endif // __BINARY_SEARCH_TREE_HPP__
+#endif // __BIN_SEARCH_TREE_HPP__

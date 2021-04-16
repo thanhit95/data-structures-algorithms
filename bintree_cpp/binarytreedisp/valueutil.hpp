@@ -19,8 +19,9 @@ namespace btdisp
 class ValueUtil
 {
 private:
-    int _floatPrecision = 2;
-    bool _floatFixed = true;
+    int floatPrecision = 2;
+    bool floatFixed = true;
+
 
 
 public:
@@ -28,10 +29,10 @@ public:
     {
         if (floatPrecision >= 0)
         {
-            this->_floatPrecision = floatPrecision;
+            this->floatPrecision = floatPrecision;
         }
 
-        this->_floatFixed = floatFixed;
+        this->floatFixed = floatFixed;
     }
 
 
@@ -39,7 +40,7 @@ public:
 public:
     int getFloatPrecision() const
     {
-        return this->_floatPrecision;
+        return this->floatPrecision;
     }
 
 
@@ -47,9 +48,9 @@ public:
     void setFloatPrecision(int precision)
     {
         if (precision < 0)
-            throw std::invalid_argument("precision must be non-negative integer");
+            throw std::invalid_argument("precision must be a non-negative integer");
 
-        this->_floatPrecision = precision;
+        this->floatPrecision = precision;
     }
 
 
@@ -75,8 +76,12 @@ public:
         return std::to_string(value);
     }
 
+    std::string getStr(char value) const
+    {
+        return std::string(1, value);
+    }
 
-    std::string getStr(char const *str) const
+    std::string getStr(const char *str) const
     {
         return std::string(str);
     }
@@ -91,15 +96,29 @@ public:
     std::string getStr(double value) const
     {
         std::ostringstream ss;
+        configStringStream(ss);
+        ss << value;
+        return ss.str();
+    }
 
-        if (this->_floatFixed)
+
+
+    std::string getStr(long double value) const
+    {
+        std::ostringstream ss;
+        configStringStream(ss);
+        ss << value;
+        return ss.str();
+    }
+
+
+
+    void configStringStream(std::ostringstream &ss) const
+    {
+        if (this->floatFixed)
             ss << std::fixed;
 
-        ss << std::setprecision(this->_floatPrecision);
-
-        ss << value;
-
-        return ss.str();
+        ss << std::setprecision(this->floatPrecision);
     }
 };
 

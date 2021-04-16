@@ -3,56 +3,47 @@
 
 
 #include <iostream>
-#include <vector>
-#include "binarytree/bst.hpp"
+#include "testbase.hpp"
+#include "binarytree/binsearchtree.hpp"
 
+using namespace my::test;
 using namespace my::bt;
 
 
 
 namespace my
 {
-namespace testbst02
+namespace test
+{
+namespace bst02
 {
 
 
 
-void printTree(BinarySearchTree<int> &bst)
+void doTask()
 {
-    std::vector<int*> res = bst.traverse(OrderTraverse::IN);
-
-    std::cout << "\n\n print tree: ";
-
-    for (auto &&value : res)
-    {
-        std::cout << (*value) << "  ";
-    }
-
-    std::cout << std::endl;
-}
-
-
-
-void dotask()
-{
-    auto bst = BinarySearchTree<int>();
+    auto bst = BinSearchTree<int>();
 
     for ( auto &&value : {12, 39, 20, 7, 26, 45, 19, 8} )
         bst.insert(value);
 
-    printTree(bst);
+    base::printTree(bst);
+    std::cout << " height: " << bst.height() << std::endl;
 
 
     for ( auto &&value : {12, 39, 20, 7, 26, 45, 19, 8} )
         bst.remove(value);
 
-    printTree(bst);
+    base::printTree(bst);
+    std::cout << " height: " << bst.height() << std::endl;
+
 
     std::cout << std::endl;
 }
 
 
 
+}
 } // test
 } // my
 

@@ -18,43 +18,50 @@ namespace btdisp
 
 class MatrixBuffer
 {
-////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////
 //                        FIELDS
-////////////////////////////////////////////////////////
-protected:
+//////////////////////////////////////////////////////////////
+
+
+
+private:
     int _width = 0;
     int _height = 0;
-
-public:
-    std::vector< std::vector<char> > _a;
+    std::vector< std::vector<char> > a;
 
 
 
-////////////////////////////////////////////////////////
-//                        METHODS
-////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+//                        METHODS (PUBLIC)
+//////////////////////////////////////////////////////////////
+
+
+
 public:
     MatrixBuffer(const int &width, const int &height): _width(width), _height(height)
     {
         if (width < 1)
-            throw std::invalid_argument("width must be positive integer");
+            throw std::invalid_argument("width must be a positive integer");
 
         if (height < 1)
-            throw std::invalid_argument("height must be positive integer");
+            throw std::invalid_argument("height must be a positive integer");
 
-        this->_a.resize(_height);
+        // init matrix
+        this->a.resize(_height);
 
-        for (auto &row : this->_a)
+        for (auto &row : this->a)
             row.resize(_width, ' ');
     }
 
 
 
-public:
     int width() const
     {
         return _width;
     }
+
+
 
     int height() const
     {
@@ -63,7 +70,6 @@ public:
 
 
 
-public:
     void fill(int posx, int posy, const std::string &value)
     {
         if (posx < 0 || posx >= this->_width)
@@ -72,30 +78,42 @@ public:
         if (posy < 0 || posy >= this->_height)
             throw std::invalid_argument("posy");
 
+        int posxStart = posx;
         int lenValue = value.length();
 
-        for (int i = 0; i< lenValue; ++i)
+        for (int i = 0; i < lenValue; ++i)
         {
-            int idx = posx + i;
+            posx = posxStart + i;
 
-            if (idx >= this->_width)
+            if (posx >= this->_width)
                 break;
 
-            this->_a[posy][idx] = value[i];
+            this->a[posy][posx] = value[i];
         }
     }
 
 
 
-public:
+    void fillLine(char character, int y, int startx, int endx)
+    {
+        for (int x = startx; x <= endx; ++x)
+        {
+            this->a[y][x] = character;
+        }
+    }
+
+
+
     std::string getStr() const
     {
-        std::vector<std::string> lstRows = getLstRows();
-
         std::string res;
+        std::vector<std::string> lstRows = getLstRows();
 
         for (auto &&row : lstRows)
             res += row + '\n';
+
+        if (false == res.empty())
+            res.pop_back();
 
         return res;
     }
@@ -106,14 +124,10 @@ public:
     {
         std::vector<std::string> res;
 
-        for (auto &&row : this->_a)
+        for (auto &&row : this->a)
         {
-            std::string srow(this->_width, ' ');
-
-            for (int i = 0; i < row.size(); ++i)
-                srow[i] = row[i];
-
-            res.push_back(srow);
+            std::string lineout(row.begin(), row.end());
+            res.push_back(lineout);
         }
 
         return res;

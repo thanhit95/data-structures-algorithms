@@ -3,62 +3,42 @@
 
 
 #include <iostream>
-#include <vector>
+#include "testbase.hpp"
 #include "binarytree/avltree.hpp"
 
+using namespace my::test;
 using namespace my::bt;
 
 
 
 namespace my
 {
-namespace testavl02
+namespace test
+{
+namespace avl02
 {
 
 
 
-void printTree(AvlTree<int> &avl)
+void doTask()
 {
-    std::vector<int*> res = avl.traverse(OrderTraverse::IN);
+    auto avl = AvlTree<int>({10, 20, 30, 40, 50, 25});
 
-    std::cout << "\n print tree: ";
+    std::cout << "\n count: " << avl.count() << std::endl;
+    std::cout << "\n min: " << avl.min() << std::endl;
+    std::cout << "\n max: " << avl.max() << std::endl;
+    std::cout << "\n contain: " << avl.contain(50) << std::endl;
+    std::cout << "\n height: " << avl.height() << std::endl;
 
-    for (auto &&value : res)
-    {
-        std::cout << (*value) << "  ";
-    }
-}
-
-
-
-void dotask()
-{
-    auto avl = AvlTree<int>();
-
-    for ( auto &&value : {10, 20, 30, 40, 50, 25, 100, 28, 140} )
-    {
-        std::cout << "\n\n inserts " << value;
-        avl.insert(value);
-        printTree(avl);
-        std::cout << "\n height: " << avl.height();
-    }
-
-    std::cout << std::endl;
-
-    for ( auto &&value : {30, 50, 140, 25, 20, 10, 40, 100, 28} )
-    {
-        std::cout << "\n\n removes " << value;
-        avl.remove(value);
-        printTree(avl);
-        std::cout << "\n height: " << avl.height();
-    }
-
+    std::cout << "\n print tree:" << std::endl;
+    base::printTree(avl);
 
     std::cout << std::endl;
 }
 
 
 
+}
 } // test
 } // my
 

@@ -7,7 +7,6 @@
 #include <algorithm>
 #include "basetraversal.hpp"
 #include "ordertraversal.hpp"
-#include "binnode.hpp"
 
 
 
@@ -27,9 +26,9 @@ public:
 
 
 public:
-    virtual std::vector<TKey*> traverse(const TNode *root, const OrderTraversal &order = OrderTraversal::IN) override
+    virtual std::vector<TKey> traverse(const TNode *root, const OrderTraversal &order = OrderTraversal::IN) override
     {
-        std::vector<TKey*> resPath;
+        std::vector<TKey> resPath;
 
         switch (order)
         {
@@ -55,7 +54,7 @@ public:
 
 
 protected:
-    virtual void traversePre(TNode *node, std::vector<TKey*> &resPath)
+    virtual void traversePre(const TNode *node, std::vector<TKey> &resPath)
     {
         resPath.clear();
         std::stack<TNode> stack;
@@ -66,7 +65,7 @@ protected:
         {
             node = stack.top();
             stack.pop();
-            resPath.push_back(&node->key);
+            resPath.push_back(node->key);
 
             if (nullptr != node->right)
                 stack.push(node->right);
@@ -78,7 +77,7 @@ protected:
 
 
 
-    virtual void traverseIn(TNode *node, std::vector<TKey*> &resPath)
+    virtual void traverseIn(const TNode *node, std::vector<TKey> &resPath)
     {
         resPath.clear();
         std::stack<TNode> stack;
@@ -98,14 +97,14 @@ protected:
             pickedNode = stack.top();
             stack.pop();
 
-            resPath.push_back(&pickedNode->key);
+            resPath.push_back(pickedNode->key);
             node = pickedNode->right;
         }
     }
 
 
 
-    virtual void traversePost(TNode *node, std::vector<TKey*> &resPath)
+    virtual void traversePost(const TNode *node, std::vector<TKey> &resPath)
     {
         resPath.clear();
         std::stack<TNode> stack;
@@ -116,7 +115,7 @@ protected:
         {
             node = stack.top();
             stack.pop();
-            resPath.push_back(node);
+            resPath.push_back(node->key);
 
             if (nullptr != node->left)
                 stack.push(node->left);
