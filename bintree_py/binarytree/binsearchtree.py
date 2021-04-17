@@ -38,6 +38,9 @@ class BinSearchTree(BinTree):
 
         self._count = 0
 
+        if lst is not None and type(lst) is not list:
+            raise ValueError('Invalid argument: lst must be a list')
+
         if canddrm not in ('left', 'right'):
             raise ValueError('Invalid argument: canddrm')
 
