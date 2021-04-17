@@ -7,8 +7,4 @@
     <RootNamespace>my</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="binarytree\" />
-  </ItemGroup>
-
 </Project>
