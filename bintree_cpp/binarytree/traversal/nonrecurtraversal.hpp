@@ -77,6 +77,31 @@ protected:
 
 
 
+    virtual void traversePost(const TNode *node, std::vector<TKey> &resPath)
+    {
+        resPath.clear();
+        std::stack<TNode> stack;
+
+        stack.push(node);
+
+        while (false == stack.empty())
+        {
+            node = stack.top();
+            stack.pop();
+            resPath.push_back(node->key);
+
+            if (nullptr != node->left)
+                stack.push(node->left);
+
+            if (nullptr != node->right)
+                stack.push(node->right);
+        }
+
+        std::reverse(resPath.begin(), resPath.end());
+    }
+
+
+
     virtual void traverseIn(const TNode *node, std::vector<TKey> &resPath)
     {
         resPath.clear();
@@ -100,31 +125,6 @@ protected:
             resPath.push_back(pickedNode->key);
             node = pickedNode->right;
         }
-    }
-
-
-
-    virtual void traversePost(const TNode *node, std::vector<TKey> &resPath)
-    {
-        resPath.clear();
-        std::stack<TNode> stack;
-
-        stack.push(node);
-
-        while (false == stack.empty())
-        {
-            node = stack.top();
-            stack.pop();
-            resPath.push_back(node->key);
-
-            if (nullptr != node->left)
-                stack.push(node->left);
-
-            if (nullptr != node->right)
-                stack.push(node->right);
-        }
-
-        std::reverse(resPath.begin(), resPath.end());
     }
 };
 

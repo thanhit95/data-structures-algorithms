@@ -5,7 +5,7 @@ import binarytree.BinNode;
 
 
 
-public class BinNodeImp< TKey extends Number & Comparable<? super TKey> >
+public class BinNodeImp< TKey extends Comparable<? super TKey> >
              extends BinNode< TKey, BinNodeImp<TKey> >
 {
 

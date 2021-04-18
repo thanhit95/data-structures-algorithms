@@ -65,6 +65,28 @@ public class NonRecurTraversal< TKey extends Comparable<? super TKey>,
 
 
 
+    protected void traversePost(TNode node, List<TKey> resPath) {
+        resPath.clear();
+        var stack = new Stack<TNode>();
+
+        stack.push(node);
+
+        while (false == stack.empty()) {
+            node = stack.pop();
+            resPath.add(node.key);
+
+            if (null != node.left)
+                stack.push(node.left);
+
+            if (null != node.right)
+                stack.push(node.right);
+        }
+
+        Collections.reverse(resPath);
+    }
+
+
+
     protected void traverseIn(TNode node, List<TKey> resPath) {
         resPath.clear();
         var stack = new Stack<TNode>();
@@ -84,27 +106,5 @@ public class NonRecurTraversal< TKey extends Comparable<? super TKey>,
 
             node = pickedNode.right;
         }
-    }
-
-
-
-    protected void traversePost(TNode node, List<TKey> resPath) {
-        resPath.clear();
-        var stack = new Stack<TNode>();
-
-        stack.push(node);
-
-        while (false == stack.empty()) {
-            node = stack.pop();
-            resPath.add(node.key);
-
-            if (null != node.left)
-                stack.push(node.left);
-
-            if (null != node.right)
-                stack.push(node.right);
-        }
-
-        Collections.reverse(resPath);
     }
 }

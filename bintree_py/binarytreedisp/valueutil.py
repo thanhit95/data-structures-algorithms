@@ -1,8 +1,8 @@
 class ValueUtil:
     #
     #
-    def __init__(self):
-        self.__float_precision = 2
+    def __init__(self, float_precision: int = 2):
+        self.set_float_precision(float_precision)
 
     #
     #
@@ -13,7 +13,7 @@ class ValueUtil:
     #
     def set_float_precision(self, precision: int):
         if type(precision) is not int or precision < 0:
-            raise ValueError('Invalid argument: precision must be a non-negative integer')
+            raise ValueError('Invalid argument: float precision must be a non-negative integer')
 
         self.__float_precision = precision
 

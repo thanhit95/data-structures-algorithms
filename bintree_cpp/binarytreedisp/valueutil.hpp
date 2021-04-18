@@ -27,12 +27,8 @@ private:
 public:
     ValueUtil(const int &floatPrecision = 2, const bool &floatFixed = true)
     {
-        if (floatPrecision >= 0)
-        {
-            this->floatPrecision = floatPrecision;
-        }
-
         this->floatFixed = floatFixed;
+        setFloatPrecision(floatPrecision);
     }
 
 
@@ -48,7 +44,7 @@ public:
     void setFloatPrecision(int precision)
     {
         if (precision < 0)
-            throw std::invalid_argument("precision must be a non-negative integer");
+            throw std::invalid_argument("float precision must be a non-negative integer");
 
         this->floatPrecision = precision;
     }
