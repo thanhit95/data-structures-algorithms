@@ -9,6 +9,7 @@ namespace my.binarytreedisp
         private string FormatString;
 
 
+
         public ValueUtil(int floatPrecision = 2)
         {
             this.FloatPrecision = floatPrecision;
