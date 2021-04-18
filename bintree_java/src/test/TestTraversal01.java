@@ -11,7 +11,7 @@ public class TestTraversal01 extends TestBase {
 
     @Override
     public void doTask() {
-        var bst = new BinSearchTree<Integer, BinNodeImp<Integer> >();
+        var bst = new BinSearchTree<Integer, BinNodeConcrete<Integer> >();
 
         for ( var value : new int[] {12, 39, 20, 7, 26, 45, 19, 8} )
             bst.insert(value);

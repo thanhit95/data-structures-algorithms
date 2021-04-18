@@ -10,7 +10,7 @@ public class TestDisplay01 extends TestBase {
 
     @Override
     public void doTask() {
-        var bst = new BinSearchTree<Double, BinNodeImp<Double   > >();
+        var bst = new BinSearchTree<Double, BinNodeConcrete<Double   > >();
 
         for ( var value : new double[] {100, 50, 70000, 10, 88.523816, 20000, 90000, -123456, 14.78, 62, 500, 30000.19, 40000} )
             bst.insert(value);

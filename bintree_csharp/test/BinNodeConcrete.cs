@@ -4,7 +4,7 @@ using my.binarytree;
 
 namespace my.test
 {
-    class BinNodeImp<TKey> : BinNode<TKey, BinNodeImp<TKey>>
+    class BinNodeConcrete<TKey> : BinNode<TKey, BinNodeConcrete<TKey>>
         where TKey : IComparable
     {
         
