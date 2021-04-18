@@ -138,6 +138,8 @@ class DisplayParser:
         self.destroy_tree(node.right)
         del node.right
 
+        del node.key
+
     #
     #
     def get_height(self, node) -> int:

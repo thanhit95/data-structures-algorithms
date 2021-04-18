@@ -104,11 +104,12 @@ namespace my.binarytree
                 return;
 
             FreeMemory(ref node.Left);
+            //node.Left = null;
+
             FreeMemory(ref node.Right);
+            //node.Right = null;
 
             node.Key = default;
-            node.Left = null;
-            node.Right = null;
             node = null;
         }
     }

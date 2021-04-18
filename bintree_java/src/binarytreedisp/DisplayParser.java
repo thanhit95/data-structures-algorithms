@@ -106,6 +106,8 @@ class DisplayParser {
 
         destroyTree(node.right);
         node.right = null;
+
+        node.key = null;
     }
 
 

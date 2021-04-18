@@ -118,10 +118,12 @@ class BinTree:
             return
 
         self._free_memory(node.left)
-        self._free_memory(node.right)
-
         del node.left
+
+        self._free_memory(node.right)
         del node.right
+
+        del node.key
 
     #
     #

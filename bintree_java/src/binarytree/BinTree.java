@@ -119,9 +119,11 @@ public class BinTree< TKey extends Comparable<? super TKey>,
             return;
 
         freeMemory(node.left);
-        freeMemory(node.right);
-
         node.left = null;
+
+        freeMemory(node.right);
         node.right = null;
+
+        node.key = null;
     }
 }

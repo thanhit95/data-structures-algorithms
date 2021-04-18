@@ -103,6 +103,7 @@ namespace my.binarytreedisp
             DestroyTree(ref node.Right);
             node.Right = null;
 
+            node.Key = null;
             node = null;
         }
 
