@@ -32,9 +32,15 @@ void doTask()
 
 
     auto b = a;
+    b.insert(22);
+    b.insert(29);
     std::cout << "\n\n\n display tree b:" << std::endl;
     base::displayTree(b);
     std::cout << "\n\n height tree b: " << b.height() << std::endl;
+
+
+    std::cout << "\n\n\n display tree a (again):" << std::endl;
+    base::displayTree(a);
 
 
     auto c = a;

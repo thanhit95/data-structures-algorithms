@@ -26,7 +26,6 @@ namespace my.test
             Console.WriteLine("\n\n height tree b: " + b.Height());
 
 
-
             Console.WriteLine("\n\n\n display tree a (again):");
             DisplayTree(a);
 

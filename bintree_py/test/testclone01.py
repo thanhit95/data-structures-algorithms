@@ -14,9 +14,16 @@ def do_task():
     ###########################################
 
     b = a.clone()
+    b.insert(22)
+    b.insert(29)
     print('\n\n\n display tree b:')
     display_tree(b)
     print('\n\n height tree b:', b.height())
+
+    ###########################################
+
+    print('\n\n\n display tree a (again):')
+    display_tree(a)
 
     ###########################################
 

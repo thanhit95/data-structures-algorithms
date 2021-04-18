@@ -20,9 +20,15 @@ public class TestClone01 extends TestBase {
 
 
         var b = a.clone();
+        b.insert(22);
+        b.insert(29);
         System.out.println("\n\n\n display tree b:");
         displayTree(b);
         System.out.println("\n\n height tree b: " + b.height());
+
+
+        System.out.println("\n\n\n display tree a (again):");
+        displayTree(a);
 
 
         var c = a.clone();
