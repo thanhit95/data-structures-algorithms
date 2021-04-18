@@ -1,10 +1,10 @@
 from collections import deque
-from .basetraversal import BaseTraversal
+from .itraversal import ITraversal
 
 
 #
 #
-class NonRecurTraversal(BaseTraversal):
+class NonRecurTraversal(ITraversal):
     #
     #
     def traverse(self, root, order: str) -> list:

@@ -5,7 +5,7 @@
 #include <vector>
 #include <stack>
 #include <algorithm>
-#include "basetraversal.hpp"
+#include "itraversal.hpp"
 #include "ordertraversal.hpp"
 
 
@@ -18,7 +18,7 @@ namespace bt
 
 
 template < typename TKey, typename TNode=BinNode<TKey> >
-class NonRecurTraversal : public BaseTraversal<TKey, TNode>
+class NonRecurTraversal : public ITraversal<TKey, TNode>
 {
 public:
     virtual ~NonRecurTraversal() { }

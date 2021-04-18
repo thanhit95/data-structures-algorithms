@@ -3,7 +3,7 @@
 
 
 #include <vector>
-#include "basetraversal.hpp"
+#include "itraversal.hpp"
 #include "ordertraversal.hpp"
 
 
@@ -16,7 +16,7 @@ namespace bt
 
 
 template < typename TKey, typename TNode=BinNode<TKey> >
-class RecurTraversal : public BaseTraversal<TKey, TNode>
+class RecurTraversal : public ITraversal<TKey, TNode>
 {
 protected:
     std::vector<TKey> resPath;

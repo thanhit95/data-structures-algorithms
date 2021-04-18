@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class RecurTraversal< TKey extends Comparable<? super TKey>,
                              TNode extends BinNode<TKey, TNode>
                            >
-             extends BaseTraversal<TKey, TNode>
+             implements ITraversal<TKey, TNode>
 {
 
 

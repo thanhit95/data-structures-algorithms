@@ -22,7 +22,7 @@ public class BinTree< TKey extends Comparable<? super TKey>,
 
 
     protected TNode root = null;
-    protected BaseTraversal<TKey, TNode> traversal = new RecurTraversal<>();
+    protected ITraversal<TKey, TNode> traversal = new RecurTraversal<>();
 
 
 

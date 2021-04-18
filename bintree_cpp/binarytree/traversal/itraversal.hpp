@@ -1,5 +1,5 @@
-#ifndef __BASE_TRAVERSAL_HPP__
-#define __BASE_TRAVERSAL_HPP__
+#ifndef __INTERFACE_TRAVERSAL_HPP__
+#define __INTERFACE_TRAVERSAL_HPP__
 
 
 #include <vector>
@@ -16,10 +16,10 @@ namespace bt
 
 
 template < typename TKey, typename TNode=BinNode<TKey> >
-class BaseTraversal
+class ITraversal
 {
 public:
-    virtual ~BaseTraversal() { }
+    virtual ~ITraversal() { }
 
 public:
     virtual std::vector<TKey> traverse(const TNode *root, const OrderTraversal &order = OrderTraversal::IN) = 0;
@@ -32,4 +32,4 @@ public:
 
 
 
-#endif // __BASE_TRAVERSAL_HPP__
+#endif // __INTERFACE_TRAVERSAL_HPP__

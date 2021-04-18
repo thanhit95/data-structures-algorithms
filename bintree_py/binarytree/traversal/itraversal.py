@@ -14,7 +14,7 @@ License:        3-Clause BSD License
 
 #
 #
-class BaseTraversal:
+class ITraversal:
     def traverse(self, root, order: str) -> list:
         '''
         Traverses a tree entirely.

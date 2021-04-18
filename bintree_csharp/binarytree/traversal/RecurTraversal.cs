@@ -4,14 +4,16 @@ using System.Collections.Generic;
 
 namespace my.binarytree.traversal
 {
-    class RecurTraversal<TKey, TNode> : BaseTraversal<TKey, TNode>
+    class RecurTraversal<TKey, TNode> : ITraversal<TKey, TNode>
         where TKey : IComparable where TNode : BinNode<TKey, TNode>, new()
     {
+
+
         protected List<TKey> ResPath = null;
 
 
 
-        public override List<TKey> Traverse(TNode root, OrderTraversal order)
+        public List<TKey> Traverse(TNode root, OrderTraversal order)
         {
             ResPath = new List<TKey>();
 

@@ -1,9 +1,9 @@
-from .basetraversal import BaseTraversal
+from .itraversal import ITraversal
 
 
 #
 #
-class RecurTraversal(BaseTraversal):
+class RecurTraversal(ITraversal):
     #
     #
     def traverse(self, root, order: str) -> list:

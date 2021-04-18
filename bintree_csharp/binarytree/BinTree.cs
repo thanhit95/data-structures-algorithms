@@ -18,7 +18,7 @@ namespace my.binarytree
 
 
         protected TNode Root = null;
-        protected BaseTraversal<TKey, TNode> Traversal = new RecurTraversal<TKey, TNode>();
+        protected ITraversal<TKey, TNode> Traversal = new RecurTraversal<TKey, TNode>();
 
 
 
