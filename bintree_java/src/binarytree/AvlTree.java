@@ -172,20 +172,20 @@ public class AvlTree< TKey extends Comparable<? super TKey> >
         /*
             node
             /  \
-           ..   P
+           ..   V
                / \
               a   b
         */
-        var P = node.right;
-        var a = P.left;
+        var V = node.right;
+        var a = V.left;
 
-        P.left = node;
+        V.left = node;
         node.right = a;
 
         node.updateHeight();
-        P.updateHeight();
+        V.updateHeight();
 
-        return P;
+        return V;
     }
 
 
@@ -194,20 +194,20 @@ public class AvlTree< TKey extends Comparable<? super TKey> >
         /*
             node
             /  \
-           P   ..
+           V   ..
           / \
          a   b
         */
-        var P = node.left;
-        var b = P.right;
+        var V = node.left;
+        var b = V.right;
 
-        P.right = node;
+        V.right = node;
         node.left = b;
 
         node.updateHeight();
-        P.updateHeight();
+        V.updateHeight();
 
-        return P;
+        return V;
     }
 
 

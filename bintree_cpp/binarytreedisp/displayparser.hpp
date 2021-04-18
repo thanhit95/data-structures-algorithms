@@ -27,8 +27,8 @@ class DisplayParser
 
 public:
     ValueUtil *valueUtil = nullptr;
-    char lineChar = '-';
-    int  lineBrsp = 1;
+    char lineChar;
+    int lineBrsp;
 
 
 

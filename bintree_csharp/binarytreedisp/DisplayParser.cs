@@ -13,7 +13,7 @@ namespace my.binarytreedisp
 
 
 
-        public ValueUtil ValueUtil;
+        public ValueUtil ValueUtil = null;
         public char LineChar;
         public int LineBrsp;
 
