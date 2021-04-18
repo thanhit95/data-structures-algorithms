@@ -28,7 +28,6 @@ public class TestAvl03 extends TestBase {
             printTree(avl);
         }
 
-
         System.out.println();
     }
 

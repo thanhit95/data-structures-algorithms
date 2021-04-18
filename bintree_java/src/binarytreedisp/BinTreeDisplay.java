@@ -18,7 +18,6 @@ public class BinTreeDisplay {
 
     protected ValueUtil vutil = null;
     protected DisplayParser parser = null;
-
     protected MatrixBuffer buffer = null;
 
     protected int marginLeft = 0;

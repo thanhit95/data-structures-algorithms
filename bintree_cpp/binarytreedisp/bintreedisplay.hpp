@@ -46,7 +46,6 @@ class BinTreeDisplay
 protected:
     ValueUtil vutil;
     DisplayParser parser;
-
     MatrixBuffer *buffer = nullptr;
 
     int marginLeft = 0;

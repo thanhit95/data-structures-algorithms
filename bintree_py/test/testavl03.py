@@ -11,6 +11,8 @@ def do_task():
         print(' height:', avl.height())
         print_tree(avl)
 
+    print()
+
     for value in [30, 50, 140, 25, 20, 10, 40, 100, 28]:
         print('\n\n\n remove', value)
         avl.remove(value)
