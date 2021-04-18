@@ -94,7 +94,7 @@ class MatrixBuffer {
 
 
 
-    List<String> getLstRows() {
+    public List<String> getLstRows() {
         List<String> res = new ArrayList<>();
 
         for (var row : this.a) {
