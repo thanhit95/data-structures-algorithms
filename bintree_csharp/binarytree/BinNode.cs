@@ -4,7 +4,7 @@
 namespace my.binarytree
 {
     class BinNode<TKey, TNode>
-        where TKey : IComparable where TNode : BinNode<TKey, TNode>
+        where TKey : IComparable where TNode : BinNode<TKey, TNode>, new()
     {
         public TKey Key = default;
         public TNode Left = null;

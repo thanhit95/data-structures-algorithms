@@ -10,14 +10,10 @@ namespace my.binarytree
         //////////////////////////////////////////////////////////////
         //                        FIELDS & PROPERTIES
         //////////////////////////////////////////////////////////////
-        
 
 
-        public int Height
-        {
-            get;
-            protected set;
-        }
+
+        public int Height { get; protected set; } = 1;
 
 
 
@@ -41,7 +37,13 @@ namespace my.binarytree
 
 
 
-        public AvlNode(TKey key = default) : base(key)
+        public AvlNode() : base(default)
+        {
+        }
+
+
+
+        public AvlNode(TKey key) : base(key)
         {
         }
 

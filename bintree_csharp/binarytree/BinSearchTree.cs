@@ -8,7 +8,7 @@ using my.extensions;
 namespace my.binarytree
 {
     class BinSearchTree<TKey, TNode> : BinTree<TKey, TNode>
-        where TKey : IComparable where TNode : BinNode<TKey, TNode>
+        where TKey : IComparable where TNode : BinNode<TKey, TNode>, new()
     {
 
         //////////////////////////////////////////////////////////////
@@ -130,7 +130,7 @@ namespace my.binarytree
 
 
 
-        public TKey max()
+        public TKey Max()
         {
             if (Empty())
                 throw new InvalidOperationException("Tree is empty");
@@ -157,7 +157,7 @@ namespace my.binarytree
 
 
 
-        protected TNode _Insert(TNode node, TKey key)
+        protected virtual TNode _Insert(TNode node, TKey key)
         {
             if (null == node)
             {
@@ -181,7 +181,7 @@ namespace my.binarytree
 
 
 
-        protected TNode _Remove(TNode node, TKey key)
+        protected virtual TNode _Remove(TNode node, TKey key)
         {
             if (null == node)
                 return null;

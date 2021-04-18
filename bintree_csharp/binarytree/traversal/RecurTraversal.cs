@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace my.binarytree.traversal
 {
     class RecurTraversal<TKey, TNode> : BaseTraversal<TKey, TNode>
-        where TKey : IComparable where TNode : BinNode<TKey, TNode>
+        where TKey : IComparable where TNode : BinNode<TKey, TNode>, new()
     {
         protected List<TKey> ResPath = null;
 

@@ -7,7 +7,7 @@ namespace my
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            new my.test.TestAvl05().doTask();
         }
     }
 }

@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using my.binarytree.traversal;
+using my.binarytreedisp;
 using my.extensions;
 
 
 namespace my.binarytree
 {
     class BinTree<TKey, TNode>
-        where TKey : IComparable where TNode : BinNode<TKey, TNode>
+        where TKey : IComparable where TNode : BinNode<TKey, TNode>, new()
     {
 
         //////////////////////////////////////////////////////////////
@@ -31,7 +32,7 @@ namespace my.binarytree
 
 
 
-        public int Height() => this._Height(this.Root);
+        public virtual int Height() => this._Height(this.Root);
 
 
 
@@ -51,10 +52,28 @@ namespace my.binarytree
 
 
 
+        // Adapter method connecting BinTreeDisplay and BinTree
+        public string Display(BinTreeDisplay disp)
+        {
+            var res = disp.Get<TKey, TNode>(this.Root);
+            return res;
+        }
+
+
+
+        // Adapter method connecting BinTreeDisplay and BinTree
+        public List<string> DisplayLstRows(BinTreeDisplay disp)
+        {
+            var res = disp.GetLstRows<TKey, TNode>(this.Root);
+            return res;
+        }
+
+
+
         //////////////////////////////////////////////////////////////
         //                        METHODS (PROTECTED)
         //////////////////////////////////////////////////////////////
-        
+
 
 
         protected int _Height(TNode node)
@@ -70,7 +89,12 @@ namespace my.binarytree
 
 
 
-        protected TNode CreateNode(TKey key) => (TNode)new BinNode<TKey, TNode>(key);
+        protected virtual TNode CreateNode(TKey key)
+        {
+            var node = new TNode();
+            node.Key = key;
+            return node;
+        }
 
 
 
