@@ -17,7 +17,7 @@ namespace my.test
             Console.WriteLine("\n min: " + bst.Min());
             Console.WriteLine("\n max: " + bst.Max());
             Console.WriteLine("\n contain: " + bst.Contain(20));
-            Console.WriteLine("\n height: " + bst.Height());
+            Console.WriteLine("\n height: " + bst.Height);
 
             Console.WriteLine("\n print tree: ");
             PrintTree(bst);
@@ -30,7 +30,7 @@ namespace my.test
             bst.Remove(12);
 
             Console.WriteLine("\n count: " + bst.Count);
-            Console.WriteLine("\n height: " + bst.Height());
+            Console.WriteLine("\n height: " + bst.Height);
 
             Console.WriteLine("\n print tree: ");
             PrintTree(bst);

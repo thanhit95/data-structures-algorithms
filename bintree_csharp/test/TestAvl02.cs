@@ -15,7 +15,7 @@ namespace my.test
             Console.WriteLine("\n min: " + avl.Min());
             Console.WriteLine("\n max: " + avl.Max());
             Console.WriteLine("\n contain: " + avl.Contain(50));
-            Console.WriteLine("\n height: " + avl.Height());
+            Console.WriteLine("\n height: " + avl.Height);
 
             Console.WriteLine("\n print tree: ");
             PrintTree(avl);

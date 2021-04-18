@@ -12,7 +12,7 @@ namespace my.binarytree
     {
 
         //////////////////////////////////////////////////////////////
-        //                        FIELDS
+        //                        FIELDS & PROPERTIES
         //////////////////////////////////////////////////////////////
 
 
@@ -22,17 +22,17 @@ namespace my.binarytree
 
 
 
+        public bool Empty => this.Root is null;
+
+
+
+        public virtual int Height => this._Height(this.Root);
+
+
+
         //////////////////////////////////////////////////////////////
         //                        METHODS (PUBLIC)
         //////////////////////////////////////////////////////////////
-
-
-
-        public bool Empty() => this.Root is null;
-
-
-
-        public virtual int Height() => this._Height(this.Root);
 
 
 

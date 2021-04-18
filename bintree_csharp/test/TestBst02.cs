@@ -14,14 +14,14 @@ namespace my.test
                 bst.Insert(value);
 
             PrintTree(bst);
-            Console.WriteLine("\n height: " + bst.Height());
+            Console.WriteLine("\n height: " + bst.Height);
 
 
             foreach (var value in new int[] { 12, 39, 20, 7, 26, 45, 19, 8 })
                 bst.Remove(value);
 
             PrintTree(bst);
-            Console.WriteLine("\n height: " + bst.Height());
+            Console.WriteLine("\n height: " + bst.Height);
 
 
             Console.WriteLine();

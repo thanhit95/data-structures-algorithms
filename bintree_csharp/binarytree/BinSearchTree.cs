@@ -119,7 +119,7 @@ namespace my.binarytree
 
         public TKey Min()
         {
-            if (Empty())
+            if (this.Empty)
                 throw new InvalidOperationException("Tree is empty");
 
             var temp = SearchMin(this.Root, null);
@@ -132,7 +132,7 @@ namespace my.binarytree
 
         public TKey Max()
         {
-            if (Empty())
+            if (this.Empty)
                 throw new InvalidOperationException("Tree is empty");
 
             var temp = SearchMax(this.Root, null);

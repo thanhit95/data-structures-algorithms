@@ -40,12 +40,18 @@ namespace my.binarytree
 
 
         //////////////////////////////////////////////////////////////
-        //                        METHODS (PUBLIC)
+        //                        PROPERTIES
         //////////////////////////////////////////////////////////////
 
 
 
-        public override int Height() => (this.Root is null) ? 0 : this.Root.Height;
+        public override int Height => (this.Root is null) ? 0 : this.Root.Height;
+
+
+
+        //////////////////////////////////////////////////////////////
+        //                        METHODS (PUBLIC)
+        //////////////////////////////////////////////////////////////
 
 
 

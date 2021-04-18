@@ -14,7 +14,7 @@ namespace my.test
             {
                 Console.WriteLine($"\n\n\n insert {value}");
                 avl.Insert(value);
-                Console.WriteLine($" height: {avl.Height()}");
+                Console.WriteLine($" height: {avl.Height}");
                 PrintTree(avl);
             }
 
@@ -25,7 +25,7 @@ namespace my.test
             {
                 Console.WriteLine($"\n\n\n remove {value}");
                 avl.Remove(value);
-                Console.WriteLine($" height: {avl.Height()}");
+                Console.WriteLine($" height: {avl.Height}");
                 PrintTree(avl);
             }
 
