@@ -15,11 +15,16 @@ namespace my.test
                 bst.Insert(value);
 
             var disp = new BinTreeDisplay();
-            disp.Config('-', 1, 0, 2);
+            disp.Config(
+                '-',    // lineChar
+                1,      // lineBrsp
+                0,      // marginLeft
+                2       // floatPre
+            );
+
             var res = bst.Display(disp);
 
             Console.WriteLine(res);
-
             Console.WriteLine();
         }
     }

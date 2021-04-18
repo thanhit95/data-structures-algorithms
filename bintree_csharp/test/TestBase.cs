@@ -16,7 +16,12 @@ namespace my.test
         public TestBase()
         {
             disp = new BinTreeDisplay();
-            disp.Config('-', 1, 0, 2);
+            disp.Config(
+                '-',    // lineChar
+                1,      // lineBrsp
+                0,      // marginLeft
+                2       // floatPre
+            );
         }
 
 

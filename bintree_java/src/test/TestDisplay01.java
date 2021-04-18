@@ -16,11 +16,16 @@ public class TestDisplay01 extends TestBase {
             bst.insert(value);
 
         var disp = new BinTreeDisplay();
-        disp.config('-', 1, 0, 2);
+        disp.config(
+                '-',    // lineChar
+                1,      // lineBrsp
+                0,      // marginLeft
+                2       // floatPre
+        );
+
         var res = bst.display(disp);
 
         System.out.println(res);
-
         System.out.println();
     }
 
