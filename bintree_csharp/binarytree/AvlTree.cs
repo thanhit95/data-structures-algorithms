@@ -55,11 +55,7 @@ namespace my.binarytree
 
 
 
-        public override AvlTree<TKey> Clone()
-        {
-            var theClone = this.DeepCopy();
-            return theClone;
-        }
+        public override AvlTree<TKey> Clone() => this.DeepCopy();
 
 
 
@@ -73,7 +69,7 @@ namespace my.binarytree
         {
             if (node is null)
             {
-                this.successState = true;
+                this.SuccessState = true;
                 return this.CreateNode(key);
             }
 

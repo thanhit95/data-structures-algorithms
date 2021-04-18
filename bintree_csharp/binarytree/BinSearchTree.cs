@@ -18,9 +18,9 @@ namespace my.binarytree
 
 
         public int Count { get; protected set; } = 0;
-        protected CandidateRemoval optionCanddRM = CandidateRemoval.RIGHT;
+        protected CandidateRemoval OptionCanddRM = CandidateRemoval.RIGHT;
 
-        protected bool successState = false;
+        protected bool SuccessState = false;
 
 
 
@@ -38,7 +38,7 @@ namespace my.binarytree
 
         public BinSearchTree(CandidateRemoval canddRM)
         {
-            this.optionCanddRM = canddRM;
+            this.OptionCanddRM = canddRM;
         }
 
 
@@ -55,7 +55,7 @@ namespace my.binarytree
 
         public BinSearchTree(List<TKey> lst, CandidateRemoval canddRM) : this(lst)
         {
-            this.optionCanddRM = canddRM;
+            this.OptionCanddRM = canddRM;
         }
 
 
@@ -83,11 +83,11 @@ namespace my.binarytree
             if (key is null)
                 throw new ArgumentNullException("key must not be null");
 
-            this.successState = false;
+            this.SuccessState = false;
 
             this.Root = _Insert(this.Root, key);
 
-            if (false == this.successState)
+            if (false == this.SuccessState)
             {
                 return false;
             }
@@ -143,11 +143,7 @@ namespace my.binarytree
 
 
 
-        public override BinSearchTree<TKey, TNode> Clone()
-        {
-            var theClone = this.DeepCopy();
-            return theClone;
-        }
+        public override BinSearchTree<TKey, TNode> Clone() => this.DeepCopy();
 
 
 
@@ -161,7 +157,7 @@ namespace my.binarytree
         {
             if (node is null)
             {
-                this.successState = true;
+                this.SuccessState = true;
                 return this.CreateNode(key);
             }
 
@@ -218,7 +214,7 @@ namespace my.binarytree
 
             TNode candidate = null;
 
-            switch (this.optionCanddRM)
+            switch (this.OptionCanddRM)
             {
                 case CandidateRemoval.RIGHT:
                     candidate = SearchMin(node.Right, node).Item1;
