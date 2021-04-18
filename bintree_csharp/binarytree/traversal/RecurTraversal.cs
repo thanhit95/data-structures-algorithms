@@ -42,7 +42,7 @@ namespace my.binarytree.traversal
 
         protected void TraversePre(TNode node)
         {
-            if (null == node)
+            if (node is null)
                 return;
 
             ResPath.Add(node.Key);
@@ -54,7 +54,7 @@ namespace my.binarytree.traversal
 
         protected void TraverseIn(TNode node)
         {
-            if (null == node)
+            if (node is null)
                 return;
 
             TraverseIn(node.Left);
@@ -66,7 +66,7 @@ namespace my.binarytree.traversal
 
         protected void TraversePost(TNode node)
         {
-            if (null == node)
+            if (node is null)
                 return;
 
             TraversePost(node.Left);

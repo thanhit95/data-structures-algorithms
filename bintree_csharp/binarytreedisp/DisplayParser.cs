@@ -50,7 +50,7 @@ namespace my.binarytreedisp
         public ParsingNode BuildTree<TKey, TNode>(TNode inputRoot)
             where TKey : IComparable where TNode : BinNode<TKey, TNode>, new()
         {
-            if (null == inputRoot)
+            if (inputRoot is null)
                 return null;
 
             var node = new ParsingNode(this.ValueUtil.GetStr(inputRoot.Key));
@@ -94,7 +94,7 @@ namespace my.binarytreedisp
 
         public void DestroyTree(ref ParsingNode node)
         {
-            if (null == node)
+            if (node is null)
                 return;
 
             DestroyTree(ref node.Left);
@@ -112,7 +112,7 @@ namespace my.binarytreedisp
         public int GetHeight<TKey, TNode>(TNode node)
             where TKey : IComparable where TNode : BinNode<TKey, TNode>, new()
         {
-            if (null == node)
+            if (node is null)
                 return 0;
 
             int heightLe = GetHeight<TKey, TNode>(node.Left);

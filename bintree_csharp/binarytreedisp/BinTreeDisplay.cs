@@ -57,7 +57,7 @@ namespace my.binarytreedisp
         public List<string> GetLstRows<TKey, TNode>(TNode inputRoot)
             where TKey : IComparable where TNode : BinNode<TKey, TNode>, new()
         {
-            if (null == inputRoot)
+            if (inputRoot is null)
                 return new List<string>();
 
             process<TKey, TNode>(inputRoot);

@@ -159,7 +159,7 @@ namespace my.binarytree
 
         protected virtual TNode _Insert(TNode node, TKey key)
         {
-            if (null == node)
+            if (node is null)
             {
                 this.successState = true;
                 return this.CreateNode(key);
@@ -183,7 +183,7 @@ namespace my.binarytree
 
         protected virtual TNode _Remove(TNode node, TKey key)
         {
-            if (null == node)
+            if (node is null)
                 return null;
 
             int compareKey = key.CompareTo(node.Key);
