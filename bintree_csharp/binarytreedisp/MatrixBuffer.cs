@@ -14,10 +14,10 @@ namespace my.binarytreedisp
 
 
 
-        public int Width { get; private set; } = 0;
-        public int Height { get; private set; } = 0;
+        public int Width { get; protected set; } = 0;
+        public int Height { get; protected set; } = 0;
 
-        private char[][] A;
+        protected char[][] A;
 
 
 

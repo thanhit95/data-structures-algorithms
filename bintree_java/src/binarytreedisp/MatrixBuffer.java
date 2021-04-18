@@ -16,10 +16,10 @@ class MatrixBuffer {
 
 
 
-    private int _width = 0;
-    private int _height = 0;
+    protected int _width = 0;
+    protected int _height = 0;
 
-    private List<StringBuffer> a;
+    protected List<StringBuffer> a;
 
 
 

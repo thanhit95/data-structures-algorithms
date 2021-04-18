@@ -25,7 +25,7 @@ class MatrixBuffer
 
 
 
-private:
+protected:
     int _width = 0;
     int _height = 0;
     std::vector< std::vector<char> > a;
