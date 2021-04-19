@@ -107,17 +107,21 @@ Just like above section (gcc/g++ with Linux environments).
 
 **METHOD 2.** Visual Studio
 
-**Step 1.** Add ```main.cpp``` and all files from ```binarytree, binarytreedisp, test``` to Visual Studio project. Do not change directory structure.
+**Step 1.** Copy-and-add ```main.cpp``` and directories ```binarytree, binarytreedisp, test``` to Visual Studio project. Do not change directory structure.
 
 **Step 2.** Build and run.
 
+Note: Code is tested in Visual Studio 2019 (versin 16.9.4).
+
 **METHOD 3.** CodeBlocks
 
-**Step 1.** Add ```main.cpp``` and all files from ```binarytree, binarytreedisp, test``` to CodeBlocks project.
+**Step 1.** Copy-and-add ```main.cpp``` and all files from ```binarytree, binarytreedisp, test``` to CodeBlocks project. Do not change directory structure.
 
 **Step 2.** Configure build options. Add project directory to ```Search directories```.
 
 **Step 3.** Build and run.
+
+Note: Code is tested in CodeBlocks 17.12 with MinGW g++ (tdm-1) 5.1.0.
 
 &nbsp;
 
