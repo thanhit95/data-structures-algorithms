@@ -307,6 +307,7 @@ class BinSearchTree(BinTree):
         Returns:
             None.
         '''
+        self._dispose_root(self._root)
         self._root = None
 
         lst = sorted(set(lst))

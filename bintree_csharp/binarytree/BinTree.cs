@@ -36,7 +36,7 @@ namespace my.binarytree
 
 
 
-        public void Clear() => FreeMemory(ref this.Root);
+        public void Clear() => DisposeRoot(ref this.Root);
 
 
 
@@ -98,15 +98,15 @@ namespace my.binarytree
 
 
 
-        protected void FreeMemory(ref TNode node)
+        protected void DisposeRoot(ref TNode node)
         {
             if (node is null)
                 return;
 
-            FreeMemory(ref node.Left);
+            DisposeRoot(ref node.Left);
             //node.Left = null;
 
-            FreeMemory(ref node.Right);
+            DisposeRoot(ref node.Right);
             //node.Right = null;
 
             node.Key = default;

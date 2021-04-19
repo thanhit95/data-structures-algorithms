@@ -291,6 +291,7 @@ public class BinSearchTree< TKey extends Comparable<? super TKey>,
 
 
     protected void constructFromList(List<TKey> lst) {
+        this.disposeRoot(root);
         this.root = null;
 
         lst = lst.stream().distinct().sorted().collect(Collectors.toList());

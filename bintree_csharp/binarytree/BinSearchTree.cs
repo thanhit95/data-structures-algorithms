@@ -296,7 +296,7 @@ namespace my.binarytree
 
         protected void ConstructFromList(List<TKey> lst)
         {
-            this.Root = null;
+            this.DisposeRoot(ref this.Root);
 
             lst = lst.Distinct().OrderBy(v => v).ToList();
             int lenLst = lst.Count;

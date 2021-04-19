@@ -54,7 +54,7 @@ class BinTree:
         '''
         Clears tree completely.
         '''
-        self._free_memory(self._root)
+        self._dispose_root(self._root)
         self._root = None
 
     #
@@ -108,7 +108,7 @@ class BinTree:
 
     #
     #
-    def _free_memory(self, node: BinNode):
+    def _dispose_root(self, node: BinNode):
         '''
         Helps garbage collection free memory used by tree.
         Args:
@@ -117,10 +117,10 @@ class BinTree:
         if node is None:
             return
 
-        self._free_memory(node.left)
+        self._dispose_root(node.left)
         del node.left
 
-        self._free_memory(node.right)
+        self._dispose_root(node.right)
         del node.right
 
         del node.key

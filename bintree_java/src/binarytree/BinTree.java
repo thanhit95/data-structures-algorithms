@@ -45,7 +45,7 @@ public class BinTree< TKey extends Comparable<? super TKey>,
 
 
     public void clear() {
-        freeMemory(this.root);
+        disposeRoot(this.root);
         this.root = null;
     }
 
@@ -113,15 +113,15 @@ public class BinTree< TKey extends Comparable<? super TKey>,
 
 
 
-    protected void freeMemory(TNode node)
+    protected void disposeRoot(TNode node)
     {
         if (null == node)
             return;
 
-        freeMemory(node.left);
+        disposeRoot(node.left);
         node.left = null;
 
-        freeMemory(node.right);
+        disposeRoot(node.right);
         node.right = null;
 
         node.key = null;

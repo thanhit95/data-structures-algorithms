@@ -64,7 +64,7 @@ public:
 
     virtual ~BinTree()
     {
-        freeMemory(this->root);
+        disposeRoot(this->root);
     }
 
 
@@ -74,7 +74,7 @@ public:
         if (this == &other)
             return *this;
 
-        freeMemory(this->root);
+        disposeRoot(this->root);
 
         this->root = other.root->cloneBranch();
 
@@ -88,7 +88,7 @@ public:
         if (this == &other)
             return *this;
 
-        freeMemory(this->root);
+        disposeRoot(this->root);
 
         this->root = other.root;
         other.root = nullptr;
@@ -121,7 +121,7 @@ public:
 
     void clear()
     {
-        freeMemory(this->root);
+        disposeRoot(this->root);
         assert( nullptr == this->root );
     }
 
@@ -180,13 +180,13 @@ protected:
 
 
 
-    virtual void freeMemory(TNode *&node)
+    virtual void disposeRoot(TNode *&node)
     {
         if (nullptr == node)
             return;
 
-        freeMemory(node->left);
-        freeMemory(node->right);
+        disposeRoot(node->left);
+        disposeRoot(node->right);
 
         delete node;
         node = nullptr;

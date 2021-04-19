@@ -314,7 +314,7 @@ protected:
 
     void constructFromList(std::vector<TKey> lst)
     {
-        this->freeMemory(this->root);
+        this->disposeRoot(this->root);
 
         std::sort(lst.begin(), lst.end());
         lst.erase(std::unique(lst.begin(), lst.end()), lst.end());
