@@ -173,14 +173,14 @@ protected:
         if (nullptr == node)
         {
             this->_count += 1;
-            return new TNode(key); // return createNode(key);
+            return this->createNode(key);
         }
 
         if (key < node->key)
         {
             node->left = _insert(node->left, key);
         }
-        else
+        else if (key > node->key)
         {
             node->right = _insert(node->right, key);
         }

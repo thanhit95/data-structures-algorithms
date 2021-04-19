@@ -80,17 +80,7 @@ public:
 protected:
     virtual TNode* _insert(TNode *node, const TKey &key) override
     {
-        if (nullptr == node)
-        {
-            this->successState = true;
-            return new TNode(key); // return createNode(key);
-        }
-
-        if (key < node->key)
-            node->left = _insert(node->left, key);
-        else if (key > node->key)
-            node->right = _insert(node->right, key);
-
+        node = BinSearchTree<TKey,TNode>::_insert(node, key);
         node = adjustBalance(node);
         return node;
     }
@@ -99,25 +89,13 @@ protected:
 
     virtual TNode* _remove(TNode *node, const TKey &key) override
     {
-        if (nullptr == node)
-            return nullptr;
+        node = BinSearchTree<TKey,TNode>::_remove(node, key);
 
-        if (key < node->key)
-            node->left = _remove(node->left, key);
-        else if (key > node->key)
-            node->right = _remove(node->right, key);
-        else
+        if (nullptr != node)
         {
-            if (nullptr == node->left)
-                return node->right;
-
-            if (nullptr == node->right)
-                return node->left;
-
-            this->removeCandidate(node);
+            node = adjustBalance(node);
         }
 
-        node = adjustBalance(node);
         return node;
     }
 
