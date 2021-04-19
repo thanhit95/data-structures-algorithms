@@ -13,7 +13,7 @@ namespace bt
 
 
 
-template < typename TKey >
+template <typename TKey>
 class BinNode : public ICloneBranch<BinNode<TKey>>
 {
 public:

@@ -14,7 +14,7 @@ namespace bt
 
 
 
-template < typename TKey >
+template <typename TKey>
 class AvlNode : public ICloneBranch<AvlNode<TKey>>
 {
 
