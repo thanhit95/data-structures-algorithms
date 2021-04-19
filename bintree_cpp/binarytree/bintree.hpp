@@ -30,6 +30,7 @@ class BinTree
 
 protected:
     TNode *root = nullptr;
+    ITraversal<TKey, TNode> *traversal = nullptr;
 
 
 
@@ -42,7 +43,7 @@ protected:
 public:
     BinTree()
     {
-
+        this->traversal = new RecurTraversal<TKey, TNode>();
     }
 
 
@@ -50,6 +51,7 @@ public:
     BinTree(const BinTree &other)
     {
         this->root = other.root->cloneBranch();
+        this->traversal = other.traversal->clone();
     }
 
 
@@ -57,7 +59,9 @@ public:
     BinTree(BinTree &&other)
     {
         this->root = other.root;
+        this->traversal = other.traversal;
         other.root = nullptr;
+        other.traversal = nullptr;
     }
 
 
@@ -65,6 +69,8 @@ public:
     virtual ~BinTree()
     {
         disposeRoot(this->root);
+        delete this->traversal;
+        this->traversal = nullptr;
     }
 
 
@@ -75,8 +81,10 @@ public:
             return *this;
 
         disposeRoot(this->root);
+        delete this->traversal;
 
         this->root = other.root->cloneBranch();
+        this->traversal = other.traversal->clone();
 
         return *this;
     }
@@ -89,9 +97,12 @@ public:
             return *this;
 
         disposeRoot(this->root);
+        delete this->traversal;
 
         this->root = other.root;
+        this->traversal = other.traversal;
         other.root = nullptr;
+        other.traversal = nullptr;
 
         return *this;
     }
@@ -129,8 +140,7 @@ public:
 
     std::vector<TKey> traverse(const OrderTraversal &order) const
     {
-        RecurTraversal<TKey, TNode> traversal;
-        return traversal.traverse(this->root, order);
+        return this->traversal->traverse(this->root, order);
     }
 
 

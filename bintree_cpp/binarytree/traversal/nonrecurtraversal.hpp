@@ -53,6 +53,13 @@ public:
 
 
 
+    virtual NonRecurTraversal* clone() const override
+    {
+        return new NonRecurTraversal(*this);
+    }
+
+
+
 protected:
     virtual void traversePre(const TNode *node, std::vector<TKey> &resPath)
     {

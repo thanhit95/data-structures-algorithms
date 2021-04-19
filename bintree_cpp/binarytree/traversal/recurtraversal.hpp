@@ -56,6 +56,13 @@ public:
 
 
 
+    virtual RecurTraversal* clone() const override
+    {
+        return new RecurTraversal(*this);
+    }
+
+
+
 protected:
     virtual void traversePre(const TNode *node)
     {

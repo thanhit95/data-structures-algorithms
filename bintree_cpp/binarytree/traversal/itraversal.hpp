@@ -23,6 +23,7 @@ public:
 
 public:
     virtual std::vector<TKey> traverse(const TNode *root, const OrderTraversal &order = OrderTraversal::IN) = 0;
+    virtual ITraversal* clone() const = 0;
 };
 
 
