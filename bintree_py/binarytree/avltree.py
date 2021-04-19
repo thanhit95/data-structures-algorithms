@@ -64,15 +64,7 @@ class AvlTree(BinSearchTree):
         Returns:
             The current processing node itself.
         '''
-        if node is None:
-            self._success_state = True
-            return self._create_node(key)
-
-        if key < node.key:
-            node.left = self._insert(node.left, key)
-        elif key > node.key:
-            node.right = self._insert(node.right, key)
-
+        node = super()._insert(node, key)
         node = self._adjust_balance(node)
         return node
 
@@ -87,23 +79,11 @@ class AvlTree(BinSearchTree):
         Returns:
             The current processing node itself.
         '''
-        if node is None:
-            return None
+        node = super()._remove(node, key)
 
-        if key < node.key:
-            node.left = self._remove(node.left, key)
-        elif key > node.key:
-            node.right = self._remove(node.right, key)
-        else:
-            if node.left is None:
-                return node.right
+        if node is not None:
+            node = self._adjust_balance(node)
 
-            if node.right is None:
-                return node.left
-
-            self._remove_candidate(node)
-
-        node = self._adjust_balance(node)
         return node
 
     #

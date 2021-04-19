@@ -67,23 +67,7 @@ namespace my.binarytree
 
         protected override AvlNode<TKey> _Insert(AvlNode<TKey> node, TKey key)
         {
-            if (node is null)
-            {
-                this.SuccessState = true;
-                return this.CreateNode(key);
-            }
-
-            int compareKey = key.CompareTo(node.Key);
-
-            if (compareKey < 0)
-            {
-                node.Left = _Insert(node.Left, key);
-            }
-            else if (compareKey > 0)
-            {
-                node.Right = _Insert(node.Right, key);
-            }
-
+            node = base._Insert(node, key);
             node = AdjustBalance(node);
             return node;
         }
@@ -92,31 +76,13 @@ namespace my.binarytree
 
         protected override AvlNode<TKey> _Remove(AvlNode<TKey> node, TKey key)
         {
-            if (node is null)
-                return null;
+            node = base._Remove(node, key);
 
-            int compareKey = key.CompareTo(node.Key);
-
-            if (compareKey < 0)
+            if (node is not null)
             {
-                node.Left = _Remove(node.Left, key);
-            }
-            else if (compareKey > 0)
-            {
-                node.Right = _Remove(node.Right, key);
-            }
-            else
-            {
-                if (node.Left is null)
-                    return node.Right;
-
-                if (node.Right is null)
-                    return node.Left;
-
-                RemoveCandidate(node);
+                node = AdjustBalance(node);
             }
 
-            node = AdjustBalance(node);
             return node;
         }
 
