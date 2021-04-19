@@ -1,4 +1,4 @@
-# BINARY TREE DATA STRUCTURE IN CPP
+# BINARY TREE DATA STRUCTURE IN C++
 
 ## DESCRIPTION
 
@@ -99,7 +99,7 @@ or
 sh build.sh
 ```
 
-If the build succeeds, there is a executable file named ```outputexec```. Makes sure this file has execute permission. Now we can run the program:
+If the build succeeds, there is a executable file named ```outputexec```. Make sure this file has execute permission. Now we can run the program:
 
 ```shell
 ./outputexec
