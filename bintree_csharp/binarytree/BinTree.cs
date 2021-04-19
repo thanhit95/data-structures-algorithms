@@ -7,7 +7,7 @@ using my.extensions;
 
 namespace my.binarytree
 {
-    class BinTree<TKey, TNode>
+    abstract class BinTree<TKey, TNode>
         where TKey : IComparable where TNode : BinNode<TKey, TNode>, new()
     {
 
@@ -31,6 +31,17 @@ namespace my.binarytree
 
 
         //////////////////////////////////////////////////////////////
+        //                        ABSTRACT METHODS
+        //////////////////////////////////////////////////////////////
+
+
+
+        public abstract bool Insert(TKey key);
+        public abstract bool Remove(TKey key);
+
+
+
+        //////////////////////////////////////////////////////////////
         //                        METHODS (PUBLIC)
         //////////////////////////////////////////////////////////////
 
@@ -44,11 +55,7 @@ namespace my.binarytree
 
 
 
-        public virtual BinTree<TKey, TNode> Clone()
-        {
-            var theClone = this.DeepCopy();
-            return theClone;
-        }
+        public virtual BinTree<TKey, TNode> Clone() => this.DeepCopy();
 
 
 

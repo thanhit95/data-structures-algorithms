@@ -8,10 +8,10 @@ import binarytreedisp.BinTreeDisplay;
 
 
 
-public class BinTree< TKey extends Comparable<? super TKey>,
-                      TNode extends BinNode<TKey,TNode>
-                    >
-             implements Cloneable
+public abstract class BinTree< TKey extends Comparable<? super TKey>,
+                      		   TNode extends BinNode<TKey,TNode>
+                    		 >
+					  implements Cloneable
 {
 
 
@@ -23,7 +23,18 @@ public class BinTree< TKey extends Comparable<? super TKey>,
 
     protected TNode root = null;
     protected ITraversal<TKey, TNode> traversal = new RecurTraversal<>();
-
+    
+   
+    
+//////////////////////////////////////////////////////////////
+//                        ABSTRACT METHODS
+//////////////////////////////////////////////////////////////
+    
+    
+    
+    public abstract boolean insert(TKey key);
+    public abstract boolean remove(TKey key);
+    
 
 
 //////////////////////////////////////////////////////////////
@@ -54,20 +65,6 @@ public class BinTree< TKey extends Comparable<? super TKey>,
     public List<TKey> traverse(OrderTraversal order) {
         var res = traversal.traverse(this.root, order);
         return res;
-    }
-
-
-
-    public BinTree<TKey, TNode> clone() {
-        var theClone = new BinTree<TKey, TNode>();
-
-        if (null != this.root) {
-            theClone.root = this.root.cloneBranch();
-        }
-
-        theClone.traversal = this.traversal;
-
-        return theClone;
     }
 
 

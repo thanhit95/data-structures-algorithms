@@ -48,6 +48,15 @@ public:
 
 
 
+    virtual ~BinTree()
+    {
+        disposeRoot(this->root);
+        delete this->traversal;
+        this->traversal = nullptr;
+    }
+
+
+
     BinTree(const BinTree &other)
     {
         this->root = other.root->cloneBranch();
@@ -62,15 +71,6 @@ public:
         this->traversal = other.traversal;
         other.root = nullptr;
         other.traversal = nullptr;
-    }
-
-
-
-    virtual ~BinTree()
-    {
-        disposeRoot(this->root);
-        delete this->traversal;
-        this->traversal = nullptr;
     }
 
 
@@ -106,6 +106,18 @@ public:
 
         return *this;
     }
+
+
+
+//////////////////////////////////////////////////////////////
+//                        ABSTRACT METHODS
+//////////////////////////////////////////////////////////////
+
+
+
+public:
+    virtual bool insert(const TKey &key) = 0;
+    virtual bool remove(const TKey &key) = 0;
 
 
 

@@ -103,7 +103,7 @@ public:
 
 
 
-    bool insert(const TKey &key)
+    virtual bool insert(const TKey &key) override
     {
         this->successState = false;
 
@@ -119,7 +119,7 @@ public:
 
 
 
-    bool remove(const TKey &key)
+    virtual bool remove(const TKey &key) override
     {
         if (nullptr == this->root)
             return false;

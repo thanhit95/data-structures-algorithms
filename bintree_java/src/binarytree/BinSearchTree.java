@@ -82,6 +82,7 @@ public class BinSearchTree< TKey extends Comparable<? super TKey>,
 
 
 
+    @Override
     public boolean insert(TKey key) {
         if (null == key)
             throw new IllegalArgumentException("key must not be null");
@@ -100,6 +101,7 @@ public class BinSearchTree< TKey extends Comparable<? super TKey>,
 
 
 
+    @Override
     public boolean remove(TKey key) {
         if (null == key)
             throw new IllegalArgumentException("key must not be null");

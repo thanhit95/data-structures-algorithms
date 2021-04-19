@@ -13,6 +13,7 @@ License:        3-Clause BSD License
 
 
 import copy
+from abc import ABC, abstractmethod
 from .binnode import BinNode
 from .traversal import RecurTraversal
 from .bintreeiter import BinTreeIterIn
@@ -21,7 +22,7 @@ from binarytreedisp import BinTreeDisplay  # may remove this line to make Python
 
 #
 #
-class BinTree:
+class BinTree(ABC):
     '''
     Binary Tree.
     '''
@@ -84,6 +85,21 @@ class BinTree:
         '''
         the_clone = copy.deepcopy(self)
         return the_clone
+
+    #
+    #
+    #################################################################
+    #                        ABSTRACT METHODS
+    #################################################################
+    #
+    #
+    @abstractmethod
+    def insert(self, key):
+        pass
+
+    @abstractmethod
+    def remove(self, key):
+        pass
 
     #
     #

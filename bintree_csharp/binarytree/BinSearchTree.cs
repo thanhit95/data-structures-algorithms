@@ -78,7 +78,7 @@ namespace my.binarytree
 
 
 
-        public bool Insert(TKey key)
+        public override bool Insert(TKey key)
         {
             if (key is null)
                 throw new ArgumentNullException("key must not be null");
@@ -98,7 +98,7 @@ namespace my.binarytree
 
 
 
-        public bool Remove(TKey key)
+        public override bool Remove(TKey key)
         {
             if (key is null)
                 throw new ArgumentNullException("key must not be null");
