@@ -273,7 +273,7 @@ protected:
                 node = node->right;
         }
 
-        return std::make_tuple(nullptr, nullptr);  // ensures a value to return, unreachable statement...
+        return std::make_tuple(nullptr, nullptr);  // ensure a value to return, unreachable statement...
     }
 
 
