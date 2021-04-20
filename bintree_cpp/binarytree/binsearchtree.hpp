@@ -345,7 +345,7 @@ protected:
 
 
 
-    virtual void buildTreeFromSortedListNodeFunc(TNode *node)
+    virtual void buildTreeFromSortedListNodeFunc(TNode *node) const
     {
     }
 };

@@ -193,7 +193,7 @@ protected:
 
 
 
-    virtual void buildTreeFromSortedListNodeFunc(TNode *node) override
+    virtual void buildTreeFromSortedListNodeFunc(TNode *node) const override
     {
         node->updateHeight();
     }
