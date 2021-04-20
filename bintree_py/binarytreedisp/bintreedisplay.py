@@ -127,7 +127,7 @@ class BinTreeDisplay:
     #################################################################
     #
     #
-    def _process(self, inp_root) -> MatrixBuffer:
+    def _process(self, inp_root):
         '''
         Backend function for "get" method.
         '''
