@@ -146,7 +146,7 @@ class DisplayParser:
         if node is None:
             return 0
 
-        height_le = self.get_height(node.left)
-        height_ri = self.get_height(node.right)
+        height_le = self.get_height(getattr(node, self.struct_node_le))
+        height_ri = self.get_height(getattr(node, self.struct_node_ri))
 
         return 1 + max(height_le, height_ri)
