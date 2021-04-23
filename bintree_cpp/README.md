@@ -123,7 +123,7 @@ Just like above section (gcc/g++ with Linux environments).
 
 **Step 2.** Build and run.
 
-Note: Code is tested in Visual Studio 2019 (version 16.9.4).
+Note: Code is tested in Visual Studio 2019 v16.9.4 with MSVC v19.28.29914.
 
 **METHOD 3.** CodeBlocks
 
