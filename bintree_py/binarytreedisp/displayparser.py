@@ -60,7 +60,7 @@ class DisplayParser:
     #
     def build_tree(self, input_root) -> ParsingNode:
         '''
-        Builds parser tree which stores parsing information of each corresponding node.
+        Builds parsing tree which stores parsing information of each corresponding node.
         The structure of input_root (and its nodes) should be configured by function config_struct_input_node.
         Args:
             input_root: Input root node.
