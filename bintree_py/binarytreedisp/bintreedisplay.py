@@ -42,11 +42,11 @@ class BinTreeDisplay:
     #
     def get(self, inp_root) -> str:
         '''
-        Gets display string for binary search tree.
-        Output result can be configured by calling "config" method. Configurable properties are:
-            struct_node, line_char, line_brsp, margin_left, float_pre
+        Gets ASCII display string of tree. Output result can be configured by calling method "config".
+
         Args:
-            inp_root: Input root of binary search tree.
+            inp_root: Input root of tree.
+
         Returns:
             String result. If inp_root is None then returns an empty string.
         '''
@@ -65,9 +65,11 @@ class BinTreeDisplay:
     #
     def get_lst_rows(self, inp_root) -> list:
         '''
-        Gets display string for binary search tree.
-        Output result can be configured by calling "config" method. Configurable properties are:
-            struct_node, line_char, line_brsp, margin_left, float_pre
+        Gets ASCII display string of tree. Output result can be configured by calling method "config".
+
+        Args:
+            inp_root: Input root of tree.
+
         Returns:
             List of rows. Each row is a string. If inp_root is None then returns an empty list.
         '''
@@ -87,12 +89,17 @@ class BinTreeDisplay:
     def config(self, struct_node: tuple = None, line_char: str = '-', line_brsp: int = 1, margin_left: int = 0, float_pre: int = 2):
         '''
         Configures settings.
+
         Args:
             struct_node: Structure information of input node. This is a tuple which comprises 3 elemenets:
                 (name_key, name_left_child, name_right_child)
+
             line_char: Display character for the horizontal line connecting left-right branches.
+
             line_brsp: Branch spacing value for the horizontal line connecting left-right branches.
+
             margin_left: Left margin of output string result.
+
             float_pre: Maximum precision of floating-point numbers when displays.
         '''
         if struct_node is not None:
