@@ -9,9 +9,9 @@ import binarytreedisp.BinTreeDisplay;
 
 
 public abstract class BinTree< TKey extends Comparable<? super TKey>,
-                      		   TNode extends BinNode<TKey,TNode>
-                    		 >
-					  implements Cloneable
+                               TNode extends BinNode<TKey,TNode>
+                             >
+                      implements Cloneable
 {
 
 
@@ -23,18 +23,18 @@ public abstract class BinTree< TKey extends Comparable<? super TKey>,
 
     protected TNode root = null;
     protected ITraversal<TKey, TNode> traversal = new RecurTraversal<>();
-    
-   
-    
+
+
+
 //////////////////////////////////////////////////////////////
 //                        ABSTRACT METHODS
 //////////////////////////////////////////////////////////////
-    
-    
-    
+
+
+
     public abstract boolean insert(TKey key);
     public abstract boolean remove(TKey key);
-    
+
 
 
 //////////////////////////////////////////////////////////////

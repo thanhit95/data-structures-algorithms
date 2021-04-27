@@ -83,8 +83,8 @@ public class AvlTree< TKey extends Comparable<? super TKey> >
 
     @Override
     protected AvlNode<TKey> _insert(AvlNode<TKey> node, TKey key) {
-    	node = super._insert(node, key);
-    	node = adjustBalance(node);
+        node = super._insert(node, key);
+        node = adjustBalance(node);
         return node;
     }
 
@@ -92,11 +92,11 @@ public class AvlTree< TKey extends Comparable<? super TKey> >
 
     @Override
     protected AvlNode<TKey> _remove(AvlNode<TKey> node, TKey key) {
-    	node = super._remove(node, key);
-    	
-    	if (null != node) {
-    		node = adjustBalance(node);
-    	}
+        node = super._remove(node, key);
+
+        if (null != node) {
+            node = adjustBalance(node);
+        }
 
         return node;
     }
