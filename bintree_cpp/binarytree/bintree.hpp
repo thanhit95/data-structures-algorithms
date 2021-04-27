@@ -80,8 +80,7 @@ public:
         if (this == &other)
             return *this;
 
-        disposeRoot(this->root);
-        delete this->traversal;
+        this->~BinTree();
 
         this->root = other.root->cloneBranch();
         this->traversal = other.traversal->clone();
@@ -96,8 +95,7 @@ public:
         if (this == &other)
             return *this;
 
-        disposeRoot(this->root);
-        delete this->traversal;
+        this->~BinTree();
 
         this->root = other.root;
         this->traversal = other.traversal;
