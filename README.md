@@ -4,7 +4,7 @@
 
 My self-practice in "Data Structures and Algorithms".
 
-Languages used: mostly Python, C++.
+Languages used: mostly Python & C++.
 
 &nbsp;
 

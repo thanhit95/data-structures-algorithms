@@ -81,6 +81,11 @@ I am developing the next generation of Tree Display in another repo.
 - Implement node iterator.
 - Simplify system.
 
+### MY SPECIAL CODE CONVENTIONS FOR C++
+
+- Due to portability, **each module is fully presented in a single file**.
+- **Prefer C++ pointers** to C++ references (because C++ pointers are compatible with other common programming languages).
+
 &nbsp;
 
 ## PROJECT SPECIFICATIONS
@@ -148,11 +153,6 @@ Note: Code is tested in CodeBlocks 17.12 with MinGW g++ (tdm-1) 5.1.0.
 2. Respect the simplicity over the complexity.
 3. Respect the organization over the algorithms.
 4. Focus on high performance, code reuse, code maintenance.
-
-Plus, by using C++:
-
-- Due to portability, **each module is fully presented in a single file**.
-- **Prefer C++ pointers** to C++ references (because C++ pointers are compatible with other common programming languages).
 
 &nbsp;
 
