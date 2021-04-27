@@ -4,6 +4,12 @@ from .binnode import BinNode
 #
 #
 class AvlNode(BinNode):
+    '''
+    AVL Node.
+
+    Args:
+        key: The key stored in the node.
+    '''
     #
     #
     def __init__(self, key=None):

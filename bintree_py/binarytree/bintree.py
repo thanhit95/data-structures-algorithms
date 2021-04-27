@@ -4,11 +4,6 @@ BINARY TREE
 
 Description:    Binary tree (base class) implementation
 
-Author:         Thanh Trung Nguyen
-                thanh.it1995 (at) gmail.com
-
-License:        3-Clause BSD License
-
 '''
 
 
@@ -87,11 +82,13 @@ class BinTree(ABC):
     def traverse(self, order: str = 'in'):
         '''
         Traverses the tree entirely.
+
         Args:
             order: Type of traversal order.
                 - 'pre': pre-order
                 - 'in': in-order
                 - 'post': post-order
+
         Returns:
             A list of keys.
         '''

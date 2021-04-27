@@ -4,11 +4,6 @@ BINARY TREE BASE TRAVERSAL
 
 Description:    Base class which help traverse through binary trees.
 
-Author:         Thanh Trung Nguyen
-                thanh.it1995 (at) gmail.com
-
-License:        3-Clause BSD License
-
 '''
 
 

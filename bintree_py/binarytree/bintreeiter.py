@@ -1,6 +1,7 @@
 class BinTreeIterIn:
     '''
     Binary Tree Interator.
+
     This class uses in-order traversal.
     '''
     def __init__(self, tree):

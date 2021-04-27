@@ -4,11 +4,6 @@ BINARY SEARCH TREE
 
 Description:    Binary search tree implementation
 
-Author:         Thanh Trung Nguyen
-                thanh.it1995 (at) gmail.com
-
-License:        3-Clause BSD License
-
 '''
 
 
@@ -62,8 +57,10 @@ class BinSearchTree(BinTree):
     def contain(self, key):
         '''
         Checks if key exists.
+
         Args:
             key: The key to search for.
+
         Returns:
             True if key exists. Otherwise, None.
         '''
@@ -78,8 +75,10 @@ class BinSearchTree(BinTree):
     def insert(self, key):
         '''
         Inserts a key.
+
         Args:
             key: The key to insert.
+
         Returns:
             If insertion succeeds, return True. Otherwise, rerturn False.
         '''
@@ -104,8 +103,10 @@ class BinSearchTree(BinTree):
     def remove(self, key):
         '''
         Removes the node of given key.
+
         Args:
             key: The key to be removed.
+
         Returns:
             If key exists, return True. Otherwise, rerturn False.
         '''
@@ -128,8 +129,7 @@ class BinSearchTree(BinTree):
     def min(self):
         '''
         Searches for minimum key.
-        Args:
-            None.
+
         Returns:
             Minimum key if exists. Otherwise, None.
         '''
@@ -142,8 +142,7 @@ class BinSearchTree(BinTree):
     def max(self):
         '''
         Searches for maximum key.
-        Args:
-            None.
+
         Returns:
             Maximum key if exists. Otherwise, None.
         '''
@@ -160,10 +159,12 @@ class BinSearchTree(BinTree):
     #
     def _insert(self, node: BinNode, key):
         '''
-        Inserts a key (backend function)
+        Inserts a key (backend function).
+
         Args:
             node: Current processing node.
             key: The key to insert.
+
         Returns:
             The current processing node itself.
         '''
@@ -183,9 +184,11 @@ class BinSearchTree(BinTree):
     def _remove(self, node: BinNode, key):
         '''
         Removes the node from the tree.
+
         Args:
             node: The current processing node.
             key: The key to search and remove.
+
         Returns:
             The current processing node itself.
         '''
@@ -212,6 +215,7 @@ class BinSearchTree(BinTree):
     def _remove_candidate(self, node: BinNode):
         '''
         Finds a candidate for replacement of current node, and then removes that candidate from the tree.
+
         Args:
             node: The starting node.
         '''
@@ -234,8 +238,10 @@ class BinSearchTree(BinTree):
     def _search(self, node: BinNode, key):
         '''
         Searches for a key.
+
         Args:
             key: The key to search for.
+
         Returns:
             The tuple (node, parent) indicating result node and its parent.
         '''
@@ -262,9 +268,11 @@ class BinSearchTree(BinTree):
     def _search_min(self, node: BinNode, parent: BinNode):
         '''
         Searches for the node with minimum key.
+
         Args:
             node: Starting node.
             parent: Parent of starting node.
+
         Returns:
             The tuple (node, parent) indicating result node and its parent.
         '''
@@ -282,9 +290,11 @@ class BinSearchTree(BinTree):
     def _search_max(self, node: BinNode, parent: BinNode):
         '''
         Searches for the node with maximum key.
+
         Args:
             node: Starting node.
             parent: Parent of starting node.
+
         Returns:
             The tuple (node, parent) indicating result node and its parent.
         '''
@@ -302,8 +312,10 @@ class BinSearchTree(BinTree):
     def _construct_from_list(self, lst: list):
         '''
         Constructs tree from a list. WARNING: The list will change its value (i.e. sorting).
+
         Args:
-            lst: The list.
+            lst: The input list.
+
         Returns:
             None.
         '''
@@ -320,11 +332,13 @@ class BinSearchTree(BinTree):
     #
     def _build_tree_from_sorted_list(self, lst: list, index_start: int, index_end: int):
         '''
-        Backend function for "__construct_from_list".
+        Backend function for "_construct_from_list".
+
         Args:
             lst: The list.
             index_start: Starting index in list.
             index_end: Ending index in list (inclusive).
+
         Returns:
             Root node (followed by its branch) constructed from lst[ index_start to index_end ]
         '''
