@@ -172,7 +172,7 @@ protected:
     {
         if (nullptr == node)
         {
-            this->_size += 1;
+            this->successState = true;
             return this->createNode(key);
         }
 
