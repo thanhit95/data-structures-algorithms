@@ -58,6 +58,9 @@ class BinTree(ABC):
     #
     #
     def empty(self):
+        '''
+        Checks if tree is empty.
+        '''
         return self._root is None
 
     #
@@ -168,11 +171,16 @@ class BinTree(ABC):
     #################################################################
     #
     #
-    def __str__(self):
+    def _get_traversal_str(self) -> str:
         lst_traversal = self.traverse('in')
         res = '  '.join(str(x) for x in lst_traversal)
         res = f'({res})'
         return res
+
+    #
+    #
+    def __str__(self):
+        return self._get_traversal_str()
 
     #
     #

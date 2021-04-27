@@ -7,7 +7,6 @@ Description:    AVL tree implementation
 '''
 
 
-from .bintree import BinTree
 from .binsearchtree import BinSearchTree
 from .avlnode import AvlNode
 
@@ -178,5 +177,4 @@ class AvlTree(BinSearchTree):
     #
     #
     def __str__(self):
-        res = BinTree.__str__(self)
-        return 'AVL' + res
+        return 'AVL' + self._get_traversal_str()

@@ -368,5 +368,4 @@ class BinSearchTree(BinTree):
     #
     #
     def __str__(self):
-        res = BinTree.__str__(self)
-        return 'BST' + res
+        return 'BST' + self._get_traversal_str()
