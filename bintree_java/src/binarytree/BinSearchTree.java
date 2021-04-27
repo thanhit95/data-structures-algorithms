@@ -19,7 +19,7 @@ public class BinSearchTree< TKey extends Comparable<? super TKey>,
 
 
 
-    protected int _count = 0;
+    protected int _size = 0;
     protected CandidateRemoval optionCanddRM = CandidateRemoval.RIGHT;
 
     protected boolean successState = false;
@@ -65,8 +65,9 @@ public class BinSearchTree< TKey extends Comparable<? super TKey>,
 
 
 
-    public int count() {
-        return this._count;
+    @Override
+    public int size() {
+        return this._size;
     }
 
 
@@ -95,7 +96,7 @@ public class BinSearchTree< TKey extends Comparable<? super TKey>,
             return false;
         }
 
-        this._count += 1;
+        this._size += 1;
         return true;
     }
 
@@ -114,7 +115,7 @@ public class BinSearchTree< TKey extends Comparable<? super TKey>,
 
         this.root = _remove(this.root, key);
 
-        this._count -= 1;
+        this._size -= 1;
         return true;
     }
 
@@ -152,8 +153,8 @@ public class BinSearchTree< TKey extends Comparable<? super TKey>,
             theClone.root = this.root.cloneBranch();
         }
 
+        theClone._size = this._size;
         theClone.traversal = this.traversal;
-        theClone._count = this._count;
         theClone.optionCanddRM = this.optionCanddRM;
 
         return theClone;
@@ -300,7 +301,7 @@ public class BinSearchTree< TKey extends Comparable<? super TKey>,
         int lenLst = lst.size();
 
         this.root = buildTreeFromSortedList(lst, 0, lenLst - 1);
-        this._count = lenLst;
+        this._size = lenLst;
     }
 
 

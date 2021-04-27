@@ -17,7 +17,7 @@ namespace my.binarytree
 
 
 
-        public int Count { get; protected set; } = 0;
+        public override int Size { get; protected set; } = 0;
         protected CandidateRemoval OptionCanddRM = CandidateRemoval.RIGHT;
 
         protected bool SuccessState = false;
@@ -92,7 +92,7 @@ namespace my.binarytree
                 return false;
             }
 
-            this.Count += 1;
+            this.Size += 1;
             return true;
         }
 
@@ -111,7 +111,7 @@ namespace my.binarytree
 
             this.Root = _Remove(this.Root, key);
 
-            this.Count -= 1;
+            this.Size -= 1;
             return true;
         }
 
@@ -302,7 +302,7 @@ namespace my.binarytree
             int lenLst = lst.Count;
 
             this.Root = BuildTreeFromSortedList(lst, 0, lenLst - 1);
-            this.Count = lenLst;
+            this.Size = lenLst;
         }
 
 

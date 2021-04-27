@@ -29,13 +29,37 @@ class BinTree(ABC):
     #
     #
     #################################################################
-    #                        METHODS (PUBLIC)
+    #                        CONSTRUCTOR
     #################################################################
     #
     #
     def __init__(self):
         self._root = None
 
+    #
+    #
+    #################################################################
+    #                        ABSTRACT METHODS
+    #################################################################
+    #
+    #
+    @abstractmethod
+    def size(self):
+        raise NotImplementedError()
+
+    @abstractmethod
+    def insert(self, key):
+        raise NotImplementedError()
+
+    @abstractmethod
+    def remove(self, key):
+        raise NotImplementedError()
+
+    #
+    #
+    #################################################################
+    #                        METHODS (PUBLIC)
+    #################################################################
     #
     #
     def empty(self):
@@ -85,21 +109,6 @@ class BinTree(ABC):
         '''
         the_clone = copy.deepcopy(self)
         return the_clone
-
-    #
-    #
-    #################################################################
-    #                        ABSTRACT METHODS
-    #################################################################
-    #
-    #
-    @abstractmethod
-    def insert(self, key):
-        pass
-
-    @abstractmethod
-    def remove(self, key):
-        pass
 
     #
     #

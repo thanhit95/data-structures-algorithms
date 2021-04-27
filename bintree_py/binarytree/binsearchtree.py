@@ -36,7 +36,7 @@ class BinSearchTree(BinTree):
     def __init__(self, lst: list = None, canddrm: str = 'right'):
         super().__init__()
 
-        self._count = 0
+        self._size = 0
 
         if lst is not None and type(lst) is not list:
             raise ValueError('Invalid argument: lst must be a list')
@@ -51,11 +51,11 @@ class BinSearchTree(BinTree):
 
     #
     #
-    def count(self):
+    def size(self):
         '''
         Returns number of nodes.
         '''
-        return self._count
+        return self._size
 
     #
     #
@@ -94,7 +94,7 @@ class BinSearchTree(BinTree):
             del self._success_state
             return False
 
-        self._count += 1
+        self._size += 1
 
         del self._success_state
         return True
@@ -120,7 +120,7 @@ class BinSearchTree(BinTree):
 
         self._root = self._remove(self._root, key)
 
-        self._count -= 1
+        self._size -= 1
         return True
 
     #

@@ -27,7 +27,7 @@ void doTask()
     for ( auto &&value : {12, 39, 20, 7, 26, 45, 19, 8} )
         bst.insert(value);
 
-    std::cout << "\n count: " << bst.count() << std::endl;
+    std::cout << "\n size: " << bst.size() << std::endl;
     std::cout << "\n min: " << bst.min() << std::endl;
     std::cout << "\n max: " << bst.max() << std::endl;
     std::cout << "\n contain: " << bst.contain(20) << std::endl;
@@ -43,7 +43,7 @@ void doTask()
     bst.remove(800);
     bst.remove(12);
 
-    std::cout << "\n count: " << bst.count() << std::endl;
+    std::cout << "\n size: " << bst.size() << std::endl;
     std::cout << "\n height: " << bst.height() << std::endl;
 
     std::cout << "\n print tree:" << std::endl;

@@ -8,7 +8,7 @@ def do_task():
     for value in [10, 20, 30, 40, 50, 25]:
         avl.insert(value)
 
-    print('\n count:', avl.count())
+    print('\n size:', avl.size())
     print('\n min:', avl.min())
     print('\n max:', avl.max())
     print('\n contain:', avl.contain(50))

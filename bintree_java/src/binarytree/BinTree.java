@@ -32,6 +32,7 @@ public abstract class BinTree< TKey extends Comparable<? super TKey>,
 
 
 
+    public abstract int size();
     public abstract boolean insert(TKey key);
     public abstract boolean remove(TKey key);
 

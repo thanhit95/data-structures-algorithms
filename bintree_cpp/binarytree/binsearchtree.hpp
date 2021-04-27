@@ -39,7 +39,7 @@ class BinSearchTree : public BinTree<TKey, TNode>
 
 
 protected:
-    int _count = 0;
+    int _size = 0;
     CandidateRemoval optionCanddRM = CandidateRemoval::RIGHT;
     bool successState = false;
 
@@ -87,9 +87,9 @@ public:
 
 
 public:
-    int count() const
+    virtual int size() const override
     {
-        return this->_count;
+        return this->_size;
     }
 
 
@@ -113,7 +113,7 @@ public:
             return false;
         }
 
-        this->_count += 1;
+        this->_size += 1;
         return true;
     }
 
@@ -129,7 +129,7 @@ public:
 
         this->root = _remove(this->root, key);
 
-        this->_count -= 1;
+        this->_size -= 1;
         return true;
     }
 
@@ -172,7 +172,7 @@ protected:
     {
         if (nullptr == node)
         {
-            this->_count += 1;
+            this->_size += 1;
             return this->createNode(key);
         }
 
@@ -322,7 +322,7 @@ protected:
         int lenLst = lst.size();
 
         this->root = buildTreeFromSortedList(lst, 0, lenLst - 1);
-        this->_count = lenLst;
+        this->_size = lenLst;
     }
 
 

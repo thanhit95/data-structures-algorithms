@@ -12,7 +12,7 @@ namespace my.binarytree
     {
 
         //////////////////////////////////////////////////////////////
-        //                        FIELDS & PROPERTIES
+        //                        FIELDS
         //////////////////////////////////////////////////////////////
 
 
@@ -22,22 +22,26 @@ namespace my.binarytree
 
 
 
-        public bool Empty => this.Root is null;
-
-
-
-        public virtual int Height => this._Height(this.Root);
-
-
-
         //////////////////////////////////////////////////////////////
-        //                        ABSTRACT METHODS
+        //                        ABSTRACT METHODS & PROPERTIES
         //////////////////////////////////////////////////////////////
 
 
 
+        public abstract int Size { get; protected set; }
         public abstract bool Insert(TKey key);
         public abstract bool Remove(TKey key);
+
+
+
+        //////////////////////////////////////////////////////////////
+        //                        PROPERTIES
+        //////////////////////////////////////////////////////////////
+
+
+
+        public bool Empty => this.Root is null;
+        public virtual int Height => this._Height(this.Root);
 
 
 
@@ -47,7 +51,7 @@ namespace my.binarytree
 
 
 
-        public void Clear() => DisposeRoot(ref this.Root);
+        public virtual void Clear() => DisposeRoot(ref this.Root);
 
 
 

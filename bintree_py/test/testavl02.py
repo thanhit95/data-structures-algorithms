@@ -5,7 +5,7 @@ from binarytree import AvlTree
 def do_task():
     avl = AvlTree(lst=[10, 20, 30, 40, 50, 25])
 
-    print('\n count:', avl.count())
+    print('\n size:', avl.size())
     print('\n min:', avl.min())
     print('\n max:', avl.max())
     print('\n contain:', avl.contain(50))

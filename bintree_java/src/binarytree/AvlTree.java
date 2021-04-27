@@ -66,8 +66,8 @@ public class AvlTree< TKey extends Comparable<? super TKey> >
             theClone.root = this.root.cloneBranch();
         }
 
+        theClone._size = this._size;
         theClone.traversal = this.traversal;
-        theClone._count = this._count;
         theClone.optionCanddRM = this.optionCanddRM;
 
         return theClone;

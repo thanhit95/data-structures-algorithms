@@ -11,7 +11,7 @@ namespace my.test
         {
             var avl = new AvlTree<int>(new List<int>(new int[] { 10, 20, 30, 40, 50, 25 }));
 
-            Console.WriteLine("\n count: " + avl.Count);
+            Console.WriteLine("\n size: " + avl.Size);
             Console.WriteLine("\n min: " + avl.Min());
             Console.WriteLine("\n max: " + avl.Max());
             Console.WriteLine("\n contain: " + avl.Contain(50));

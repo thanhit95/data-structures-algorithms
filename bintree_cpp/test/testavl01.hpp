@@ -27,7 +27,7 @@ void doTask()
     for ( auto &&value : {10, 20, 30, 40, 50, 25} )
         avl.insert(value);
 
-    std::cout << "\n count: " << avl.count() << std::endl;
+    std::cout << "\n size: " << avl.size() << std::endl;
     std::cout << "\n min: " << avl.min() << std::endl;
     std::cout << "\n max: " << avl.max() << std::endl;
     std::cout << "\n contain: " << avl.contain(50) << std::endl;

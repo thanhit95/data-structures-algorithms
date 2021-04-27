@@ -116,6 +116,7 @@ public:
 
 
 public:
+    virtual int size() const = 0;
     virtual bool insert(const TKey &key) = 0;
     virtual bool remove(const TKey &key) = 0;
 
@@ -142,7 +143,7 @@ public:
 
 
 
-    void clear()
+    virtual void clear()
     {
         disposeRoot(this->root);
         assert( nullptr == this->root );

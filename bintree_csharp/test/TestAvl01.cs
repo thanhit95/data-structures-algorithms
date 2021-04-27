@@ -13,7 +13,7 @@ namespace my.test
             foreach (var value in new int[] { 10, 20, 30, 40, 50, 25 })
                 avl.Insert(value);
 
-            Console.WriteLine("\n count: " + avl.Count);
+            Console.WriteLine("\n size: " + avl.Size);
             Console.WriteLine("\n min: " + avl.Min());
             Console.WriteLine("\n max: " + avl.Max());
             Console.WriteLine("\n contain: " + avl.Contain(50));
