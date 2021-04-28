@@ -20,6 +20,7 @@ class DisplayParser:
     def config_struct_input_node(self, key: str, left_child: str, right_child: str):
         '''
         Configures input node structure for flexibility.
+
         Args:
             key: Name of key.
             left_child: Name of left child.
@@ -43,6 +44,7 @@ class DisplayParser:
     def config_line(self, character: str, branch_spacing: int):
         '''
         Configures line information. The term "line" means a horizontal line connecting left-right branches.
+
         Args:
             character: Display character.
             branch_spacing: Branch spacing.
@@ -62,8 +64,10 @@ class DisplayParser:
         '''
         Builds parsing tree which stores parsing information of each corresponding node.
         The structure of input_root (and its nodes) should be configured by function config_struct_input_node.
+
         Args:
             input_root: Input root node.
+
         Returns:
             A node of type ParsingNode indicating parsing tree.
         '''

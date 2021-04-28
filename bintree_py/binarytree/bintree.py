@@ -136,6 +136,7 @@ class BinTree(ABC):
     def _dispose_root(self, node: BinNode):
         '''
         Helps garbage collection free memory used by tree.
+
         Args:
             node: Input node.
         '''
