@@ -28,6 +28,6 @@ Thanh Trung Nguyen
 
 ## LICENSE
 
-Copyright (c) Thanh Trung NGUYEN.
+Copyright (c) Thanh Trung Nguyen.
 
 By default, all sub projects in this repo are licensed under the [3-Clause BSD License](LICENSE.txt).
