@@ -2,6 +2,7 @@
 #define __AVL_TREE_HPP__
 
 
+#include <vector>
 #include "avlnode.hpp"
 #include "binsearchtree.hpp"
 #include "candidateremoval.hpp"
